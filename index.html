@@ -1,10 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SRAMotion Studio | Coming Soon</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRA Motion Studio | Cinematic AI Videography</title>
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent-orange: #e67e22;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent-orange); }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        /* Hero Section */
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://via.placeholder.com/1920x1080/121212/e67e22?text=SRA+REEL+BACKGROUND') no-repeat center center/cover;
+            padding: 0 10%;
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 1rem; text-transform: uppercase; }
+        h1 span { color: var(--accent-orange); }
+        p.tagline { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; }
+
+        .btn {
+            background: var(--accent-orange);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: #d35400; transform: translateY(-2px); }
+
+        /* Project Grid */
+        .work { padding: 80px 5%; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #1e1e1e;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover { transform: scale(1.02); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-info { padding: 20px; }
+        .card-info h3 { margin: 0; font-size: 1.1rem; }
+        .card-info p { color: var(--accent-dim); font-size: 0.8rem; margin-top: 5px; color: var(--accent-orange); }
+    </style>
 </head>
 <body>
-    <h1>SRAMotion Studio</h1>
-    <p>Site under construction. Check back soon for AI videography reels.</p>
+
+    <nav>
+        <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+        <div class="nav-links">
+            <a href="#">WORK</a>
+            <a href="#">ABOUT</a>
+            <a href="#">CONTACT</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Cinematic Quality At <br>Social Media <span>Speed</span></h1>
+        <p class="tagline">High-impact AI videography and motion design for modern brands.</p>
+        <a href="#" class="btn">VIEW SHOWREEL</a>
+    </header>
+
+    <section class="work">
+        <h2>FEATURED PROJECTS</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://via.placeholder.com/600x400/222/e67e22?text=C0LD+REEL" alt="C0LD">
+                <div class="card-info">
+                    <h3>CØLD: Voiceover Reel</h3>
+                    <p>AI ANIMATION</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/600x400/222/e67e22?text=WINGSTOP" alt="Wingstop">
+                <div class="card-info">
+                    <h3>Wingstop: Social Campaign</h3>
+                    <p>COMMERCIAL</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/600x400/222/e67e22?text=BLUEPRINT" alt="Blueprint">
+                <div class="card-info">
+                    <h3>Blueprint: Product Vis</h3>
+                    <p>INDUSTRIAL DESIGN</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
