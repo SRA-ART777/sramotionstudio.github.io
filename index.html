@@ -19,6 +19,7 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -28,9 +29,11 @@
             align-items: center;
             padding: 20px 5%;
             background: rgba(18, 18, 18, 0.95);
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 90%;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
@@ -46,102 +49,167 @@
 
         .nav-links a:hover { color: var(--accent-orange); }
 
-        /* Hero Section */
+        /* Hero Section with Background Video */
         header {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://via.placeholder.com/1920x1080/121212/e67e22?text=SRA+REEL+BACKGROUND') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
             padding: 0 10%;
         }
 
-        h1 { font-size: 3.5rem; margin-bottom: 1rem; text-transform: uppercase; }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            opacity: 0.4;
+            filter: brightness(0.7) grayscale(30%);
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 { font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 1rem; text-transform: uppercase; line-height: 1.1; }
         h1 span { color: var(--accent-orange); }
-        p.tagline { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; }
+        p.tagline { color: var(--text-dim); font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; }
 
         .btn {
             background: var(--accent-orange);
             color: white;
-            padding: 15px 40px;
+            padding: 18px 45px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 4px;
             transition: 0.3s;
+            display: inline-block;
         }
 
-        .btn:hover { background: #d35400; transform: translateY(-2px); }
+        .btn:hover { background: #d35400; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3); }
 
         /* Project Grid */
-        .work { padding: 80px 5%; }
+        .work { padding: 100px 5%; background: #0a0a0a; }
+        .work h2 { font-size: 0.9rem; letter-spacing: 4px; color: var(--accent-orange); text-align: center; margin-bottom: 50px; }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
         }
+
+        .card-link { text-decoration: none; color: inherit; display: block; }
 
         .card {
-            background: #1e1e1e;
-            border-radius: 8px;
+            background: #181818;
+            border-radius: 12px;
             overflow: hidden;
-            transition: 0.3s;
-            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #222;
         }
 
-        .card:hover { transform: scale(1.02); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-info { padding: 20px; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; }
-        .card-info p { color: var(--accent-dim); font-size: 0.8rem; margin-top: 5px; color: var(--accent-orange); }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent-orange); }
+        .card img { width: 100%; height: 240px; object-fit: cover; }
+        .card-info { padding: 25px; }
+        .card-info h3 { margin: 0; font-size: 1.2rem; font-weight: 700; }
+        .card-info p { color: var(--accent-orange); font-size: 0.75rem; font-weight: 800; margin-top: 8px; letter-spacing: 1px; }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            nav { padding: 15px 5%; }
+            .nav-links a { margin-left: 15px; font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
-        <div class="nav-links">
-            <a href="#">WORK</a>
-            <a href="#">ABOUT</a>
-            <a href="#">CONTACT</a>
-        </div>
-    </nav>
+<nav>
+    <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+    <div class="nav-links">
+        <a href="#work">WORK</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+    </div>
+</nav>
 
-    <header>
+<header>
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767219787/Blue-Print-AI-Reel_vttnaa.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-content">
         <h1>Cinematic Quality At <br>Social Media <span>Speed</span></h1>
-        <p class="tagline">High-impact AI videography and motion design for modern brands.</p>
-        <a href="#" class="btn">VIEW SHOWREEL</a>
-    </header>
+        <p class="tagline">High-impact AI videography and cinematic motion design for modern brands.</p>
+        <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135079/siena-tower-drop-ai-snowboard_yhmnfu.mp4" target="_blank" class="btn">VIEW SHOWREEL</a>
+    </div>
+</header>
 
-    <section class="work">
-        <h2>FEATURED PROJECTS</h2>
-        <div class="grid">
+<section class="work" id="work">
+    <h2>FEATURED PROJECTS</h2>
+    <div class="grid">
+
+        <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135079/siena-tower-drop-ai-snowboard_yhmnfu.mp4" target="_blank" class="card-link">
             <div class="card">
-                <img src="https://via.placeholder.com/600x400/222/e67e22?text=C0LD+REEL" alt="C0LD">
-                <div class="card-info">
-                    <h3>CØLD: Voiceover Reel</h3>
-                    <p>AI ANIMATION</p>
-                </div>
+                <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135079/siena-tower-drop-ai-snowboard_yhmnfu.jpg" alt="Siena Tower Drop">
+                <div class="card-info"><h3>Siena: Tower Drop</h3><p>AI ANIMATION</p></div>
             </div>
+        </a>
+
+        <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135177/windsurfer-girl-ai-studio-to-sea_uoo6ho.mp4" target="_blank" class="card-link">
             <div class="card">
-                <img src="https://via.placeholder.com/600x400/222/e67e22?text=WINGSTOP" alt="Wingstop">
-                <div class="card-info">
-                    <h3>Wingstop: Social Campaign</h3>
-                    <p>COMMERCIAL</p>
-                </div>
+                <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135177/windsurfer-girl-ai-studio-to-sea_uoo6ho.jpg" alt="Windsurfer Girl">
+                <div class="card-info"><h3>Windsurfer: Studio to Sea</h3><p>AI SEQUENCE</p></div>
             </div>
+        </a>
+
+        <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135229/COLD_AI_Perfume_kk3blz.mp4" target="_blank" class="card-link">
             <div class="card">
-                <img src="https://via.placeholder.com/600x400/222/e67e22?text=BLUEPRINT" alt="Blueprint">
-                <div class="card-info">
-                    <h3>Blueprint: Product Vis</h3>
-                    <p>INDUSTRIAL DESIGN</p>
-                </div>
+                <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135229/COLD_AI_Perfume_kk3blz.jpg" alt="COLD Perfume">
+                <div class="card-info"><h3>CØLD: Voiceover Reel</h3><p>CINEMATIC DESIGN</p></div>
             </div>
-        </div>
-    </section>
+        </a>
+
+        <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.mp4" target="_blank" class="card-link">
+            <div class="card">
+                <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.jpg" alt="Snowboard Reel">
+                <div class="card-info"><h3>Snowboard: Mountain Drop</h3><p>ACTION SPORTS</p></div>
+            </div>
+        </a>
+
+        <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767219787/Blue-Print-AI-Reel_vttnaa.mp4" target="_blank" class="card-link">
+            <div class="card">
+                <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767219787/Blue-Print-AI-Reel_vttnaa.jpg" alt="Blueprint">
+                <div class="card-info"><h3>Blueprint to Reality</h3><p>PRODUCT VIS</p></div>
+            </div>
+        </a>
+
+        <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143146/Sushi-AI_Reel_eibngm.mp4" target="_blank" class="card-link">
+            <div class="card">
+                <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143146/Sushi-AI_Reel_eibngm.jpg" alt="Sushi">
+                <div class="card-info"><h3>Sushi: Concept Study</h3><p>FOOD & BEV</p></div>
+            </div>
+        </a>
+
+        <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143034/Nightfall-Iray-AI-reel_jfqy7s.mp4" target="_blank" class="card-link">
+            <div class="card">
+                <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143034/Nightfall-Iray-AI-reel_jfqy7s.jpg" alt="iRay USA">
+                <div class="card-info"><h3>iRay USA: Spec Concept</h3><p>COMMERCIAL REEL</p></div>
+            </div>
+        </a>
+
+    </div>
+</section>
 
 </body>
 </html>
