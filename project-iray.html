@@ -1,1 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nightfall iRay USA | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent-orange: #e67e22;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
 
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent-orange); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.98);
+            padding: 20px 0;
+            z-index: 99;
+        }
+
+        .mobile-menu.active { display: block; }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--text-dim);
+            text-decoration: none;
+            padding: 15px 5%;
+            font-size: 1rem;
+        }
+
+        .project {
+            padding: 120px 5% 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .project-header {
+            margin-bottom: 30px;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        .subtitle {
+            color: var(--accent-orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .project-description strong {
+            color: var(--text-main);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 30px;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .play-overlay::after {
+            content: '';
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            margin-left: 4px;
+        }
+
+        .video-container:hover .play-overlay {
+            background: rgba(230, 126, 34, 0.8);
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        .stills-header {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .still-thumb {
+            cursor: pointer;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .still-thumb:hover {
+            transform: scale(1.02);
+        }
+
+        .still-thumb img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .lightbox-video {
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .lightbox-caption {
+            color: var(--text-dim);
+            margin-top: 15px;
+            font-size: 0.95rem;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+
+            .project { padding: 100px 5% 40px; }
+
+            .project-header h1 { font-size: 1.8rem; }
+
+            .stills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .still-thumb img { height: 140px; }
+
+            .lightbox-caption {
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+
+            .play-overlay {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-overlay::after {
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-left: 18px solid white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+        <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+    </a>
+    <div class="nav-links">
+        <a href="projects.html">PROJECTS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="projects.html" onclick="toggleMenu()">PROJECTS</a>
+    <a href="about.html" onclick="toggleMenu()">ABOUT</a>
+    <a href="contact.html" onclick="toggleMenu()">CONTACT</a>
+</div>
+
+<section class="project">
+    <a href="projects.html" class="back-link">← Back to Projects</a>
+
+    <div class="project-header">
+        <h1>Nightfall iRay USA</h1>
+        <p class="subtitle">Product • Narrative Concept</p>
+    </div>
+
+    <div class="video-container" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1767143034/Nightfall-Iray-AI-reel_jfqy7s.mp4'">
+        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Iray_1_aafslj.jpg" alt="Nightfall iRay USA Video">
+        <div class="play-overlay"></div>
+    </div>
+
+    <p class="project-description">
+        We all start somewhere. This was my first AI videography reel—the concept was ambitious, the original cut too long. This trimmed version captures the key moments: the iRay logo morphs from a sketchbook drawing as the sea transforms into a stormy ocean, then we follow a hog through a dark forest before ending in a Mordor-inspired landscape where the all-seeing eye reveals itself as the Eye of iRay. Yes, out there. Built in <strong>Nano Banana</strong> and <strong>Kling</strong>.
+    </p>
+
+    <h3 class="stills-header">Production Stills</h3>
+
+    <div class="stills-grid">
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767502932/sketch1920x1080_y0glor.jpg', 'Early version of the iRay logo in the sketchbook.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767502932/sketch1920x1080_y0glor.jpg" alt="Sketchbook logo">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767503019/Iray_Ocean_1_lp3ol3.jpg', 'Early version of the iRay logo in a stormy ocean.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767503019/Iray_Ocean_1_lp3ol3.jpg" alt="Ocean logo 1">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767502936/Iray_Ocean_2_rydyrq.jpg', 'Concept for iRay logo coming up out of the watermark.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767502936/Iray_Ocean_2_rydyrq.jpg" alt="Ocean logo 2">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767502939/Night_Hog_1_r7m86e.jpg', 'Early concept for the hog. I wanted the hog to be menacing, the forest to be dark.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767502939/Night_Hog_1_r7m86e.jpg" alt="Night hog">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767502942/Hog_Mordor_b4qczf.jpg', 'After being spotted on the thermal scope and shot, the hog arrives in Mordor.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767502942/Hog_Mordor_b4qczf.jpg" alt="Hog in Mordor">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767502944/Mordor_crfjiw.jpg', 'The hog walks through lava fields with dramatic lightning, a volcano, and the all-seeing eye of iRay in the background.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767502944/Mordor_crfjiw.jpg" alt="Mordor landscape">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767502947/Tower_Zoom_yzacrx.jpg', 'The camera zooms into the eye of iRay.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767502947/Tower_Zoom_yzacrx.jpg" alt="Tower zoom">
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <video class="lightbox-video" id="lightbox-video" src="" controls style="display: none;"></video>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function openLightbox(imgSrc, caption) {
+        document.getElementById('lightbox-img').src = imgSrc;
+        document.getElementById('lightbox-img').style.display = 'block';
+        document.getElementById('lightbox-video').style.display = 'none';
+        document.getElementById('lightbox-video').pause();
+        document.getElementById('lightbox-caption').textContent = caption;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+        if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-video').pause();
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-video').pause();
+            document.body.style.overflow = 'auto';
+        }
+    });
+</script>
+
+</body>
+</html>
