@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="So Rude | SRA Motion Studio">
+    <meta property="og:description" content="Wingstop spec commercial — a Chinese master about to enjoy his favorite chicken until his pet dragon steals it.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/project-sorude">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="So Rude | SRA Motion Studio">
+    <meta name="twitter:description" content="Wingstop spec commercial — a Chinese master about to enjoy his favorite chicken until his pet dragon steals it.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg">
+    
+    <!-- General Meta Description -->
+    <meta name="description" content="Wingstop spec commercial — a Chinese master about to enjoy his favorite chicken until his pet dragon steals it.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>So Rude | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent-orange: #e67e22;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent-orange); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.98);
+            padding: 20px 0;
+            z-index: 99;
+        }
+
+        .mobile-menu.active { display: block; }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--text-dim);
+            text-decoration: none;
+            padding: 15px 5%;
+            font-size: 1rem;
+        }
+
+        .project {
+            padding: 120px 5% 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .project-header {
+            margin-bottom: 30px;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        .subtitle {
+            color: var(--accent-orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .project-description strong {
+            color: var(--text-main);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 30px;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .play-overlay::after {
+            content: '';
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            margin-left: 4px;
+        }
+
+        .video-container:hover .play-overlay {
+            background: rgba(230, 126, 34, 0.8);
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        .stills-header {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .still-thumb {
+            cursor: pointer;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .still-thumb:hover {
+            transform: scale(1.02);
+        }
+
+        .still-thumb img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .lightbox-video {
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .lightbox-caption {
+            color: var(--text-dim);
+            margin-top: 15px;
+            font-size: 0.95rem;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+
+            .project { padding: 100px 5% 40px; }
+
+            .project-header h1 { font-size: 1.8rem; }
+
+            .stills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .still-thumb img { height: 140px; }
+
+            .lightbox-caption {
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+
+            .play-overlay {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-overlay::after {
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-left: 18px solid white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" style="text-decoration: none; color: inherit;">
+        <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+    </a>
+    <div class="nav-links">
+        <a href="/projects">PROJECTS</a>
+        <a href="/about">ABOUT</a>
+        <a href="/contact">CONTACT</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+    <a href="/about" onclick="toggleMenu()">ABOUT</a>
+    <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+</div>
+
+<section class="project">
+    <a href="/projects" class="back-link">← Back to Projects</a>
+
+    <div class="project-header">
+        <h1>So Rude</h1>
+        <p class="subtitle">Spec Commercial • Wingstop</p>
+    </div>
+
+    <div class="video-container" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.mp4'">
+        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude Video">
+        <div class="play-overlay"></div>
+    </div>
+
+    <p class="project-description">
+        A narrative spec commercial featuring a Chinese master about to enjoy his favorite piece of chicken—until his pet dragon steals it. This project involved using multiple AIs for prompt writing and troubleshooting language blocks; <strong>Ernie</strong> helped identify exact words triggering content filters. Built in <strong>Nano Banana</strong> and <strong>Kling 2.1</strong>.
+    </p>
+
+    <h3 class="stills-header">Production Stills</h3>
+
+    <div class="stills-grid">
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462327/masterpose_qeuisn.jpg', 'Master martial arts pose.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462327/masterpose_qeuisn.jpg" alt="Master pose">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462329/Master_Chicken_Theft_cnyy7g.jpg', 'Master in moment of shock as perfect piece of chicken stolen by pet dragon.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462329/Master_Chicken_Theft_cnyy7g.jpg" alt="Chicken theft">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462332/Master_So_Rude_mej1mv.jpg', 'Master expressing his disappointment to the dragon.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462332/Master_So_Rude_mej1mv.jpg" alt="So Rude moment">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462332/Wingstop_studio_qa6zw4.jpg', 'Wingstop chicken elements isolated in studio setting, prep for placing onto table.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462332/Wingstop_studio_qa6zw4.jpg" alt="Wingstop studio">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462336/Dragons_Not_Used_rt0v1p.jpg', 'Early dragon concepts. Moved away from these as they look too intimidating.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462336/Dragons_Not_Used_rt0v1p.jpg" alt="Early dragons">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462338/Dragon_Studio_sfweq8.jpg', 'Early dragon concept in studio. Moved away from large crystals on tail and head.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462338/Dragon_Studio_sfweq8.jpg" alt="Dragon studio">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462340/Dragon_final_bvx8jy.jpg', 'Final dragon in courtyard, about to steal creamy sauce.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462340/Dragon_final_bvx8jy.jpg" alt="Final dragon">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462345/Temple_variants_1_usmcyi.jpg', 'Initial temple concepts. Used multiple AIs to create prompts, then had them conduct blind tests to pick favorites and explain why. (GPT, Gemini, Claude, Qwen)')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462345/Temple_variants_1_usmcyi.jpg" alt="Temple variants 1">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462343/Temple_variants_dxorkw.jpg', 'Final temple variants. Initial plan was for camera to dolly in and turn right. Changed to straight through to courtyard to speed up opening scene.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462343/Temple_variants_dxorkw.jpg" alt="Temple variants final">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462347/Final_Temple_entrance_cq2glp.jpg', 'Final temple opening scene. Modified initial AI output in Photoshop, adding additional dragon sculptural detail.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462347/Final_Temple_entrance_cq2glp.jpg" alt="Final temple entrance">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462348/Courtyard_Door_o2uwgp.jpg', 'Courtyard temple door, not used.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462348/Courtyard_Door_o2uwgp.jpg" alt="Courtyard door">
+        </div>
+
+        <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1767462351/Courtyard_rkcazv.jpg', 'Initial courtyard location for the dragon stealing the creamy sauce scene.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767462351/Courtyard_rkcazv.jpg" alt="Courtyard">
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <video class="lightbox-video" id="lightbox-video" src="" controls style="display: none;"></video>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function openLightbox(imgSrc, caption) {
+        document.getElementById('lightbox-img').src = imgSrc;
+        document.getElementById('lightbox-img').style.display = 'block';
+        document.getElementById('lightbox-video').style.display = 'none';
+        document.getElementById('lightbox-video').pause();
+        document.getElementById('lightbox-caption').textContent = caption;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+        if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-video').pause();
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-video').pause();
+            document.body.style.overflow = 'auto';
+        }
+    });
+</script>
+
+</body>
+</html>
