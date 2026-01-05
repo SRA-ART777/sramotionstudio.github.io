@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Logo Animations | SRA Motion Studio">
+    <meta property="og:description" content="Brand motion design — lasers, sparks, texture transitions, letter animations, and shimmers.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588776/Logo_Moon_Ocean_zb44g6.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/project-logo">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Logo Animations | SRA Motion Studio">
+    <meta name="twitter:description" content="Brand motion design — lasers, sparks, texture transitions, letter animations, and shimmers.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588776/Logo_Moon_Ocean_zb44g6.jpg">
+    
+    <!-- General Meta Description -->
+    <meta name="description" content="Brand motion design — lasers, sparks, texture transitions, letter animations, and shimmers.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Animations | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent-orange: #e67e22;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent-orange); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.98);
+            padding: 20px 0;
+            z-index: 99;
+        }
+
+        .mobile-menu.active { display: block; }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--text-dim);
+            text-decoration: none;
+            padding: 15px 5%;
+            font-size: 1rem;
+        }
+
+        .project {
+            padding: 120px 5% 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .project-header {
+            margin-bottom: 30px;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        .subtitle {
+            color: var(--accent-orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .project-description strong {
+            color: var(--text-main);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 30px;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .play-overlay::after {
+            content: '';
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            margin-left: 4px;
+        }
+
+        .video-container:hover .play-overlay {
+            background: rgba(230, 126, 34, 0.8);
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        .stills-header {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .video-thumb {
+            cursor: pointer;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .video-thumb:hover {
+            transform: scale(1.02);
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-thumb .play-overlay-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .video-thumb .play-overlay-small::after {
+            content: '';
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 14px solid white;
+            margin-left: 3px;
+        }
+
+        .video-thumb:hover .play-overlay-small {
+            background: rgba(230, 126, 34, 0.8);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+            display: none;
+        }
+
+        .lightbox-video {
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .lightbox-caption {
+            color: var(--text-dim);
+            margin-top: 15px;
+            font-size: 0.95rem;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+
+            .project { padding: 100px 5% 40px; }
+
+            .project-header h1 { font-size: 1.8rem; }
+
+            .stills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .video-thumb img { height: 140px; }
+
+            .lightbox-caption {
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+
+            .play-overlay {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-overlay::after {
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-left: 18px solid white;
+            }
+
+            .video-thumb .play-overlay-small {
+                width: 40px;
+                height: 40px;
+            }
+
+            .video-thumb .play-overlay-small::after {
+                border-top: 6px solid transparent;
+                border-bottom: 6px solid transparent;
+                border-left: 10px solid white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" style="text-decoration: none; color: inherit;">
+        <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+    </a>
+    <div class="nav-links">
+        <a href="/projects">PROJECTS</a>
+        <a href="/about">ABOUT</a>
+        <a href="/contact">CONTACT</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+    <a href="/about" onclick="toggleMenu()">ABOUT</a>
+    <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+</div>
+
+<section class="project">
+    <a href="/projects" class="back-link">← Back to Projects</a>
+
+    <div class="project-header">
+        <h1>Logo Animations</h1>
+        <p class="subtitle">Brand Motion • Title Design</p>
+    </div>
+
+    <div class="video-container" onclick="openVideoLightbox('https://res.cloudinary.com/dqih0axv3/video/upload/v1767587034/Logo_Moon_Ocean_js7aan.mp4', 'Moon lit shimmer')">
+        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588776/Logo_Moon_Ocean_zb44g6.jpg" alt="Logo Animations Video">
+        <div class="play-overlay"></div>
+    </div>
+
+    <p class="project-description">
+        SRA logo animations featuring lasers, sparks, texture transitions, letter animations, and shimmers. These clips demonstrate brand motion design capabilities—dynamic reveals for intros, outros, and social content. Built in <strong>Kling</strong> and <strong>Nano Banana Pro</strong>.
+    </p>
+
+    <h3 class="stills-header">All Animations</h3>
+
+    <div class="stills-grid">
+        <div class="video-thumb" onclick="openVideoLightbox('https://res.cloudinary.com/dqih0axv3/video/upload/v1767587030/Logo_Laser_ecd6g5.mp4', 'Lasers and sparks over 3D Tomb Raider concept background.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767588773/Logo_Laser_afjpxs.jpg" alt="Laser logo">
+            <div class="play-overlay-small"></div>
+        </div>
+
+        <div class="video-thumb" onclick="openVideoLightbox('https://res.cloudinary.com/dqih0axv3/video/upload/v1767587028/Logo_Texture_Morph_cfvc0g.mp4', 'Texture and letter animation.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767588770/Logo_Texture_Morph_vf7jqp.jpg" alt="Texture morph logo">
+            <div class="play-overlay-small"></div>
+        </div>
+
+        <div class="video-thumb" onclick="openVideoLightbox('https://res.cloudinary.com/dqih0axv3/video/upload/v1767587034/Logo_Moon_Ocean_js7aan.mp4', 'Moon lit shimmer.')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767588776/Logo_Moon_Ocean_zb44g6.jpg" alt="Moon ocean logo">
+            <div class="play-overlay-small"></div>
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <video class="lightbox-video" id="lightbox-video" src="" controls style="display: none;"></video>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function openVideoLightbox(videoSrc, caption) {
+        var video = document.getElementById('lightbox-video');
+        video.src = videoSrc;
+        video.style.display = 'block';
+        video.play();
+        document.getElementById('lightbox-img').style.display = 'none';
+        document.getElementById('lightbox-caption').textContent = caption;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+        if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-video').pause();
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-video').pause();
+            document.body.style.overflow = 'auto';
+        }
+    });
+</script>
+
+</body>
+</html>
