@@ -179,6 +179,22 @@
             color: white;
             cursor: pointer;
         }
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+            transition: 0.3s;
+        }
+        .lightbox-prev:hover, .lightbox-next:hover {
+            color: var(--accent-orange);
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
         .lightbox-img {
             max-width: 90%;
             max-height: 85%;
@@ -446,7 +462,9 @@
 <!-- Image Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
     <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <span class="lightbox-prev" onclick="prevImage(event)">&#10094;</span>
     <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <span class="lightbox-next" onclick="nextImage(event)">&#10095;</span>
     <p class="lightbox-caption" id="lightbox-caption"></p>
 </div>
 
@@ -457,11 +475,27 @@
 </div>
 
 <script>
+    // Build array of all gallery images
+    const galleryImages = [];
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+        const onclick = img.getAttribute('onclick');
+        const match = onclick.match(/openLightbox\('([^']+)',\s*'([^']+)'\)/);
+        if (match) {
+            galleryImages.push({ src: match[1], title: match[2] });
+        }
+    });
+    
+    let currentIndex = 0;
+
     function toggleMenu() {
         document.getElementById('mobileMenu').classList.toggle('active');
     }
 
     function openLightbox(imgSrc, title) {
+        // Find index of this image
+        currentIndex = galleryImages.findIndex(img => img.src === imgSrc);
+        if (currentIndex === -1) currentIndex = 0;
+        
         document.getElementById('lightbox-img').src = imgSrc;
         document.getElementById('lightbox-caption').textContent = title;
         document.getElementById('lightbox').classList.add('active');
@@ -473,6 +507,20 @@
             document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+    }
+
+    function prevImage(event) {
+        event.stopPropagation();
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+        document.getElementById('lightbox-img').src = galleryImages[currentIndex].src;
+        document.getElementById('lightbox-caption').textContent = galleryImages[currentIndex].title;
+    }
+
+    function nextImage(event) {
+        event.stopPropagation();
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        document.getElementById('lightbox-img').src = galleryImages[currentIndex].src;
+        document.getElementById('lightbox-caption').textContent = galleryImages[currentIndex].title;
     }
 
     function openVideoLightbox(videoSrc) {
@@ -501,6 +549,10 @@
             video.src = '';
             document.getElementById('videoLightbox').classList.remove('active');
             document.body.style.overflow = 'auto';
+        }
+        if (document.getElementById('lightbox').classList.contains('active')) {
+            if (event.key === 'ArrowLeft') prevImage(event);
+            if (event.key === 'ArrowRight') nextImage(event);
         }
     });
 </script>
