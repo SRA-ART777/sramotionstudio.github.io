@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games | SRA Motion Studio</title>
+    <meta name="description" content="Video game concept art and art direction by Scott Anderson. Head Games, 3DO, Crystal Dynamics.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Games | SRA Motion Studio">
+    <meta property="og:description" content="Video game concept art and art direction. Head Games, 3DO, Crystal Dynamics.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1768706124/Game_Reel_Thumb_mffmc0.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/games">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent-orange: #e67e22;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18, 18, 18, 0.98); padding: 20px 5%; flex-direction: column; gap: 20px; z-index: 99; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; transition: 0.3s; }
+        .mobile-menu a:hover { color: var(--accent-orange); }
+
+        .page-content {
+            padding: 100px 5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Reel */
+        .hero-reel {
+            margin-bottom: 60px;
+        }
+        .video-container {
+            position: relative;
+            cursor: pointer;
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .video-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(230, 126, 34, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-overlay::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 24px solid white;
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            margin-left: 6px;
+        }
+        .video-container:hover .play-overlay {
+            background: rgba(230, 126, 34, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+            transition: 0.3s;
+        }
+
+        /* Studio Sections */
+        .studio-section {
+            margin-bottom: 80px;
+        }
+        .studio-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+        .studio-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .studio-header .location {
+            color: var(--accent-orange);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .studio-header .role {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Image Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid #222;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-orange);
+        }
+        .gallery-item h3 {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-dim);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85%;
+            object-fit: contain;
+        }
+        .lightbox-caption {
+            color: var(--text-dim);
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+
+        /* Video Lightbox */
+        .video-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+        .video-lightbox.active { display: flex; }
+        .video-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 201;
+        }
+        .video-lightbox video {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+            .page-content { padding: 80px 5% 60px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .gallery-item img { height: 140px; }
+            .gallery-item h3 { font-size: 0.75rem; margin-top: 8px; }
+            .studio-header h2 { font-size: 1.1rem; }
+            .play-overlay { width: 60px; height: 60px; }
+            .play-overlay::after { border-left-width: 18px; border-top-width: 10px; border-bottom-width: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" style="text-decoration: none; color: inherit;">
+        <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+    </a>
+    <div class="nav-links">
+        <a href="/projects">PROJECTS</a>
+        <a href="/games">GAMES</a>
+        <a href="/about">ABOUT</a>
+        <a href="/contact">CONTACT</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+    <a href="/games" onclick="toggleMenu()">GAMES</a>
+    <a href="/about" onclick="toggleMenu()">ABOUT</a>
+    <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+</div>
+
+<section class="page-content">
+
+    <!-- Hero Reel -->
+    <div class="hero-reel">
+        <div class="video-container" onclick="openVideoLightbox('https://res.cloudinary.com/dqih0axv3/video/upload/v1768690052/SRA-Game-Reel_HeadGames-3DO-CrystalDynamics-Eidos_H.264_ikeju3.mp4')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768706124/Game_Reel_Thumb_mffmc0.jpg" alt="Game Reel">
+            <div class="play-overlay"></div>
+        </div>
+    </div>
+
+    <!-- Head Games Studio -->
+    <div class="studio-section">
+        <div class="studio-header">
+            <h2>Head Games Studio</h2>
+            <p class="location">San Francisco</p>
+            <p class="role">Concept Artist</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694103/Extreme_Dreams_Cover_z3rvle.jpg" alt="Extreme Dreams Cover Mock Up" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694103/Extreme_Dreams_Cover_z3rvle.jpg', 'Extreme Dreams Cover Mock Up')">
+                <h3>Extreme Dreams Cover Mock Up</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694273/dim_hviwyh.jpg" alt="Main Character Dim" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694273/dim_hviwyh.jpg', 'Main Character Dim')">
+                <h3>Main Character Dim</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694104/Sandy_vyi9tg.jpg" alt="Pro Rider Sandy" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694104/Sandy_vyi9tg.jpg', 'Pro Rider Sandy')">
+                <h3>Pro Rider Sandy</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694107/Thrash_dquzbg.jpg" alt="Pro Rider Thrash" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694107/Thrash_dquzbg.jpg', 'Pro Rider Thrash')">
+                <h3>Pro Rider Thrash</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768695339/Don_Slick_zpye1r.jpg" alt="Don Slick" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768695339/Don_Slick_zpye1r.jpg', 'Don Slick')">
+                <h3>Don Slick</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694115/Officer_Pork_vkdxqc.jpg" alt="Officer McCracklin" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694115/Officer_Pork_vkdxqc.jpg', 'Officer McCracklin')">
+                <h3>Officer McCracklin</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694112/greede_hzyxuw.jpg" alt="J. Mortimer Greede" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694112/greede_hzyxuw.jpg', 'J. Mortimer Greede')">
+                <h3>J. Mortimer Greede</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694111/dalton_e0d6ce.jpg" alt="Rocky Dalton Gang" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694111/dalton_e0d6ce.jpg', 'Rocky Dalton Gang')">
+                <h3>Rocky Dalton Gang</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694113/Buzz_thdv4l.jpg" alt="Buzz" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694113/Buzz_thdv4l.jpg', 'Buzz')">
+                <h3>Buzz</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694109/brisket_copy_wtprfu.jpg" alt="Chuck E. Brisket" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694109/brisket_copy_wtprfu.jpg', 'Chuck E. Brisket')">
+                <h3>Chuck E. Brisket</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694112/goats_vqnmr4.jpg" alt="Cranky Old Goats" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694112/goats_vqnmr4.jpg', 'Cranky Old Goats')">
+                <h3>Cranky Old Goats</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768695339/biddies_trnjyz.jpg" alt="Overbearing Biddies" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768695339/biddies_trnjyz.jpg', 'Overbearing Biddies')">
+                <h3>Overbearing Biddies</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694107/Snot_Nosed_Brats_vatnto.jpg" alt="Snot Nosed Brats" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694107/Snot_Nosed_Brats_vatnto.jpg', 'Snot Nosed Brats')">
+                <h3>Snot Nosed Brats</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694108/Spewgore_iktkgr.jpg" alt="Spewgore" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694108/Spewgore_iktkgr.jpg', 'Spewgore')">
+                <h3>Spewgore</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694103/Wart_Buttle_jpw6dh.jpg" alt="Wart E. Buttle" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694103/Wart_Buttle_jpw6dh.jpg', 'Wart E. Buttle')">
+                <h3>Wart E. Buttle</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694104/Maxxos_qbah83.jpg" alt="Maxxos" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694104/Maxxos_qbah83.jpg', 'Maxxos')">
+                <h3>Maxxos</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694117/Space_Alien_msin7i.jpg" alt="World View from Space" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694117/Space_Alien_msin7i.jpg', 'World View from Space')">
+                <h3>World View from Space</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694120/World_City_View_bakrez.jpg" alt="City View" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694120/World_City_View_bakrez.jpg', 'City View')">
+                <h3>City View</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694116/Burger_Clown_dmqmhj.jpg" alt="Burger Clown" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694116/Burger_Clown_dmqmhj.jpg', 'Burger Clown')">
+                <h3>Burger Clown</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768694117/City_Street_v7em4m.jpg" alt="Street View" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768694117/City_Street_v7em4m.jpg', 'Street View')">
+                <h3>Street View</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768695791/Spewgore_s_Lair_p5y9k9.jpg" alt="Spewgore's Lair" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768695791/Spewgore_s_Lair_p5y9k9.jpg', 'Spewgore\'s Lair')">
+                <h3>Spewgore's Lair</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768695791/Maxxo_s_Gameplay_hwjvgo.jpg" alt="Maxxo's Gameplay" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768695791/Maxxo_s_Gameplay_hwjvgo.jpg', 'Maxxo\'s Gameplay')">
+                <h3>Maxxo's Gameplay</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768695791/Witch_dg1yk5.jpg" alt="Witch" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768695791/Witch_dg1yk5.jpg', 'Witch')">
+                <h3>Witch</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768695792/Brainiac_yj3n4k.jpg" alt="Brainiac" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768695792/Brainiac_yj3n4k.jpg', 'Brainiac')">
+                <h3>Brainiac</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3DO -->
+    <div class="studio-section">
+        <div class="studio-header">
+            <h2>3DO</h2>
+            <p class="location">Redwood City</p>
+            <p class="role">Concept Artist</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768697682/3D0_Galactic_Conquest_dnpxgd.jpg" alt="Galactic Conquest" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768697682/3D0_Galactic_Conquest_dnpxgd.jpg', 'Galactic Conquest')">
+                <h3>Galactic Conquest</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768697682/Izmani_Klaaw_eorhas.jpg" alt="Izmani Klaaw" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768697682/Izmani_Klaaw_eorhas.jpg', 'Izmani Klaaw')">
+                <h3>Izmani Klaaw</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Crystal Dynamics -->
+    <div class="studio-section">
+        <div class="studio-header">
+            <h2>Crystal Dynamics</h2>
+            <p class="location">Palo Alto</p>
+            <p class="role">Senior Artist, Art Director</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704582/Crystal_1_vgufhq.jpg" alt="Crystal 1" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704582/Crystal_1_vgufhq.jpg', 'Crystal 1')">
+                <h3>Crystal 1</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704582/Crystal_2_gsaxf1.jpg" alt="Crystal 2" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704582/Crystal_2_gsaxf1.jpg', 'Crystal 2')">
+                <h3>Crystal 2</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704584/Crystal_3_ysteqx.jpg" alt="Crystal 3" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704584/Crystal_3_ysteqx.jpg', 'Crystal 3')">
+                <h3>Crystal 3</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704585/Crystal_4_xauvxc.jpg" alt="Crystal 4" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704585/Crystal_4_xauvxc.jpg', 'Crystal 4')">
+                <h3>Crystal 4</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704588/Crystal_5_scdki3.jpg" alt="Crystal 5" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704588/Crystal_5_scdki3.jpg', 'Crystal 5')">
+                <h3>Crystal 5</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704588/Crystal_6_xwcvsu.jpg" alt="Crystal 6" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704588/Crystal_6_xwcvsu.jpg', 'Crystal 6')">
+                <h3>Crystal 6</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704589/Crystal_7_ivyhxj.jpg" alt="Crystal 7" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704589/Crystal_7_ivyhxj.jpg', 'Crystal 7')">
+                <h3>Crystal 7</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704592/Crystal_8_impnvh.jpg" alt="Crystal 8" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704592/Crystal_8_impnvh.jpg', 'Crystal 8')">
+                <h3>Crystal 8</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768704615/Whiplash_aasbsu.jpg" alt="Whiplash" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768704615/Whiplash_aasbsu.jpg', 'Whiplash')">
+                <h3>Whiplash</h3>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Image Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<!-- Video Lightbox -->
+<div class="video-lightbox" id="videoLightbox" onclick="closeVideoLightbox(event)">
+    <span class="video-lightbox-close" onclick="closeVideoLightbox(event)">&times;</span>
+    <video id="lightbox-video" controls></video>
+</div>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    function openLightbox(imgSrc, title) {
+        document.getElementById('lightbox-img').src = imgSrc;
+        document.getElementById('lightbox-caption').textContent = title;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+        if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function openVideoLightbox(videoSrc) {
+        const video = document.getElementById('lightbox-video');
+        video.src = videoSrc;
+        document.getElementById('videoLightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        video.play();
+    }
+
+    function closeVideoLightbox(event) {
+        if (event.target.classList.contains('video-lightbox') || event.target.classList.contains('video-lightbox-close')) {
+            const video = document.getElementById('lightbox-video');
+            video.pause();
+            video.src = '';
+            document.getElementById('videoLightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            document.getElementById('lightbox').classList.remove('active');
+            const video = document.getElementById('lightbox-video');
+            video.pause();
+            video.src = '';
+            document.getElementById('videoLightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+</script>
+
+</body>
+</html>
