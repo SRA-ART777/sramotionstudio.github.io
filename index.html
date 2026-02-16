@@ -3,23 +3,23 @@
 <head>
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Projects | SRA Motion Studio">
-    <meta property="og:description" content="AI videography portfolio — spec commercials, product visualization, action sports, and brand motion design.">
+    <meta property="og:title" content="SRA Motion Studio | Cinematic AI Videography">
+    <meta property="og:description" content="High-impact AI videography and cinematic motion design for modern brands. Cinematic quality at social media speed.">
     <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767510216/SRA_Logo_nuckzg.jpg">
-    <meta property="og:url" content="https://sramotionstudio.com/projects">
+    <meta property="og:url" content="https://sramotionstudio.com">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Projects | SRA Motion Studio">
-    <meta name="twitter:description" content="AI videography portfolio — spec commercials, product visualization, action sports, and brand motion design.">
+    <meta name="twitter:title" content="SRA Motion Studio | Cinematic AI Videography">
+    <meta name="twitter:description" content="High-impact AI videography and cinematic motion design for modern brands. Cinematic quality at social media speed.">
     <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767510216/SRA_Logo_nuckzg.jpg">
     
     <!-- General Meta Description -->
-    <meta name="description" content="AI videography portfolio — spec commercials, product visualization, action sports, and brand motion design.">
+    <meta name="description" content="High-impact AI videography and cinematic motion design for modern brands. Cinematic quality at social media speed.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | SRA Motion Studio</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>SRA Motion Studio | Cinematic AI Videography</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         :root {
             --bg-dark: #121212;
@@ -121,30 +121,174 @@
             color: var(--accent-orange);
         }
 
-        /* Projects Section */
-        .projects {
-            padding: 120px 5% 80px;
-            background: var(--bg-dark);
-        }
-
-        .projects-header {
+        /* Hero Section with Background Video */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            padding: 0 10%;
         }
 
-        .projects-header h1 {
-            font-size: 2.2rem;
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            opacity: 0.4;
+            filter: brightness(0.7) grayscale(20%);
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        h1 span {
             color: var(--accent-orange);
-            letter-spacing: 3px;
-            margin-bottom: 25px;
         }
 
-        .projects-header p {
-            color: var(--text-dim);
-            font-size: 1.15rem;
-            max-width: 600px;
+        p.tagline {
+            color: var(--text-main);
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            max-width: 750px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.5;
+        }
+
+        p.tagline span {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        /* Featured Card in Hero */
+        .featured-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            margin-top: 80px;
+        }
+
+        .featured-card {
+            background: rgba(24, 24, 24, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            display: inline-flex;
+            align-items: center;
+            max-width: 750px;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .featured-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-5px);
+        }
+
+        .featured-card img {
+            width: 260px;
+            height: 170px;
+            object-fit: cover;
+        }
+
+        .featured-card-info {
+            padding: 25px 30px;
+            text-align: left;
+        }
+
+        .featured-card-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .featured-card-info p {
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent-orange);
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .featured-card {
+                flex-direction: column;
+                max-width: 210px;
+            }
+
+            .featured-card img {
+                width: 100%;
+                height: 112px;
+            }
+
+            .featured-card-link {
+                margin-top: 40px;
+            }
+
+            .featured-card-info {
+                padding: 15px 18px;
+            }
+
+            .featured-card-info h3 {
+                font-size: 0.95rem;
+                margin-bottom: 6px;
+            }
+
+            .featured-card-info p {
+                font-size: 0.75rem;
+            }
+
+            .featured-badge {
+                font-size: 0.5rem;
+                padding: 3px 6px;
+                top: 8px;
+                left: 8px;
+            }
+        }
+
+        /* Project Grid */
+        .work {
+            padding: 100px 5%;
+            background: #0a0a0a;
+        }
+
+        .work h2 {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: var(--accent-orange);
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         .grid {
@@ -165,7 +309,6 @@
             overflow: hidden;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid #222;
-            position: relative;
         }
 
         .card:hover {
@@ -197,20 +340,6 @@
             letter-spacing: 1px;
         }
 
-        /* Coming Soon Badge */
-        .coming-soon-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--accent-orange);
-            color: #000;
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            padding: 5px 10px;
-            border-radius: 3px;
-        }
-
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -228,16 +357,12 @@
                 padding: 15px 5%;
             }
 
-            .projects {
-                padding: 100px 5% 60px;
+            .coming-soon-banner {
+                padding: 40px 5%;
             }
 
-            .projects-header h1 {
-                font-size: 1.6rem;
-            }
-
-            .projects-header p {
-                font-size: 1rem;
+            .banner-title {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -267,23 +392,29 @@
         <a href="/contact" onclick="toggleMenu()">CONTACT</a>
     </div>
 
-    <section class="projects">
-        <div class="projects-header">
-            <h1>PROJECTS</h1>
-            <p>Each project includes production stills and context on tools and approach.</p>
-        </div>
-        <div class="grid">
-            <a href="/project-landscape" class="card-link">
-                <div class="card">
-                    <span class="coming-soon-badge">COMING SOON</span>
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770048359/Campus_Thumb_wxvcak.jpg" alt="Corporate Landscape">
-                    <div class="card-info">
-                        <h3>Corporate Landscape</h3>
-                        <p>Landscape • Construction to Completion</p>
+    <header>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767297216/Blue_Print_Background_Sml_ympoju.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Cinematic Quality At <br>Social Media <span>Speed</span></h1>
+            <p class="tagline">High-impact <span>AI videography</span> and cinematic motion design for modern brands.</p>
+            <a href="/project-gardeninstall" class="featured-card-link">
+                <div class="featured-card">
+                    <span class="featured-badge">NEW</span>
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg" alt="Garden Install">
+                    <div class="featured-card-info">
+                        <h3>Garden Install</h3>
+                        <p>Landscape installation with lighting design from dawn to night.</p>
                     </div>
                 </div>
             </a>
+        </div>
+    </header>
 
+    <section class="work" id="work">
+        <h2>FEATURED REELS</h2>
+        <div class="grid">
             <a href="/project-gardeninstall" class="card-link">
                 <div class="card">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg" alt="Garden Install">
@@ -304,7 +435,7 @@
                 </div>
             </a>
 
-            <a href="/project-cold" class="card-link">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135229/COLD_AI_Perfume_kk3blz.mp4" class="card-link">
                 <div class="card">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767322094/Cold_cvwrke.jpg" alt="CØLD">
                     <div class="card-info">
@@ -314,7 +445,7 @@
                 </div>
             </a>
 
-            <a href="/project-siena" class="card-link">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135079/siena-tower-drop-ai-snowboard_yhmnfu.mp4" class="card-link">
                 <div class="card">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Siena_-_Tower_Drop_hp0n8h.jpg" alt="Siena Tower Drop">
                     <div class="card-info">
@@ -324,7 +455,7 @@
                 </div>
             </a>
 
-            <a href="/project-kitesurfer" class="card-link">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135177/windsurfer-girl-ai-studio-to-sea_uoo6ho.mp4" class="card-link">
                 <div class="card">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321613/Kitesurfer-Girl_gdu2fc.jpg" alt="Kite Surfer">
                     <div class="card-info">
@@ -334,7 +465,7 @@
                 </div>
             </a>
 
-            <a href="/project-sorude" class="card-link">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.mp4" class="card-link">
                 <div class="card">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude">
                     <div class="card-info">
@@ -344,7 +475,7 @@
                 </div>
             </a>
 
-            <a href="/project-blueprint" class="card-link">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767219787/Blue-Print-AI-Reel_vttnaa.mp4" class="card-link">
                 <div class="card">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767370106/Blue_Print_pg2ybu.jpg" alt="Blueprint">
                     <div class="card-info">
@@ -354,7 +485,7 @@
                 </div>
             </a>
 
-            <a href="/project-sushi" class="card-link">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143146/Sushi-AI_Reel_eibngm.mp4" class="card-link">
                 <div class="card">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg" alt="Sushi">
                     <div class="card-info">
@@ -364,7 +495,7 @@
                 </div>
             </a>
 
-            <a href="/project-iray" class="card-link">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143034/Nightfall-Iray-AI-reel_jfqy7s.mp4" class="card-link">
                 <div class="card">
                     <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143034/Nightfall-Iray-AI-reel_jfqy7s.jpg" alt="iRay USA">
                     <div class="card-info">
@@ -374,11 +505,11 @@
                 </div>
             </a>
 
-            <a href="/project-logo" class="card-link">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767587034/Logo_Moon_Ocean_js7aan.mp4" class="card-link">
                 <div class="card">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588773/Logo_Laser_afjpxs.jpg" alt="Logo Animations">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588776/Logo_Moon_Ocean_zb44g6.jpg" alt="Logo Animation">
                     <div class="card-info">
-                        <h3>Logo Animations</h3>
+                        <h3>Logo Animation</h3>
                         <p>Brand Motion • Title Design</p>
                     </div>
                 </div>
