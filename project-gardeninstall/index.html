@@ -211,6 +211,7 @@
             overflow: hidden;
             border: 1px solid #222;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .still-item:hover {
@@ -222,6 +223,38 @@
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            cursor: pointer;
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .still-caption {
@@ -327,7 +360,7 @@
         <h1>Garden Install</h1>
         <p>LANDSCAPE • LIGHTING DESIGN</p>
         <div class="project-description">
-            Residential landscape transformation showcasing professional installation and lighting design across all hours of the day. From morning garden work to evening entertainment, this AI-generated visualization demonstrates how strategic landscape architecture and lighting create distinct atmospheres throughout the daily cycle.
+            A static camera captures the complete transformation in hyperlapse: workers arrive mid-morning to the empty yard, bringing flower cartons, digging planting beds, and installing a vibrant garden. Lighting installers follow, placing path lights and fence lights, then setting up a fire pit as centerpiece. The hyperlapse accelerates through golden hour into twilight as landscape lights illuminate. At nightfall, the couple emerges in real-time with wine glasses, settling at the fire pit to enjoy their transformed outdoor space.
         </div>
     </section>
 
@@ -408,10 +441,36 @@
         </div>
     </section>
 
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
     <script>
         function toggleMenu() {
             document.getElementById('mobileMenu').classList.toggle('active');
         }
+
+        // Lightbox functionality
+        function openLightbox(imgSrc) {
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightbox-img').src = imgSrc;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Add click handlers to all still items
+        document.addEventListener('DOMContentLoaded', function() {
+            const stillItems = document.querySelectorAll('.still-item img');
+            stillItems.forEach(img => {
+                img.parentElement.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openLightbox(img.src);
+                });
+            });
+        });
     </script>
 </body>
 </html>
