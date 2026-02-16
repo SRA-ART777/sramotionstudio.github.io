@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Garden Install | SRA Motion Studio">
+    <meta property="og:description" content="Residential landscape installation showcasing lighting design from dawn to night.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/project-gardeninstall">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Garden Install | SRA Motion Studio">
+    <meta name="twitter:description" content="Residential landscape installation showcasing lighting design from dawn to night.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg">
+    
+    <!-- General Meta Description -->
+    <meta name="description" content="Residential landscape installation showcasing lighting design from dawn to night.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Install | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent-orange: #e67e22;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-main);
+            transition: 0.3s;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(18, 18, 18, 0.98);
+            padding: 20px 5%;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 99;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 120px 5% 40px;
+            text-align: center;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .project-header p {
+            color: var(--accent-orange);
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .project-description {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        /* Video Section */
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 5%;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Production Stills Section */
+        .production-stills {
+            padding: 60px 5% 100px;
+            background: #0a0a0a;
+        }
+
+        .stills-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .stills-header h2 {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: var(--accent-orange);
+            margin-bottom: 15px;
+        }
+
+        .stills-header p {
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .still-item {
+            background: #181818;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+
+        .still-item:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-5px);
+        }
+
+        .still-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .still-caption {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .still-caption h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .still-caption p {
+            margin: 8px 0 0 0;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Back to Projects Button */
+        .back-button {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .back-button a {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--accent-orange);
+            color: var(--accent-orange);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .back-button a:hover {
+            background: var(--accent-orange);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            .project-header {
+                padding: 100px 5% 30px;
+            }
+
+            .project-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .project-description {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+
+            .stills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" style="text-decoration: none; color: inherit;">
+            <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="/projects">PROJECTS</a>
+            <a href="/games">GAMES</a>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+        <a href="/games" onclick="toggleMenu()">GAMES</a>
+        <a href="/about" onclick="toggleMenu()">ABOUT</a>
+        <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+    </div>
+
+    <section class="project-header">
+        <h1>Garden Install</h1>
+        <p>LANDSCAPE • LIGHTING DESIGN</p>
+        <div class="project-description">
+            Residential landscape transformation showcasing professional installation and lighting design across all hours of the day. From morning garden work to evening entertainment, this AI-generated visualization demonstrates how strategic landscape architecture and lighting create distinct atmospheres throughout the daily cycle.
+        </div>
+    </section>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <video controls autoplay muted loop playsinline>
+                <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1771219390/Garden_Install_Final_H.264_umqvjn.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <section class="production-stills">
+        <div class="stills-header">
+            <h2>PRODUCTION STILLS</h2>
+            <p>Lighting variations and atmosphere development</p>
+        </div>
+        <div class="stills-grid">
+            <div class="still-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220098/Source_Image_ku1j43.jpg" alt="Source Image">
+                <div class="still-caption">
+                    <h3>Source Reference</h3>
+                    <p>Original landscape concept</p>
+                </div>
+            </div>
+
+            <div class="still-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Morning_Light_jly7tn.jpg" alt="Morning Light">
+                <div class="still-caption">
+                    <h3>Morning Light</h3>
+                    <p>Dawn atmosphere and garden work</p>
+                </div>
+            </div>
+
+            <div class="still-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220098/Noon_Light_souqdh.jpg" alt="Noon Light">
+                <div class="still-caption">
+                    <h3>Noon Light</h3>
+                    <p>Midday clarity and full illumination</p>
+                </div>
+            </div>
+
+            <div class="still-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220098/Sunset_Light_ssukiu.jpg" alt="Sunset Light">
+                <div class="still-caption">
+                    <h3>Sunset Light</h3>
+                    <p>Golden hour warmth</p>
+                </div>
+            </div>
+
+            <div class="still-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Night_Lighting_pppe9x.jpg" alt="Night Lighting">
+                <div class="still-caption">
+                    <h3>Night Lighting</h3>
+                    <p>Strategic landscape illumination</p>
+                </div>
+            </div>
+
+            <div class="still-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg" alt="Couple at Fire Pit">
+                <div class="still-caption">
+                    <h3>Evening Entertainment</h3>
+                    <p>Fire pit gathering space</p>
+                </div>
+            </div>
+
+            <div class="still-item">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_Close_Up_zfqxqq.jpg" alt="Couple Close Up">
+                <div class="still-caption">
+                    <h3>Intimate Moments</h3>
+                    <p>Lifestyle integration</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-button">
+            <a href="/projects">← BACK TO PROJECTS</a>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
