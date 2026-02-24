@@ -1,1 +1,389 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Photography | SRA Motion Studio">
+    <meta property="og:description" content="Automotive and architectural photography portfolio.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0272a_siewag.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/photography">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Photography | SRA Motion Studio">
+    <meta name="twitter:description" content="Automotive and architectural photography portfolio.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0272a_siewag.jpg">
+    
+    <!-- General Meta Description -->
+    <meta name="description" content="Automotive and architectural photography portfolio.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent-orange: #e67e22;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-main);
+            transition: 0.3s;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(18, 18, 18, 0.98);
+            padding: 20px 5%;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 99;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 5% 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .page-header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Photography Sections */
+        .photo-section {
+            padding: 60px 5%;
+            background: var(--bg-dark);
+        }
+
+        .photo-section:nth-child(even) {
+            background: #0a0a0a;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: var(--accent-orange);
+            margin-bottom: 10px;
+        }
+
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .photo-item {
+            background: #181818;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-item:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-5px);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            cursor: pointer;
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Back Button */
+        .back-button {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .back-button a {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--accent-orange);
+            color: var(--accent-orange);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .back-button a:hover {
+            background: var(--accent-orange);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            .page-header {
+                padding: 100px 5% 40px;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" style="text-decoration: none; color: inherit;">
+            <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="/projects">PROJECTS</a>
+            <a href="/games">GAMES</a>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+        <a href="/games" onclick="toggleMenu()">GAMES</a>
+        <a href="/about" onclick="toggleMenu()">ABOUT</a>
+        <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+    </div>
+
+    <section class="page-header">
+        <h1>Photography</h1>
+        <p>Automotive and architectural photography portfolio</p>
+    </section>
+
+    <!-- Automotive Photography Section -->
+    <section class="photo-section">
+        <div class="section-header">
+            <h2>AUTOMOTIVE PHOTOGRAPHY</h2>
+        </div>
+        <div class="photo-grid">
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0272a_siewag.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0272a_siewag.jpg" alt="Automotive Photography">
+            </div>
+
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0257a_jrbxv8.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0257a_jrbxv8.jpg" alt="Automotive Photography">
+            </div>
+
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0278a_eighrf.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0278a_eighrf.jpg" alt="Automotive Photography">
+            </div>
+
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0263a_v2lztt.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0263a_v2lztt.jpg" alt="Automotive Photography">
+            </div>
+
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0216a_ebl36u.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/_SDI0216a_ebl36u.jpg" alt="Automotive Photography">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightroom HDR Photography Section -->
+    <section class="photo-section">
+        <div class="section-header">
+            <h2>LIGHTROOM HDR PHOTOGRAPHY</h2>
+        </div>
+        <div class="photo-grid">
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892853/Dining_Room_whs2vg.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892853/Dining_Room_whs2vg.jpg" alt="Dining Room HDR">
+            </div>
+
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892853/Kitchen_jjhn0g.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892853/Kitchen_jjhn0g.jpg" alt="Kitchen HDR">
+            </div>
+
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892853/Living_Room_1_zezwoh.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892853/Living_Room_1_zezwoh.jpg" alt="Living Room HDR">
+            </div>
+
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892853/Living_Room_2_zd6g31.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892853/Living_Room_2_zd6g31.jpg" alt="Living Room HDR">
+            </div>
+
+            <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/Bedroom_2_bnylxa.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771892852/Bedroom_2_bnylxa.jpg" alt="Bedroom HDR">
+            </div>
+        </div>
+    </section>
+
+    <div class="back-button">
+        <a href="/">← BACK TO HOME</a>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        function openLightbox(imgSrc) {
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightbox-img').src = imgSrc;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
