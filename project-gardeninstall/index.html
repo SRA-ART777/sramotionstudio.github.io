@@ -3,23 +3,23 @@
 <head>
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Garden Install | SRA Motion Studio">
-    <meta property="og:description" content="Residential landscape installation showcasing lighting design from dawn to night.">
-    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg">
-    <meta property="og:url" content="https://sramotionstudio.com/project-gardeninstall">
+    <meta property="og:title" content="SRA Motion Studio | Cinematic AI Videography">
+    <meta property="og:description" content="High-impact AI videography and cinematic motion design for modern brands. Cinematic quality at social media speed.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767510216/SRA_Logo_nuckzg.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Garden Install | SRA Motion Studio">
-    <meta name="twitter:description" content="Residential landscape installation showcasing lighting design from dawn to night.">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg">
+    <meta name="twitter:title" content="SRA Motion Studio | Cinematic AI Videography">
+    <meta name="twitter:description" content="High-impact AI videography and cinematic motion design for modern brands. Cinematic quality at social media speed.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767510216/SRA_Logo_nuckzg.jpg">
     
     <!-- General Meta Description -->
-    <meta name="description" content="Residential landscape installation showcasing lighting design from dawn to night.">
+    <meta name="description" content="High-impact AI videography and cinematic motion design for modern brands. Cinematic quality at social media speed.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garden Install | SRA Motion Studio</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>SRA Motion Studio | Cinematic AI Videography</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         :root {
             --bg-dark: #121212;
@@ -121,185 +121,230 @@
             color: var(--accent-orange);
         }
 
-        /* Project Header */
-        .project-header {
-            padding: 120px 5% 40px;
+        /* Hero Section with Background Video */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-        }
-
-        .project-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .project-header p {
-            color: var(--accent-orange);
-            font-size: 0.9rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-
-        .project-description {
-            color: var(--text-dim);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 800px;
-            margin: 0 auto 60px;
-        }
-
-        /* Video Section */
-        .video-container {
-            max-width: 1200px;
-            margin: 0 auto 80px;
-            padding: 0 5%;
-        }
-
-        .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
             overflow: hidden;
-            border-radius: 12px;
-            background: #000;
+            padding: 0 10%;
         }
 
-        .video-wrapper video {
+        .hero-video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            opacity: 0.4;
+            filter: brightness(0.7) grayscale(20%);
+            object-fit: cover;
         }
 
-        /* Production Stills Section */
-        .production-stills {
-            padding: 60px 5% 100px;
-            background: #0a0a0a;
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
-        .stills-header {
-            text-align: center;
-            margin-bottom: 50px;
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            line-height: 1.1;
         }
 
-        .stills-header h2 {
-            font-size: 0.9rem;
-            letter-spacing: 4px;
+        h1 span {
             color: var(--accent-orange);
-            margin-bottom: 15px;
         }
 
-        .stills-header p {
-            color: var(--text-dim);
-            font-size: 1rem;
-        }
-
-        .stills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
+        p.tagline {
+            color: var(--text-main);
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            max-width: 750px;
             margin: 0 auto;
+            line-height: 1.5;
         }
 
-        .still-item {
-            background: #181818;
+        p.tagline span {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        /* Featured Card in Hero */
+        .featured-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            margin-top: 80px;
+        }
+
+        .featured-card {
+            background: rgba(24, 24, 24, 0.95);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #222;
+            border: 1px solid #333;
+            display: inline-flex;
+            align-items: center;
+            max-width: 750px;
             transition: 0.3s;
-            cursor: pointer;
+            backdrop-filter: blur(10px);
+            position: relative;
         }
 
-        .still-item:hover {
+        .featured-card:hover {
             border-color: var(--accent-orange);
             transform: translateY(-5px);
         }
 
-        .still-item img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .featured-card img {
+            width: 260px;
+            height: 170px;
+            object-fit: cover;
         }
 
-        /* Lightbox Modal */
-        .lightbox-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            cursor: pointer;
-            animation: fadeIn 0.3s;
+        .featured-card-info {
+            padding: 25px 30px;
+            text-align: left;
         }
 
-        .lightbox-modal.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .featured-card-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
-        .lightbox-modal img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .still-caption {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .still-caption h3 {
+        .featured-card-info p {
             margin: 0;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .still-caption p {
-            margin: 8px 0 0 0;
-            font-size: 0.85rem;
             color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
-        /* Back to Projects Button */
-        .back-button {
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .back-button a {
-            display: inline-block;
-            padding: 15px 40px;
-            background: transparent;
-            border: 2px solid var(--accent-orange);
-            color: var(--accent-orange);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .back-button a:hover {
+        .featured-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
             background: var(--accent-orange);
             color: #000;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 5px 10px;
+            border-radius: 3px;
         }
 
         @media (max-width: 768px) {
+            .featured-card {
+                flex-direction: column;
+                max-width: 210px;
+            }
+
+            .featured-card img {
+                width: 100%;
+                height: 112px;
+            }
+
+            .featured-card-link {
+                margin-top: 40px;
+            }
+
+            .featured-card-info {
+                padding: 15px 18px;
+            }
+
+            .featured-card-info h3 {
+                font-size: 0.95rem;
+                margin-bottom: 6px;
+            }
+
+            .featured-card-info p {
+                font-size: 0.75rem;
+            }
+
+            .featured-badge {
+                font-size: 0.5rem;
+                padding: 3px 6px;
+                top: 8px;
+                left: 8px;
+            }
+        }
+
+        /* Project Grid */
+        .work {
+            padding: 100px 5%;
+            background: #0a0a0a;
+        }
+
+        .work h2 {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: var(--accent-orange);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card {
+            background: #181818;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #222;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-orange);
+        }
+
+        .card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: 25px;
+        }
+
+        .card-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .card-info p {
+            color: var(--accent-orange);
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -312,21 +357,12 @@
                 padding: 15px 5%;
             }
 
-            .project-header {
-                padding: 100px 5% 30px;
+            .coming-soon-banner {
+                padding: 40px 5%;
             }
 
-            .project-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .project-description {
-                font-size: 1rem;
-                margin-bottom: 40px;
-            }
-
-            .stills-grid {
-                grid-template-columns: 1fr;
+            .banner-title {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -356,113 +392,155 @@
         <a href="/contact" onclick="toggleMenu()">CONTACT</a>
     </div>
 
-    <section class="project-header">
-        <h1>Garden Install</h1>
-        <p>LANDSCAPE • LIGHTING DESIGN</p>
-        <div class="project-description">
-            A static camera captures the complete transformation in hyperlapse: workers arrive mid-morning to the empty yard, bringing flower cartons, digging planting beds, and installing a vibrant garden. Lighting installers follow, placing path lights and fence lights, then setting up a fire pit as centerpiece. The hyperlapse accelerates through golden hour into twilight as landscape lights illuminate. At nightfall, the couple emerges in real-time with wine glasses, settling at the fire pit to enjoy their transformed outdoor space.
+    <header>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767297216/Blue_Print_Background_Sml_ympoju.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Cinematic Quality At <br>Social Media <span>Speed</span></h1>
+            <p class="tagline">High-impact <span>AI videography</span> and cinematic motion design for modern brands.</p>
+            <a href="/project-monopoly" class="featured-card-link">
+                <div class="featured-card">
+                    <span class="featured-badge">NEW</span>
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775149068/Bank_Overheating_nmae6r.jpg" alt="The New Money Game">
+                    <div class="featured-card-info">
+                        <h3>The New Money Game</h3>
+                        <p>Financial narrative through a Monopoly allegory. Inflation, wealth concentration, and collapse.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <section class="work" id="work">
+        <h2>FEATURED REELS</h2>
+        <div class="grid">
+            <a href="/project-monopoly" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775149068/Bank_Overheating_nmae6r.jpg" alt="The New Money Game">
+                    <div class="card-info">
+                        <h3>The New Money Game</h3>
+                        <p>Financial Narrative • AI Videography</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/project-landscape" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770048359/Campus_Thumb_wxvcak.jpg" alt="Corporate Landscape">
+                    <div class="card-info">
+                        <h3>Corporate Landscape</h3>
+                        <p>Landscape • Construction to Completion</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/project-gardeninstall" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg" alt="Garden Install">
+                    <div class="card-info">
+                        <h3>Garden Install</h3>
+                        <p>Landscape • Lighting Design</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/project-gameday" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770086475/Game_Day_Thumb_zupgbx.jpg" alt="Game Day Pool Party">
+                    <div class="card-info">
+                        <h3>Game Day Pool Party</h3>
+                        <p>Smart Home • Lighting Transform</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135229/COLD_AI_Perfume_kk3blz.mp4" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767322094/Cold_cvwrke.jpg" alt="CØLD">
+                    <div class="card-info">
+                        <h3>CØLD</h3>
+                        <p>Product • Environment Transform</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135079/siena-tower-drop-ai-snowboard_yhmnfu.mp4" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Siena_-_Tower_Drop_hp0n8h.jpg" alt="Siena Tower Drop">
+                    <div class="card-info">
+                        <h3>Siena — Tower Drop</h3>
+                        <p>Action Sports • Character Dialogue</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135177/windsurfer-girl-ai-studio-to-sea_uoo6ho.mp4" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321613/Kitesurfer-Girl_gdu2fc.jpg" alt="Kite Surfer">
+                    <div class="card-info">
+                        <h3>Kite Surfer — Studio to Sea</h3>
+                        <p>Action Sports • Environment Transform</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.mp4" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude">
+                    <div class="card-info">
+                        <h3>So Rude</h3>
+                        <p>Food & Bev • Character Dialogue</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767219787/Blue-Print-AI-Reel_vttnaa.mp4" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767370106/Blue_Print_pg2ybu.jpg" alt="Blueprint">
+                    <div class="card-info">
+                        <h3>Blueprint to Reality</h3>
+                        <p>Product: Viz • Concept-to-Render</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143146/Sushi-AI_Reel_eibngm.mp4" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg" alt="Sushi">
+                    <div class="card-info">
+                        <h3>Sushi — Concept Study</h3>
+                        <p>Food & Bev • Macro Craft</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143034/Nightfall-Iray-AI-reel_jfqy7s.mp4" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143034/Nightfall-Iray-AI-reel_jfqy7s.jpg" alt="iRay USA">
+                    <div class="card-info">
+                        <h3>Nightfall — iRay USA</h3>
+                        <p>Commercial Concept • Creature / Atmosphere</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767587034/Logo_Moon_Ocean_js7aan.mp4" class="card-link">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588776/Logo_Moon_Ocean_zb44g6.jpg" alt="Logo Animation">
+                    <div class="card-info">
+                        <h3>Logo Animation</h3>
+                        <p>Brand Motion • Title Design</p>
+                    </div>
+                </div>
+            </a>
         </div>
     </section>
-
-    <div class="video-container">
-        <div class="video-wrapper">
-            <video controls autoplay muted loop playsinline>
-                <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1771962548/Garden_Install_2k_v7eowm.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
-
-    <section class="production-stills">
-        <div class="stills-header">
-            <h2>PRODUCTION STILLS</h2>
-            <p>Lighting variations and atmosphere development</p>
-        </div>
-        <div class="stills-grid">
-            <div class="still-item">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Morning_Light_jly7tn.jpg" alt="Morning Light">
-                <div class="still-caption">
-                    <h3>Morning Light</h3>
-                    <p>Dawn atmosphere and garden work</p>
-                </div>
-            </div>
-
-            <div class="still-item">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220098/Noon_Light_souqdh.jpg" alt="Noon Light">
-                <div class="still-caption">
-                    <h3>Noon Light</h3>
-                    <p>Midday clarity and full illumination</p>
-                </div>
-            </div>
-
-            <div class="still-item">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220098/Sunset_Light_ssukiu.jpg" alt="Sunset Light">
-                <div class="still-caption">
-                    <h3>Sunset Light</h3>
-                    <p>Golden hour warmth</p>
-                </div>
-            </div>
-
-            <div class="still-item">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Night_Lighting_pppe9x.jpg" alt="Night Lighting">
-                <div class="still-caption">
-                    <h3>Night Lighting</h3>
-                    <p>Strategic landscape illumination</p>
-                </div>
-            </div>
-
-            <div class="still-item">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_at_Fire_Pit_knihbw.jpg" alt="Couple at Fire Pit">
-                <div class="still-caption">
-                    <h3>Evening Entertainment</h3>
-                    <p>Fire pit gathering space</p>
-                </div>
-            </div>
-
-            <div class="still-item">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771220099/Couple_Close_Up_zfqxqq.jpg" alt="Couple Close Up">
-                <div class="still-caption">
-                    <h3>Intimate Moments</h3>
-                    <p>Lifestyle integration</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="back-button">
-            <a href="/projects">← BACK TO PROJECTS</a>
-        </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div class="lightbox-modal" id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="">
-    </div>
 
     <script>
         function toggleMenu() {
             document.getElementById('mobileMenu').classList.toggle('active');
         }
-
-        // Lightbox functionality
-        function openLightbox(imgSrc) {
-            document.getElementById('lightbox').classList.add('active');
-            document.getElementById('lightbox-img').src = imgSrc;
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-
-        // Add click handlers to all still items
-        document.addEventListener('DOMContentLoaded', function() {
-            const stillItems = document.querySelectorAll('.still-item img');
-            stillItems.forEach(img => {
-                img.parentElement.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openLightbox(img.src);
-                });
-            });
-        });
     </script>
 </body>
 </html>
