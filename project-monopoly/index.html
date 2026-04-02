@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The New Money Game | SRA Motion Studio">
+    <meta property="og:description" content="AI videography reel interpreting 37 Maru's financial writing through a Monopoly allegory. Inflation, central bank printing, and hard assets.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1775149068/Bank_Overheating_nmae6r.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/project-monopoly">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The New Money Game | SRA Motion Studio">
+    <meta name="twitter:description" content="AI videography reel interpreting 37 Maru's financial writing through a Monopoly allegory. Inflation, central bank printing, and hard assets.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1775149068/Bank_Overheating_nmae6r.jpg">
+    
+    <!-- General Meta Description -->
+    <meta name="description" content="AI videography reel interpreting 37 Maru's financial writing through a Monopoly allegory. Inflation, central bank printing, and hard assets.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The New Money Game | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent-orange: #e67e22;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-main);
+            transition: 0.3s;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(18, 18, 18, 0.98);
+            padding: 20px 5%;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 99;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Project Content */
+        .project {
+            padding: 120px 8% 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-header {
+            margin-bottom: 40px;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-header .subtitle {
+            color: var(--accent-orange);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Video Section */
+        .video-container {
+            margin-bottom: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #181818;
+            position: relative;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-height: 70vh;
+            display: block;
+            background: #000;
+        }
+
+        /* Project Description */
+        .project-description {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 60px;
+            max-width: 800px;
+        }
+
+        .project-description a {
+            color: var(--accent-orange);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .project-description a:hover {
+            text-decoration: underline;
+        }
+
+        /* Stills Section */
+        .stills-header {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: var(--accent-orange);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .still-thumb {
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #222;
+        }
+
+        .still-thumb:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-orange);
+        }
+
+        .still-thumb img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent-orange);
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 8px;
+        }
+
+        .lightbox-caption {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-top: 25px;
+            text-align: center;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-orange);
+        }
+
+        .back-link::before {
+            content: '← ';
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            .project {
+                padding: 100px 5% 60px;
+            }
+
+            .project-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .project-description {
+                font-size: 1rem;
+            }
+
+            .stills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .still-thumb img {
+                height: 140px;
+            }
+
+            .lightbox-caption {
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" style="text-decoration: none; color: inherit;">
+            <div class="logo">SRA<span>MOTIONSTUDIO</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="/projects">PROJECTS</a>
+            <a href="/games">GAMES</a>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+        <a href="/games" onclick="toggleMenu()">GAMES</a>
+        <a href="/about" onclick="toggleMenu()">ABOUT</a>
+        <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+    </div>
+
+    <section class="project">
+        <a href="/projects" class="back-link">Back to Projects</a>
+
+        <div class="project-header">
+            <h1>The New Money Game</h1>
+            <p class="subtitle">Financial Narrative • AI Videography</p>
+        </div>
+
+        <div class="video-container">
+            <video controls playsinline preload="metadata">
+                <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1775101782/The_New_Money_Game_rq0tgr.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <p class="project-description">
+            This reel, <em>The New Money Game</em>, is based on two articles I read recently — <a href="https://37maru.substack.com/p/how-inflation-impacts-four-key-american-personas" target="_blank" rel="noopener">How Inflation Impacts Four Key American Personas</a> and <a href="https://37maru.substack.com/p/the-currency-game?r=5vd0fu&utm_campaign=post&utm_medium=web&triedRedirect=true" target="_blank" rel="noopener">The Currency Game</a> — that resonated with how I see the financial world we live in. Inflation, central bank printing, and hard assets. I found this rich narrative territory and chose Monopoly as the vehicle to carry the allegory. The reel interprets ideas from both articles alongside personal takes: wealth concentration, a bank overheating from its own output, tokens eliminated as margins collapse. The composed butler narration and cheerful classical score are intentional — this is the cognitive dissonance we carry every day, pretending this is all going to work out.
+        </p>
+
+        <h3 class="stills-header">Production Stills</h3>
+        <div class="stills-grid">
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149043/Tokens_1980_yrbvbp.jpg', 'Tokens used in the game')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149043/Tokens_1980_yrbvbp.jpg" alt="Monopoly tokens">
+            </div>
+
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149066/Houses_ytholy.jpg', 'House and hotel redesign including gold and silver variants')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149066/Houses_ytholy.jpg" alt="Houses and hotels">
+            </div>
+
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149066/Money_sgnsma.jpg', 'Money redesign in honor of 37 Maru\'s work')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149066/Money_sgnsma.jpg" alt="Money redesign">
+            </div>
+
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149066/Money_Pile_cv6hjf.jpg', 'Testing money piles')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149066/Money_Pile_cv6hjf.jpg" alt="Money piles">
+            </div>
+
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149066/Special_Cards_1980_ifgcjf.jpg', 'Four card redesigns integrating Rotman\'s concepts')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149066/Special_Cards_1980_ifgcjf.jpg" alt="Special cards">
+            </div>
+
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149066/Cards_l6nc4i.jpg', 'Stills of the cards being used in the game')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149066/Cards_l6nc4i.jpg" alt="Cards in game">
+            </div>
+
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149067/Bank_Design_m1dsuj.jpg', 'Early weathered metal bank design next to the final clean plastic design')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149067/Bank_Design_m1dsuj.jpg" alt="Bank design evolution">
+            </div>
+
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149068/Bank_Overheating_nmae6r.jpg', 'The bank overheating until final collapse')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149068/Bank_Overheating_nmae6r.jpg" alt="Bank overheating">
+            </div>
+
+            <div class="still-thumb" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1775149072/Stills_muu0yh.jpg', 'A collection of game stills')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1775149072/Stills_muu0yh.jpg" alt="Game stills collection">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        function openLightbox(imgSrc, caption) {
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox-caption').textContent = caption;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
