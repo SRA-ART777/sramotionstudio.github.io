@@ -197,24 +197,97 @@
     </div>
 
     <script>
+        var galleryImages = [];
+        var currentIndex = 0;
+
+        function buildGallery() {
+            var thumbs = document.querySelectorAll('.still-thumb');
+            galleryImages = [];
+            thumbs.forEach(function(thumb) {
+                var onclickAttr = thumb.getAttribute('onclick') || '';
+                var match = onclickAttr.match(/openFullscreen\('([^']+)'\)/);
+                if (match) galleryImages.push(match[1]);
+            });
+        }
+
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+
         function openFullscreen(imgSrc) {
+            if (galleryImages.length === 0) buildGallery();
+            currentIndex = galleryImages.indexOf(imgSrc);
+            if (currentIndex === -1) currentIndex = 0;
             document.getElementById('fullscreen-img').src = imgSrc;
             document.getElementById('fullscreenOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
             history.pushState({ fullscreen: true }, '');
         }
+
+        function showImageAtIndex(index) {
+            if (galleryImages.length === 0) return;
+            // wrap around in both directions
+            currentIndex = ((index % galleryImages.length) + galleryImages.length) % galleryImages.length;
+            var img = document.getElementById('fullscreen-img');
+            // brief fade for a smoother transition than a hard cut
+            img.style.transition = 'opacity 0.15s ease';
+            img.style.opacity = '0';
+            setTimeout(function() {
+                img.src = galleryImages[currentIndex];
+                img.style.opacity = '1';
+            }, 150);
+        }
+
+        function nextImage() { showImageAtIndex(currentIndex + 1); }
+        function prevImage() { showImageAtIndex(currentIndex - 1); }
+
         function closeFullscreen(event) {
             if (event && event.target && !event.target.classList.contains('fullscreen-overlay') && !event.target.classList.contains('fullscreen-close')) return;
             document.getElementById('fullscreenOverlay').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+
+        // Touch swipe handling for mobile
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var touchEndX = 0;
+        var touchEndY = 0;
+        var swipeThreshold = 50; // minimum px to count as a swipe
+
+        var overlay = document.getElementById('fullscreenOverlay');
+        overlay.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        overlay.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            var deltaX = touchEndX - touchStartX;
+            var deltaY = touchEndY - touchStartY;
+            // only treat as swipe if horizontal motion exceeds vertical motion
+            // (prevents accidental swipes when user is scrolling)
+            if (Math.abs(deltaX) < swipeThreshold) return;
+            if (Math.abs(deltaX) < Math.abs(deltaY)) return;
+            if (deltaX < 0) nextImage();
+            else prevImage();
+        }
+
         window.addEventListener('popstate', function() {
-            var overlay = document.getElementById('fullscreenOverlay');
-            if (overlay.classList.contains('active')) { overlay.classList.remove('active'); document.body.style.overflow = 'auto'; }
+            var ov = document.getElementById('fullscreenOverlay');
+            if (ov.classList.contains('active')) { ov.classList.remove('active'); document.body.style.overflow = 'auto'; }
         });
+
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') { document.getElementById('fullscreenOverlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
+            var overlayActive = document.getElementById('fullscreenOverlay').classList.contains('active');
+            if (event.key === 'Escape') {
+                document.getElementById('fullscreenOverlay').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            if (overlayActive && event.key === 'ArrowRight') { event.preventDefault(); nextImage(); }
+            if (overlayActive && event.key === 'ArrowLeft') { event.preventDefault(); prevImage(); }
             if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); }
         });
     </script>
