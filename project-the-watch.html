@@ -60,10 +60,13 @@
         .secondary-section .video-container { margin-bottom: 25px; }
         .secondary-note { color: var(--text-dim); font-size: 1rem; line-height: 1.7; max-width: 800px; margin-bottom: 0; }
 
-        .fullscreen-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.97); z-index: 200; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
+        .fullscreen-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.97); z-index: 200; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; overflow: hidden; touch-action: pan-y; }
         .fullscreen-overlay.active { display: flex; }
-        .fullscreen-overlay img { max-width: 95%; max-height: 95vh; object-fit: contain; }
-        .fullscreen-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; transition: 0.3s; line-height: 1; }
+        .fullscreen-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .fullscreen-overlay img { position: absolute; max-width: 95%; max-height: 95vh; object-fit: contain; will-change: transform; }
+        .fullscreen-img-current { transform: translateX(0); }
+        .fullscreen-img-next { transform: translateX(100%); opacity: 0; }
+        .fullscreen-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; transition: 0.3s; line-height: 1; z-index: 10; }
         .fullscreen-close:hover { color: var(--accent-orange); }
 
         .back-link { display: inline-block; margin-bottom: 30px; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
@@ -193,12 +196,16 @@
 
     <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen(event)">
         <span class="fullscreen-close" onclick="closeFullscreen(event)">&times;</span>
-        <img id="fullscreen-img" src="" alt="">
+        <div class="fullscreen-stage">
+            <img id="fullscreen-img" class="fullscreen-img-current" src="" alt="">
+            <img id="fullscreen-img-next" class="fullscreen-img-next" src="" alt="">
+        </div>
     </div>
 
     <script>
         var galleryImages = [];
         var currentIndex = 0;
+        var isAnimating = false;
 
         function buildGallery() {
             var thumbs = document.querySelectorAll('.still-thumb');
@@ -216,28 +223,61 @@
             if (galleryImages.length === 0) buildGallery();
             currentIndex = galleryImages.indexOf(imgSrc);
             if (currentIndex === -1) currentIndex = 0;
-            document.getElementById('fullscreen-img').src = imgSrc;
+            var current = document.getElementById('fullscreen-img');
+            var next = document.getElementById('fullscreen-img-next');
+            current.src = imgSrc;
+            current.style.transform = 'translateX(0)';
+            current.style.opacity = '1';
+            next.src = '';
+            next.style.opacity = '0';
             document.getElementById('fullscreenOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
             history.pushState({ fullscreen: true }, '');
         }
 
-        function showImageAtIndex(index) {
-            if (galleryImages.length === 0) return;
-            // wrap around in both directions
-            currentIndex = ((index % galleryImages.length) + galleryImages.length) % galleryImages.length;
-            var img = document.getElementById('fullscreen-img');
-            // brief fade for a smoother transition than a hard cut
-            img.style.transition = 'opacity 0.15s ease';
-            img.style.opacity = '0';
+        function showImageAtIndex(index, direction) {
+            if (galleryImages.length === 0 || isAnimating) return;
+            var newIndex = ((index % galleryImages.length) + galleryImages.length) % galleryImages.length;
+            if (newIndex === currentIndex) return;
+
+            isAnimating = true;
+            var current = document.getElementById('fullscreen-img');
+            var next = document.getElementById('fullscreen-img-next');
+
+            // direction: 1 = next image (slides in from right), -1 = prev (slides in from left)
+            var enterFrom = direction === 1 ? '100%' : '-100%';
+            var exitTo = direction === 1 ? '-100%' : '100%';
+
+            // position the next image off-screen, load it
+            next.style.transition = 'none';
+            next.style.transform = 'translateX(' + enterFrom + ')';
+            next.style.opacity = '1';
+            next.src = galleryImages[newIndex];
+
+            // force a reflow so the browser registers the starting position before we animate
+            void next.offsetWidth;
+
+            // animate both: current slides out, next slides in
+            current.style.transition = 'transform 0.3s ease';
+            next.style.transition = 'transform 0.3s ease';
+            current.style.transform = 'translateX(' + exitTo + ')';
+            next.style.transform = 'translateX(0)';
+
             setTimeout(function() {
-                img.src = galleryImages[currentIndex];
-                img.style.opacity = '1';
-            }, 150);
+                // swap: the "next" image becomes the "current"
+                current.src = galleryImages[newIndex];
+                current.style.transition = 'none';
+                current.style.transform = 'translateX(0)';
+                next.style.transition = 'none';
+                next.style.opacity = '0';
+                next.src = '';
+                currentIndex = newIndex;
+                isAnimating = false;
+            }, 320);
         }
 
-        function nextImage() { showImageAtIndex(currentIndex + 1); }
-        function prevImage() { showImageAtIndex(currentIndex - 1); }
+        function nextImage() { showImageAtIndex(currentIndex + 1, 1); }
+        function prevImage() { showImageAtIndex(currentIndex - 1, -1); }
 
         function closeFullscreen(event) {
             if (event && event.target && !event.target.classList.contains('fullscreen-overlay') && !event.target.classList.contains('fullscreen-close')) return;
@@ -245,30 +285,45 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Touch swipe handling for mobile
+        // Touch swipe handling
         var touchStartX = 0;
         var touchStartY = 0;
         var touchEndX = 0;
         var touchEndY = 0;
-        var swipeThreshold = 50; // minimum px to count as a swipe
+        var touchActive = false;
+        var swipeThreshold = 50;
 
         var overlay = document.getElementById('fullscreenOverlay');
+
         overlay.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
+            touchEndX = touchStartX;
+            touchEndY = touchStartY;
+            touchActive = true;
         }, { passive: true });
 
-        overlay.addEventListener('touchend', function(e) {
+        overlay.addEventListener('touchmove', function(e) {
+            if (!touchActive) return;
             touchEndX = e.changedTouches[0].screenX;
             touchEndY = e.changedTouches[0].screenY;
+            var deltaX = touchEndX - touchStartX;
+            var deltaY = touchEndY - touchStartY;
+            // if the gesture is predominantly horizontal, suppress browser back-swipe
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        overlay.addEventListener('touchend', function(e) {
+            if (!touchActive) return;
+            touchActive = false;
             handleSwipe();
         }, { passive: true });
 
         function handleSwipe() {
             var deltaX = touchEndX - touchStartX;
             var deltaY = touchEndY - touchStartY;
-            // only treat as swipe if horizontal motion exceeds vertical motion
-            // (prevents accidental swipes when user is scrolling)
             if (Math.abs(deltaX) < swipeThreshold) return;
             if (Math.abs(deltaX) < Math.abs(deltaY)) return;
             if (deltaX < 0) nextImage();
