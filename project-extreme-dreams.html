@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Extreme Dreams | SRA Motion Studio">
+    <meta property="og:description" content="Buried 1995 Headgames Studio IP revisited with 2026 AI tools. Phase 1 case study covering character and environment translation.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1777875967/Gpt_City_2k_mv0v1y.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/project-extreme-dreams">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Extreme Dreams | SRA Motion Studio">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1777875967/Gpt_City_2k_mv0v1y.jpg">
+    <meta name="description" content="Buried 1995 Headgames Studio IP revisited with 2026 AI tools. Phase 1 case study covering character and environment translation.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extreme Dreams | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root { --bg-dark: #121212; --accent-orange: #e67e22; --text-main: #ffffff; --text-dim: #a0a0a0; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18,18,18,0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18,18,18,0.98); padding: 20px 5%; flex-direction: column; gap: 20px; z-index: 99; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; transition: 0.3s; }
+        .mobile-menu a:hover { color: var(--accent-orange); }
+
+        .project { padding: 120px 8% 80px; max-width: 1200px; margin: 0 auto; }
+        .project-header { margin-bottom: 40px; }
+        .project-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .project-header .subtitle { color: var(--accent-orange); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+
+        .cover-container { display: flex; justify-content: center; margin-bottom: 50px; }
+        .cover-container img { max-width: 600px; width: 100%; height: auto; border-radius: 8px; display: block; }
+
+        .project-description { color: var(--text-dim); font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px; max-width: 800px; }
+        .project-description a { color: var(--accent-orange); text-decoration: none; transition: 0.3s; }
+        .project-description a:hover { text-decoration: underline; }
+        .project-description em { color: var(--text-main); font-style: italic; }
+
+        .tagline { color: var(--text-main); font-size: 1.05rem; font-weight: 600; margin-bottom: 50px; max-width: 800px; }
+        .tagline span { color: var(--accent-orange); }
+
+        .tools-line { color: var(--text-dim); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 50px; }
+        .tools-line strong { color: var(--text-main); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-right: 12px; }
+
+        .stills-header { font-size: 0.9rem; letter-spacing: 3px; color: var(--accent-orange); margin-bottom: 12px; text-transform: uppercase; }
+        .stills-intro { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 30px; max-width: 700px; line-height: 1.6; }
+        .stills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .still-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #222; }
+        .still-thumb:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
+        .still-thumb img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .still-caption { padding: 12px 15px; background: #181818; color: var(--text-main); font-size: 0.85rem; font-weight: 700; }
+        .still-caption span { color: var(--text-dim); font-weight: 400; font-size: 0.78rem; margin-left: 6px; }
+
+        .fullscreen-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.97); z-index: 200; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; overflow: hidden; touch-action: pan-y pinch-zoom; }
+        .fullscreen-overlay.active { display: flex; }
+        .fullscreen-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .fullscreen-overlay img { position: absolute; max-width: 95%; max-height: 95vh; object-fit: contain; will-change: transform; }
+        .fullscreen-img-current { transform: translateX(0); }
+        .fullscreen-img-next { transform: translateX(100%); opacity: 0; }
+        .fullscreen-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; transition: 0.3s; line-height: 1; z-index: 10; }
+        .fullscreen-close:hover { color: var(--accent-orange); }
+
+        .back-link { display: inline-block; margin-bottom: 30px; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .back-link:hover { color: var(--accent-orange); }
+        .back-link::before { content: '← '; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+            .project { padding: 100px 5% 60px; }
+            .project-header h1 { font-size: 1.8rem; }
+            .project-description { font-size: 1rem; }
+            .tagline { font-size: 1rem; }
+            .tools-line { font-size: 0.85rem; }
+            .stills-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .still-thumb img { height: 140px; }
+            .cover-container img { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">SRA<span>MOTIONSTUDIO</span></div></a>
+        <div class="nav-links">
+            <a href="/projects">PROJECTS</a>
+            <a href="/games">GAMES</a>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+        <a href="/games" onclick="toggleMenu()">GAMES</a>
+        <a href="/about" onclick="toggleMenu()">ABOUT</a>
+        <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+    </div>
+
+    <section class="project">
+        <a href="/projects" class="back-link">Back to Projects</a>
+
+        <div class="cover-container">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777878003/Extreme_Dreams_Cover_ejbx0r.jpg" alt="Extreme Dreams — original 1996 PlayStation cover art (unreleased)">
+        </div>
+
+        <div class="project-header">
+            <h1>Extreme Dreams</h1>
+            <p class="subtitle">Case Study • IP Revival</p>
+        </div>
+
+        <p class="project-description">
+            <em>Extreme Dreams</em> was a shelved Headgames Studio project from 1995–96. I designed the characters and the world and co-wrote story material working alongside director Mike McAulay. The project was never released and the studio closed not long after.
+        </p>
+
+        <p class="project-description">
+            This case study revisits that buried material with 2026 AI tools. The goal: see how far current image models can push a lost mid-90s game-world aesthetic — preserving the original design language while translating the rendering itself from painted illustration into modern dimensional CG.
+        </p>
+
+        <p class="project-description">
+            Phase 1 covers four pairs: the World City View establishing shot, the Burger Clown drive-up exterior, the protagonist Dim, and the B.O.M. Club bus in flight. An intro animation in Seedance 2 is currently in production, once the asset conversions are finished.
+        </p>
+
+        <p class="tagline">Drawing is the foundation. <span>AI is the finish.</span></p>
+
+        <p class="tools-line"><strong>Tools</strong> GPT Image 2 · Nano Banana 2 · Magnific · Photoshop · Seedance 2 (in production)</p>
+
+        <h3 class="stills-header">Source &amp; Render Pairs</h3>
+        <p class="stills-intro">Four projects, originals alongside their 2026 renders. Tap any image to view full-size; swipe or arrow-key through the full sequence.</p>
+
+        <div class="stills-grid">
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875730/World_City_View_qwjzq4.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875730/World_City_View_qwjzq4.jpg" alt="World City View — original 1996 concept">
+                <div class="still-caption">World City View <span>Original 1996</span></div>
+            </div>
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875967/Gpt_City_2k_mv0v1y.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875967/Gpt_City_2k_mv0v1y.jpg" alt="World City View — 2026 render">
+                <div class="still-caption">World City View <span>2026 Render</span></div>
+            </div>
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/Burger_Clown_xaryfb.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/Burger_Clown_xaryfb.jpg" alt="Burger Clown — original 1996 concept">
+                <div class="still-caption">Burger Clown <span>Original 1996</span></div>
+            </div>
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875730/ChatGPT_Image_May_3_2026_05_46_34_PM_p9l7gj.png')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875730/ChatGPT_Image_May_3_2026_05_46_34_PM_p9l7gj.png" alt="Burger Clown — 2026 render">
+                <div class="still-caption">Burger Clown <span>2026 Render</span></div>
+            </div>
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/Dim_source_pw3wpg.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/Dim_source_pw3wpg.jpg" alt="Dim — original 1996 concept">
+                <div class="still-caption">Dim <span>Original 1996</span></div>
+            </div>
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/Dim_GPT_d2vfn3.png')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/Dim_GPT_d2vfn3.png" alt="Dim — 2026 render, GPT Image 2">
+                <div class="still-caption">Dim <span>GPT Image 2</span></div>
+            </div>
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875730/magnific_edit-the-uploaded-image.-_2913509055_smfcqe.png')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875730/magnific_edit-the-uploaded-image.-_2913509055_smfcqe.png" alt="Dim — 2026 render, Nano Banana 2">
+                <div class="still-caption">Dim <span>Nano Banana 2</span></div>
+            </div>
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/BOM_club_ovi0nq.png')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/BOM_club_ovi0nq.png" alt="B.O.M. Club bus — original 1996 concept">
+                <div class="still-caption">B.O.M. Club <span>Original 1996</span></div>
+            </div>
+            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875730/nano_2_gpt_0_yfuqcy.jpg')">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875730/nano_2_gpt_0_yfuqcy.jpg" alt="B.O.M. Club bus — 2026 render">
+                <div class="still-caption">B.O.M. Club <span>2026 Render</span></div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen(event)">
+        <span class="fullscreen-close" onclick="closeFullscreen(event)">&times;</span>
+        <div class="fullscreen-stage">
+            <img id="fullscreen-img" class="fullscreen-img-current" src="" alt="">
+            <img id="fullscreen-img-next" class="fullscreen-img-next" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        var galleryImages = [];
+        var currentIndex = 0;
+        var isAnimating = false;
+
+        function buildGallery() {
+            var thumbs = document.querySelectorAll('.still-thumb');
+            galleryImages = [];
+            thumbs.forEach(function(thumb) {
+                var onclickAttr = thumb.getAttribute('onclick') || '';
+                var match = onclickAttr.match(/openFullscreen\('([^']+)'\)/);
+                if (match) galleryImages.push(match[1]);
+            });
+        }
+
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+
+        function openFullscreen(imgSrc) {
+            if (galleryImages.length === 0) buildGallery();
+            currentIndex = galleryImages.indexOf(imgSrc);
+            if (currentIndex === -1) currentIndex = 0;
+            var current = document.getElementById('fullscreen-img');
+            var next = document.getElementById('fullscreen-img-next');
+            current.src = imgSrc;
+            current.style.transform = 'translateX(0)';
+            current.style.opacity = '1';
+            next.src = '';
+            next.style.opacity = '0';
+            document.getElementById('fullscreenOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            history.pushState({ fullscreen: true }, '');
+        }
+
+        function showImageAtIndex(index, direction) {
+            if (galleryImages.length === 0 || isAnimating) return;
+            var newIndex = ((index % galleryImages.length) + galleryImages.length) % galleryImages.length;
+            if (newIndex === currentIndex) return;
+
+            isAnimating = true;
+            var current = document.getElementById('fullscreen-img');
+            var next = document.getElementById('fullscreen-img-next');
+
+            var enterFrom = direction === 1 ? '100%' : '-100%';
+            var exitTo = direction === 1 ? '-100%' : '100%';
+
+            next.style.transition = 'none';
+            next.style.transform = 'translateX(' + enterFrom + ')';
+            next.style.opacity = '1';
+            next.src = galleryImages[newIndex];
+
+            void next.offsetWidth;
+
+            current.style.transition = 'transform 0.3s ease';
+            next.style.transition = 'transform 0.3s ease';
+            current.style.transform = 'translateX(' + exitTo + ')';
+            next.style.transform = 'translateX(0)';
+
+            setTimeout(function() {
+                current.src = galleryImages[newIndex];
+                current.style.transition = 'none';
+                current.style.transform = 'translateX(0)';
+                next.style.transition = 'none';
+                next.style.opacity = '0';
+                next.src = '';
+                currentIndex = newIndex;
+                isAnimating = false;
+            }, 320);
+        }
+
+        function nextImage() { showImageAtIndex(currentIndex + 1, 1); }
+        function prevImage() { showImageAtIndex(currentIndex - 1, -1); }
+
+        function closeFullscreen(event) {
+            if (event && event.target && !event.target.classList.contains('fullscreen-overlay') && !event.target.classList.contains('fullscreen-close')) return;
+            document.getElementById('fullscreenOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var touchEndX = 0;
+        var touchEndY = 0;
+        var touchActive = false;
+        var swipeThreshold = 50;
+
+        var overlay = document.getElementById('fullscreenOverlay');
+
+        overlay.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) { touchActive = false; return; }
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+            touchEndX = touchStartX;
+            touchEndY = touchStartY;
+            touchActive = true;
+        }, { passive: true });
+
+        overlay.addEventListener('touchmove', function(e) {
+            if (!touchActive) return;
+            if (e.touches.length > 1) { touchActive = false; return; }
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            var deltaX = touchEndX - touchStartX;
+            var deltaY = touchEndY - touchStartY;
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        overlay.addEventListener('touchend', function(e) {
+            if (!touchActive) return;
+            touchActive = false;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            var deltaX = touchEndX - touchStartX;
+            var deltaY = touchEndY - touchStartY;
+            if (Math.abs(deltaX) < swipeThreshold) return;
+            if (Math.abs(deltaX) < Math.abs(deltaY)) return;
+            if (deltaX < 0) nextImage();
+            else prevImage();
+        }
+
+        window.addEventListener('popstate', function() {
+            var ov = document.getElementById('fullscreenOverlay');
+            if (ov.classList.contains('active')) { ov.classList.remove('active'); document.body.style.overflow = 'auto'; }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            var overlayActive = document.getElementById('fullscreenOverlay').classList.contains('active');
+            if (event.key === 'Escape') {
+                document.getElementById('fullscreenOverlay').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            if (overlayActive && event.key === 'ArrowRight') { event.preventDefault(); nextImage(); }
+            if (overlayActive && event.key === 'ArrowLeft') { event.preventDefault(); prevImage(); }
+            if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); }
+        });
+    </script>
+</body>
+</html>

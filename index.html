@@ -22,18 +22,32 @@
         .nav-links { display: flex; gap: 30px; } .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; } .nav-links a:hover { color: var(--accent-orange); }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; } .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
         .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18,18,18,0.98); padding: 20px 5%; flex-direction: column; gap: 20px; z-index: 99; } .mobile-menu.active { display: flex; } .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; transition: 0.3s; } .mobile-menu a:hover { color: var(--accent-orange); }
-        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; padding: 0 10%; }
+        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; padding: 0 5%; }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; filter: brightness(0.85) grayscale(20%); object-fit: cover; object-position: center 15%; }
-        .hero-content { position: relative; z-index: 1; }
+        .hero-content { position: relative; z-index: 1; width: 100%; }
         h1 { font-size: clamp(2rem,8vw,3.5rem); margin-bottom: 1rem; text-transform: uppercase; line-height: 1.1; } h1 span { color: var(--accent-orange); }
         p.tagline { color: var(--text-main); font-size: clamp(1.2rem,3.5vw,1.6rem); max-width: 750px; margin: 0 auto; line-height: 1.5; } p.tagline span { color: var(--accent-orange); font-weight: 600; }
-        .featured-card-link { text-decoration: none; color: inherit; display: block; margin-top: 80px; }
-        .featured-card { background: rgba(24,24,24,0.95); border-radius: 12px; overflow: hidden; border: 1px solid #333; display: inline-flex; align-items: center; max-width: 750px; transition: 0.3s; backdrop-filter: blur(10px); position: relative; }
+        .featured-row { display: flex; gap: 25px; justify-content: center; align-items: stretch; flex-wrap: wrap; margin-top: 60px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+        .featured-card-link { text-decoration: none; color: inherit; display: block; flex: 1 1 480px; max-width: 530px; }
+        .featured-card { background: rgba(24,24,24,0.95); border-radius: 12px; overflow: hidden; border: 1px solid #333; display: flex; align-items: stretch; transition: 0.3s; backdrop-filter: blur(10px); position: relative; height: 100%; }
         .featured-card:hover { border-color: var(--accent-orange); transform: translateY(-5px); }
-        .featured-card img { width: 260px; height: 170px; object-fit: cover; }
-        .featured-card-info { padding: 25px 30px; text-align: left; } .featured-card-info h3 { margin: 0 0 10px 0; font-size: 1.3rem; font-weight: 700; } .featured-card-info p { margin: 0; color: var(--text-dim); font-size: 0.95rem; line-height: 1.5; }
-        .featured-badge { position: absolute; top: 12px; left: 12px; background: var(--accent-orange); color: #000; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; padding: 5px 10px; border-radius: 3px; }
-        @media (max-width: 768px) { .featured-card { flex-direction: column; max-width: 210px; } .featured-card img { width: 100%; height: 112px; } .featured-card-link { margin-top: 40px; } .featured-card-info { padding: 15px 18px; } .featured-card-info h3 { font-size: 0.95rem; margin-bottom: 6px; } .featured-card-info p { font-size: 0.75rem; } .featured-badge { font-size: 0.5rem; padding: 3px 6px; top: 8px; left: 8px; } }
+        .featured-card img { width: 200px; height: 100%; min-height: 170px; object-fit: cover; flex-shrink: 0; }
+        .featured-card-info { padding: 20px 25px; text-align: left; flex: 1; display: flex; flex-direction: column; justify-content: center; } .featured-card-info h3 { margin: 0 0 8px 0; font-size: 1.15rem; font-weight: 700; } .featured-card-info p { margin: 0; color: var(--text-dim); font-size: 0.88rem; line-height: 1.5; }
+        .featured-badge { position: absolute; top: 12px; left: 12px; background: var(--accent-orange); color: #000; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; padding: 5px 10px; border-radius: 3px; z-index: 2; }
+        .featured-badge.dev { background: #444; color: var(--accent-orange); border: 1px solid var(--accent-orange); }
+        @media (max-width: 1100px) {
+            .featured-row { gap: 15px; }
+            .featured-card-link { flex: 1 1 100%; max-width: 530px; }
+        }
+        @media (max-width: 768px) {
+            .featured-row { flex-direction: column; align-items: center; gap: 20px; margin-top: 40px; }
+            .featured-card { flex-direction: column; max-width: 240px; }
+            .featured-card img { width: 100%; height: 130px; min-height: 130px; }
+            .featured-card-info { padding: 14px 16px; }
+            .featured-card-info h3 { font-size: 0.95rem; margin-bottom: 6px; }
+            .featured-card-info p { font-size: 0.78rem; }
+            .featured-badge { font-size: 0.55rem; padding: 3px 7px; top: 8px; left: 8px; }
+        }
         .work { padding: 100px 5%; background: #0a0a0a; } .work h2 { font-size: 0.9rem; letter-spacing: 4px; color: var(--accent-orange); text-align: center; margin-bottom: 50px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
         .card-link { text-decoration: none; color: inherit; display: block; }
@@ -52,13 +66,22 @@
         <div class="hero-content">
             <h1>Cinematic Quality At <br>Social Media <span>Speed</span></h1>
             <p class="tagline">High-impact <span>AI videography</span> and cinematic motion design for modern brands.</p>
-            <a href="/project-the-watch" class="featured-card-link">
-                <div class="featured-card">
-                    <span class="featured-badge">NEW</span>
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777665003/Video_cover_wcmvga.jpg" alt="SRA Labs — The Watch">
-                    <div class="featured-card-info"><h3>SRA Labs — The Watch</h3><p>The first SRA Labs reel focused on human interaction — dialogue, emotion, and chemistry between the leads.</p></div>
-                </div>
-            </a>
+            <div class="featured-row">
+                <a href="/project-the-watch" class="featured-card-link">
+                    <div class="featured-card">
+                        <span class="featured-badge">NEW</span>
+                        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777665003/Video_cover_wcmvga.jpg" alt="SRA Labs — The Watch">
+                        <div class="featured-card-info"><h3>SRA Labs — The Watch</h3><p>The first SRA Labs reel focused on human interaction — dialogue, emotion, and chemistry between the leads.</p></div>
+                    </div>
+                </a>
+                <a href="/project-extreme-dreams" class="featured-card-link">
+                    <div class="featured-card">
+                        <span class="featured-badge dev">IN DEVELOPMENT</span>
+                        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777875967/Gpt_City_2k_mv0v1y.jpg" alt="Extreme Dreams">
+                        <div class="featured-card-info"><h3>Extreme Dreams</h3><p>Buried 1995 Headgames Studio IP, revisited with 2026 AI tools. Phase 1 case study, animated reel in production.</p></div>
+                    </div>
+                </a>
+            </div>
         </div>
     </header>
 
