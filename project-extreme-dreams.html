@@ -57,9 +57,10 @@
 
         .asset-grid { display: flex; flex-wrap: wrap; gap: 20px; }
 
-        .still-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #222; display: flex; flex-direction: column; flex-shrink: 0; }
+        .still-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #222; display: flex; flex-direction: column; flex-shrink: 0; background: #0a0a0a; }
         .still-thumb:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
         .still-thumb img { height: 200px; width: auto; display: block; max-width: none; }
+        .still-thumb.vertical img { height: 200px; width: 356px; object-fit: contain; }
         .still-caption { padding: 12px 15px; background: #181818; color: var(--text-main); font-size: 0.85rem; font-weight: 700; }
         .still-caption span { color: var(--text-dim); font-weight: 400; font-size: 0.78rem; margin-left: 6px; }
 
@@ -259,7 +260,7 @@
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778091412/Wart_Buttle_hixacw.jpg" alt="Wart E. Buttle — original 1996 concept">
                     <div class="still-caption">Wart E. Buttle <span>Original 1996</span></div>
                 </div>
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778091413/Wart_Buttle_2k_2_v7gjmv.jpg')">
+                <div class="still-thumb vertical" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778091413/Wart_Buttle_2k_2_v7gjmv.jpg')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/h_400/v1778091413/Wart_Buttle_2k_2_v7gjmv.jpg" alt="Wart E. Buttle — 2026 render">
                     <div class="still-caption">Wart E. Buttle <span>2026 Render</span></div>
                 </div>
