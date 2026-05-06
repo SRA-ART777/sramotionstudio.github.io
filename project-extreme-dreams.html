@@ -57,9 +57,9 @@
 
         .asset-grid { display: flex; flex-wrap: wrap; gap: 20px; }
 
-        .still-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #222; display: flex; flex-direction: column; }
+        .still-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #222; display: flex; flex-direction: column; flex-shrink: 0; }
         .still-thumb:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
-        .still-thumb img { height: 200px; width: auto; display: block; }
+        .still-thumb img { height: 200px; width: auto; display: block; max-width: none; }
         .still-caption { padding: 12px 15px; background: #181818; color: var(--text-main); font-size: 0.85rem; font-weight: 700; }
         .still-caption span { color: var(--text-dim); font-weight: 400; font-size: 0.78rem; margin-left: 6px; }
 
@@ -234,7 +234,7 @@
         <div class="asset-section">
             <h2 class="asset-header">Officer Pork</h2>
             <p class="asset-meta">Character &amp; Environment</p>
-            <div class="asset-grid" style="margin-bottom: 20px;">
+            <div class="asset-grid">
                 <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778016275/Officer_Pork_1_ihwkoh.jpg')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778016275/Officer_Pork_1_ihwkoh.jpg" alt="Officer Pork — original 1996 character sheet">
                     <div class="still-caption">Officer Pork <span>Original 1996</span></div>
@@ -243,8 +243,6 @@
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778016276/Officer_2k_Magnific_2_rovh5p.png" alt="Officer Pork — 2026 studio render">
                     <div class="still-caption">Officer Pork <span>2026 Render</span></div>
                 </div>
-            </div>
-            <div class="asset-grid">
                 <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778016276/Officer_2k_Magnific_4_pv6myb.png')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778016276/Officer_2k_Magnific_4_pv6myb.png" alt="Officer Pork — alley scene render">
                     <div class="still-caption">Officer Pork <span>Alley Scene</span></div>
