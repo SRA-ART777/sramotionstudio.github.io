@@ -55,14 +55,11 @@
         .asset-meta { color: var(--accent-orange); font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
         .asset-blurb { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; max-width: 700px; }
 
-        .asset-grid { display: grid; gap: 20px; }
-        .asset-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-        .asset-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-        .asset-grid.cols-5 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .asset-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 
         .still-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #222; }
         .still-thumb:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
-        .still-thumb img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .still-thumb img { width: 100%; height: 200px; object-fit: cover; display: block; }
         .still-caption { padding: 12px 15px; background: #181818; color: var(--text-main); font-size: 0.85rem; font-weight: 700; }
         .still-caption span { color: var(--text-dim); font-weight: 400; font-size: 0.78rem; margin-left: 6px; }
 
@@ -89,9 +86,7 @@
             .tagline { font-size: 1rem; }
             .tools-line { font-size: 0.85rem; }
             .asset-header { font-size: 1.2rem; }
-            .asset-grid.cols-2 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .asset-grid.cols-3 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .asset-grid.cols-5 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .asset-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .still-thumb img { height: 140px; }
             .cover-container img { max-width: 100%; }
         }
@@ -145,7 +140,7 @@
         <div class="asset-section">
             <h2 class="asset-header">World City View</h2>
             <p class="asset-meta">Establishing Shot</p>
-            <div class="asset-grid cols-2">
+            <div class="asset-grid">
                 <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875730/World_City_View_qwjzq4.jpg')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875730/World_City_View_qwjzq4.jpg" alt="World City View — original 1996 concept">
                     <div class="still-caption">World City View <span>Original 1996</span></div>
@@ -157,11 +152,43 @@
             </div>
         </div>
 
+        <!-- DIM -->
+        <div class="asset-section">
+            <h2 class="asset-header">Dim</h2>
+            <p class="asset-meta">Protagonist</p>
+            <div class="asset-grid">
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/Dim_source_pw3wpg.jpg')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/Dim_source_pw3wpg.jpg" alt="Dim — original 1996 concept">
+                    <div class="still-caption">Dim <span>Original 1996</span></div>
+                </div>
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/Dim_GPT_d2vfn3.png')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/Dim_GPT_d2vfn3.png" alt="Dim — 2026 render">
+                    <div class="still-caption">Dim <span>2026 Render</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SANDY -->
+        <div class="asset-section">
+            <h2 class="asset-header">Sandy</h2>
+            <p class="asset-meta">Co-Lead</p>
+            <div class="asset-grid">
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778090995/Sandy_pw3lu0.jpg')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778090995/Sandy_pw3lu0.jpg" alt="Sandy — original 1996 concept">
+                    <div class="still-caption">Sandy <span>Original 1996</span></div>
+                </div>
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778090995/Sandy_Studio_voiefg.jpg')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778090995/Sandy_Studio_voiefg.jpg" alt="Sandy — 2026 render">
+                    <div class="still-caption">Sandy <span>2026 Render</span></div>
+                </div>
+            </div>
+        </div>
+
         <!-- DON SLICK -->
         <div class="asset-section">
             <h2 class="asset-header">Don Slick</h2>
             <p class="asset-meta">Character &amp; Environment</p>
-            <div class="asset-grid cols-2" style="margin-bottom: 20px;">
+            <div class="asset-grid" style="margin-bottom: 20px;">
                 <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777957665/Don_Slick_rgypcq.jpg')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777957665/Don_Slick_rgypcq.jpg" alt="Don Slick — original 1996 character sheet">
                     <div class="still-caption">Don Slick <span>Original 1996</span></div>
@@ -171,7 +198,7 @@
                     <div class="still-caption">Don &amp; the Shredmasters <span>2026 Render</span></div>
                 </div>
             </div>
-            <div class="asset-grid cols-3">
+            <div class="asset-grid">
                 <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777962234/magnific_2921643927_tqkcb5.png')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777962234/magnific_2921643927_tqkcb5.png" alt="Don Slick's limo — side view">
                     <div class="still-caption">Limo <span>Side View</span></div>
@@ -187,11 +214,27 @@
             </div>
         </div>
 
+        <!-- B.O.M. CLUB -->
+        <div class="asset-section">
+            <h2 class="asset-header">B.O.M. Club</h2>
+            <p class="asset-meta">Bus In Flight</p>
+            <div class="asset-grid">
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/BOM_club_ovi0nq.png')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/BOM_club_ovi0nq.png" alt="B.O.M. Club bus — original 1996 concept">
+                    <div class="still-caption">B.O.M. Club <span>Original 1996</span></div>
+                </div>
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777883955/BOM_club_1_fda0yy.png')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777883955/BOM_club_1_fda0yy.png" alt="B.O.M. Club bus — 2026 render">
+                    <div class="still-caption">B.O.M. Club <span>2026 Render</span></div>
+                </div>
+            </div>
+        </div>
+
         <!-- OFFICER PORK -->
         <div class="asset-section">
             <h2 class="asset-header">Officer Pork</h2>
             <p class="asset-meta">Character &amp; Environment</p>
-            <div class="asset-grid cols-2" style="margin-bottom: 20px;">
+            <div class="asset-grid" style="margin-bottom: 20px;">
                 <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778016275/Officer_Pork_1_ihwkoh.jpg')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778016275/Officer_Pork_1_ihwkoh.jpg" alt="Officer Pork — original 1996 character sheet">
                     <div class="still-caption">Officer Pork <span>Original 1996</span></div>
@@ -201,10 +244,26 @@
                     <div class="still-caption">Officer Pork <span>2026 Render</span></div>
                 </div>
             </div>
-            <div class="asset-grid cols-2">
+            <div class="asset-grid">
                 <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778016276/Officer_2k_Magnific_4_pv6myb.png')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778016276/Officer_2k_Magnific_4_pv6myb.png" alt="Officer Pork — alley scene render">
                     <div class="still-caption">Officer Pork <span>Alley Scene</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WART E. BUTTLE -->
+        <div class="asset-section">
+            <h2 class="asset-header">Wart E. Buttle</h2>
+            <p class="asset-meta">Performer / Emcee</p>
+            <div class="asset-grid">
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778091412/Wart_Buttle_hixacw.jpg')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778091412/Wart_Buttle_hixacw.jpg" alt="Wart E. Buttle — original 1996 concept">
+                    <div class="still-caption">Wart E. Buttle <span>Original 1996</span></div>
+                </div>
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1778091413/Wart_Buttle_2k_2_v7gjmv.jpg')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1778091413/Wart_Buttle_2k_2_v7gjmv.jpg" alt="Wart E. Buttle — 2026 render">
+                    <div class="still-caption">Wart E. Buttle <span>2026 Render</span></div>
                 </div>
             </div>
         </div>
@@ -213,46 +272,14 @@
         <div class="asset-section">
             <h2 class="asset-header">Burger Clown</h2>
             <p class="asset-meta">Drive-Up Exterior</p>
-            <div class="asset-grid cols-2">
+            <div class="asset-grid">
                 <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/Burger_Clown_xaryfb.jpg')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/Burger_Clown_xaryfb.jpg" alt="Burger Clown — original 1996 concept">
                     <div class="still-caption">Burger Clown <span>Original 1996</span></div>
                 </div>
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875730/ChatGPT_Image_May_3_2026_05_46_34_PM_p9l7gj.png')">
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875730/ChatGPT_Image_May_3_2026_05_46_34_PM_p9l7gj.png')">
                     <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875730/ChatGPT_Image_May_3_2026_05_46_34_PM_p9l7gj.png" alt="Burger Clown — 2026 render">
                     <div class="still-caption">Burger Clown <span>2026 Render</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- DIM -->
-        <div class="asset-section">
-            <h2 class="asset-header">Dim</h2>
-            <p class="asset-meta">Protagonist</p>
-            <div class="asset-grid cols-2">
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/Dim_source_pw3wpg.jpg')">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/Dim_source_pw3wpg.jpg" alt="Dim — original 1996 concept">
-                    <div class="still-caption">Dim <span>Original 1996</span></div>
-                </div>
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/Dim_GPT_d2vfn3.png')">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/Dim_GPT_d2vfn3.png" alt="Dim — 2026 render">
-                    <div class="still-caption">Dim <span>2026 Render</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- B.O.M. CLUB -->
-        <div class="asset-section">
-            <h2 class="asset-header">B.O.M. Club</h2>
-            <p class="asset-meta">Bus In Flight</p>
-            <div class="asset-grid cols-2">
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777875729/BOM_club_ovi0nq.png')">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777875729/BOM_club_ovi0nq.png" alt="B.O.M. Club bus — original 1996 concept">
-                    <div class="still-caption">B.O.M. Club <span>Original 1996</span></div>
-                </div>
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1777883955/BOM_club_1_fda0yy.png')">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1777883955/BOM_club_1_fda0yy.png" alt="B.O.M. Club bus — 2026 render">
-                    <div class="still-caption">B.O.M. Club <span>2026 Render</span></div>
                 </div>
             </div>
         </div>
