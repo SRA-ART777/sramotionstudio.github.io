@@ -2,259 +2,66 @@
 <html lang="en">
 <head>
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Sushi Concept Study | SRA Motion Studio">
-    <meta property="og:description" content="One source image iterated into a complete reel. Single-day food and restaurant visualization.">
-    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg">
-    <meta property="og:url" content="https://sramotionstudio.com/project-sushi">
+    <meta property="og:title" content="Projects | SRA Motion Studio">
+    <meta property="og:description" content="AI videography portfolio — spec commercials, product visualization, action sports, and brand motion design.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767510216/SRA_Logo_nuckzg.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/projects">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sushi Concept Study | SRA Motion Studio">
-    <meta name="twitter:description" content="One source image iterated into a complete reel. Single-day food and restaurant visualization.">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg">
-    <meta name="description" content="One source image iterated into a complete reel. Single-day food and restaurant visualization.">
+    <meta name="twitter:title" content="Projects | SRA Motion Studio">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1767510216/SRA_Logo_nuckzg.jpg">
+    <meta name="description" content="AI videography portfolio — spec commercials, product visualization, action sports, and brand motion design.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sushi Concept Study | SRA Motion Studio</title>
+    <title>Projects | SRA Motion Studio</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <style>
         :root { --bg-dark: #121212; --accent-orange: #e67e22; --text-main: #ffffff; --text-dim: #a0a0a0; }
         body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18, 18, 18, 0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
-        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
-        .logo span { color: var(--accent-orange); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent-orange); }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
-        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; width: 100%; background: rgba(18, 18, 18, 0.98); padding: 20px 0; z-index: 99; }
-        .mobile-menu.active { display: block; }
-        .mobile-menu a { display: block; color: var(--text-dim); text-decoration: none; padding: 15px 5%; font-size: 1rem; }
-        .project { padding: 120px 5% 60px; max-width: 1000px; margin: 0 auto; }
-        .back-link { color: var(--accent-orange); text-decoration: none; font-size: 0.9rem; display: inline-block; margin-bottom: 30px; }
-        .back-link:hover { text-decoration: underline; }
-        .project-header { margin-bottom: 30px; }
-        .project-header h1 { font-size: 2.5rem; margin: 0 0 10px 0; }
-        .subtitle { color: var(--accent-orange); font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin: 0; }
-        .project-description strong { color: var(--text-main); }
-        .video-container { position: relative; width: 100%; margin-bottom: 30px; cursor: pointer; border-radius: 8px; overflow: hidden; }
-        .video-container img { width: 100%; display: block; }
-        .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(0, 0, 0, 0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .play-overlay::after { content: ''; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 20px solid white; margin-left: 4px; }
-        .video-container:hover .play-overlay { background: rgba(230, 126, 34, 0.8); }
-        .project-description { font-size: 1.1rem; line-height: 1.7; color: var(--text-dim); margin-bottom: 40px; }
-        .stills-header { font-size: 1.3rem; margin-bottom: 20px; color: var(--text-main); }
-        .stills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .still-thumb { cursor: pointer; border-radius: 6px; overflow: hidden; transition: 0.3s; }
-        .still-thumb:hover { transform: scale(1.02); }
-        .still-thumb img { width: 100%; height: 180px; object-fit: cover; display: block; }
-
-        .fullscreen-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.97); z-index: 200; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; overflow: hidden; touch-action: pan-y pinch-zoom; flex-direction: column; }
-        .fullscreen-overlay.active { display: flex; }
-        .fullscreen-stage { position: relative; width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .fullscreen-overlay img { position: absolute; max-width: 95%; max-height: 75vh; object-fit: contain; will-change: transform; border-radius: 8px; }
-        .fullscreen-img-current { transform: translateX(0); }
-        .fullscreen-img-next { transform: translateX(100%); opacity: 0; }
-        .fullscreen-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; transition: 0.3s; line-height: 1; z-index: 10; }
-        .fullscreen-close:hover { color: var(--accent-orange); }
-        .fullscreen-caption { color: var(--text-dim); font-size: 0.95rem; margin-top: 15px; text-align: center; max-width: 600px; padding: 0 20px; line-height: 1.6; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            nav { padding: 15px 5%; }
-            .project { padding: 100px 5% 40px; }
-            .project-header h1 { font-size: 1.8rem; }
-            .stills-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .still-thumb img { height: 140px; }
-            .fullscreen-caption { font-size: 0.9rem; padding: 0 20px; }
-            .play-overlay { width: 60px; height: 60px; }
-            .play-overlay::after { border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 18px solid white; }
-        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18,18,18,0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; } .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 30px; } .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; } .nav-links a:hover { color: var(--accent-orange); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; } .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18,18,18,0.98); padding: 20px 5%; flex-direction: column; gap: 20px; z-index: 99; } .mobile-menu.active { display: flex; } .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; transition: 0.3s; } .mobile-menu a:hover { color: var(--accent-orange); }
+        .projects { padding: 120px 5% 80px; background: var(--bg-dark); }
+        .projects-header { text-align: center; margin-bottom: 60px; }
+        .projects-header h1 { font-size: 2.2rem; color: var(--accent-orange); letter-spacing: 3px; margin-bottom: 25px; }
+        .projects-header p { color: var(--text-dim); font-size: 1.15rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .card-link { text-decoration: none; color: inherit; display: block; }
+        .card { background: #181818; border-radius: 12px; overflow: hidden; transition: 0.4s cubic-bezier(0.175,0.885,0.32,1.275); border: 1px solid #222; position: relative; }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent-orange); }
+        .card img { width: 100%; height: 240px; object-fit: cover; }
+        .card-info { padding: 25px; } .card-info h3 { margin: 0; font-size: 1.2rem; font-weight: 700; } .card-info p { color: var(--accent-orange); font-size: 0.75rem; font-weight: 800; margin-top: 8px; letter-spacing: 1px; }
+        .badge { position: absolute; top: 15px; right: 15px; background: var(--accent-orange); color: #000; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; padding: 5px 10px; border-radius: 3px; }
+        .badge.dev { background: #444; color: var(--accent-orange); border: 1px solid var(--accent-orange); }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .nav-links { display: none; } .hamburger { display: flex; } nav { padding: 15px 5%; } .projects { padding: 100px 5% 60px; } .projects-header h1 { font-size: 1.6rem; } .projects-header p { font-size: 1rem; } }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">SRA<span>MOTIONSTUDIO</span></div></a>
-        <div class="nav-links">
-            <a href="/projects">PROJECTS</a>
-            <a href="/about">ABOUT</a>
-            <a href="/contact">CONTACT</a>
-        </div>
-        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-    </nav>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
-        <a href="/about" onclick="toggleMenu()">ABOUT</a>
-        <a href="/contact" onclick="toggleMenu()">CONTACT</a>
-    </div>
+    <nav><a href="/" style="text-decoration: none; color: inherit;"><div class="logo">SRA<span>MOTIONSTUDIO</span></div></a><div class="nav-links"><a href="/projects">PROJECTS</a><a href="/games">GAMES</a><a href="/about">ABOUT</a><a href="/contact">CONTACT</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div></nav>
+    <div class="mobile-menu" id="mobileMenu"><a href="/projects" onclick="toggleMenu()">PROJECTS</a><a href="/games" onclick="toggleMenu()">GAMES</a><a href="/about" onclick="toggleMenu()">ABOUT</a><a href="/contact" onclick="toggleMenu()">CONTACT</a></div>
 
-    <section class="project">
-        <a href="/projects" class="back-link">← Back to Projects</a>
-        <div class="project-header">
-            <h1>Sushi Concept Study</h1>
-            <p class="subtitle">Food • Single Source Iteration</p>
-        </div>
-        <div class="video-container" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1767143146/Sushi-AI_Reel_eibngm.mp4'">
-            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg" alt="Sushi Concept Study Video">
-            <div class="play-overlay"></div>
-        </div>
-        <p class="project-description">The goal was to take one publicly available image of a sushi restaurant and use AI to iterate off of it to build out a complete reel. This was a one-day project from start to finish. Built in <strong>Nano Banana</strong> and <strong>Kling 2.1</strong>.</p>
-        <h3 class="stills-header">Production Stills</h3>
-        <div class="stills-grid">
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1767485438/Start_Image_qnvom4.jpg', 'Original source image from Namo Sushi\'s website.')"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767485438/Start_Image_qnvom4.jpg" alt="Original source"></div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1767485440/Chef_Medium_framing_h68d5q.jpg', 'Moving the camera perspective to an FPV customer view of the chef at work.')"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767485440/Chef_Medium_framing_h68d5q.jpg" alt="Chef medium"></div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1767485448/Chef_close_up_d3oqix.jpg', 'Tighter framing of the chef.')"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767485448/Chef_close_up_d3oqix.jpg" alt="Chef close up"></div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1767485451/Sushi_close_up_1_i2om2r.jpg', 'Sushi roll close up.')"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767485451/Sushi_close_up_1_i2om2r.jpg" alt="Sushi close up 1"></div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1767485453/Sushi_close_up_2_f1chjz.jpg', 'Same sushi roll with a different background perspective.')"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767485453/Sushi_close_up_2_f1chjz.jpg" alt="Sushi close up 2"></div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1767485455/Sushi_close_up_3_sa2mwb.jpg', 'Same roll, different lighting on sushi, different background.')"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767485455/Sushi_close_up_3_sa2mwb.jpg" alt="Sushi close up 3"></div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1767485460/Sushi_close_up_5_s50r4u.jpg', 'Sushi roll eaten.')"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1767485460/Sushi_close_up_5_s50r4u.jpg" alt="Sushi eaten"></div>
+    <section class="projects">
+        <div class="projects-header"><h1>PROJECTS</h1><p>Each project includes production stills and context on tools and approach.</p></div>
+        <div class="grid">
+            <a href="/project-the-watch" class="card-link"><div class="card"><span class="badge">NEW</span><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777665003/Video_cover_wcmvga.jpg" alt="SRA Labs — The Watch"><div class="card-info"><h3>SRA Labs — The Watch</h3><p>Narrative Reel • Character Dialogue</p></div></div></a>
+            <a href="/project-monopoly" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/New_Money_Game_Thumb_vcqzfe.jpg" alt="The New Money Game"><div class="card-info"><h3>The New Money Game</h3><p>Financial Narrative • AI Videography</p></div></div></a>
+            <a href="/project-siena" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Siena_-_Tower_Drop_hp0n8h.jpg" alt="Siena Tower Drop"><div class="card-info"><h3>Siena — Tower Drop</h3><p>Action Sports • Character Dialogue</p></div></div></a>
+            <a href="/project-cold" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767322094/Cold_cvwrke.jpg" alt="CØLD"><div class="card-info"><h3>CØLD</h3><p>Product • Environment Transform</p></div></div></a>
+            <a href="/project-sorude" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude"><div class="card-info"><h3>So Rude</h3><p>Food & Bev • Character Dialogue</p></div></div></a>
+            <a href="/project-kitesurfer" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321613/Kitesurfer-Girl_gdu2fc.jpg" alt="Kite Surfer"><div class="card-info"><h3>Kite Surfer — Studio to Sea</h3><p>Action Sports • Environment Transform</p></div></div></a>
+            <a href="/project-gardeninstall" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/Garden_Thumb_pcclhu.jpg" alt="Garden Install"><div class="card-info"><h3>Garden Install</h3><p>Landscape • Lighting Design</p></div></div></a>
+            <a href="/project-gameday" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770086475/Game_Day_Thumb_zupgbx.jpg" alt="Game Day Pool Party"><div class="card-info"><h3>Game Day Pool Party</h3><p>Smart Home • Lighting Transform</p></div></div></a>
+            <a href="/project-blueprint" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767370106/Blue_Print_pg2ybu.jpg" alt="Blueprint"><div class="card-info"><h3>Blueprint to Reality</h3><p>Product: Viz • Concept-to-Render</p></div></div></a>
+            <a href="/project-sushi" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg" alt="Sushi"><div class="card-info"><h3>Sushi — Concept Study</h3><p>Food & Bev • Macro Craft</p></div></div></a>
+            <a href="/project-extreme-dreams" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777957666/Don_Limo_3_4_front_rkaw3h.png" alt="Extreme Dreams"><div class="card-info"><h3>Extreme Dreams</h3><p>Case Study • IP Translation</p></div></div></a>
+            <a href="/project-logo" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588773/Logo_Laser_afjpxs.jpg" alt="Logo Animations"><div class="card-info"><h3>Logo Animations</h3><p>Brand Motion • Title Design</p></div></div></a>
+            <a href="/project-landscape" class="card-link"><div class="card"><span class="badge">COMING SOON</span><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770048359/Campus_Thumb_wxvcak.jpg" alt="Corporate Landscape"><div class="card-info"><h3>Corporate Landscape</h3><p>Landscape • Construction to Completion</p></div></div></a>
         </div>
     </section>
-
-    <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen(event)">
-        <span class="fullscreen-close" onclick="closeFullscreen(event)">&times;</span>
-        <div class="fullscreen-stage">
-            <img id="fullscreen-img" class="fullscreen-img-current" src="" alt="">
-            <img id="fullscreen-img-next" class="fullscreen-img-next" src="" alt="">
-        </div>
-        <p class="fullscreen-caption" id="fullscreen-caption"></p>
-    </div>
-
     <script>
-        var galleryImages = [];
-        var galleryCaptions = [];
-        var currentIndex = 0;
-        var isAnimating = false;
-
-        function buildGallery() {
-            var thumbs = document.querySelectorAll('.still-thumb');
-            galleryImages = [];
-            galleryCaptions = [];
-            thumbs.forEach(function(thumb) {
-                var onclickAttr = thumb.getAttribute('onclick') || '';
-                var match = onclickAttr.match(/openFullscreen\('([^']+)',\s*'(.*)'\)/);
-                if (match) {
-                    galleryImages.push(match[1]);
-                    galleryCaptions.push(match[2].replace(/\\'/g, "'"));
-                }
-            });
-        }
-
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
-
-        function openFullscreen(imgSrc, caption) {
-            if (galleryImages.length === 0) buildGallery();
-            currentIndex = galleryImages.indexOf(imgSrc);
-            if (currentIndex === -1) currentIndex = 0;
-            var current = document.getElementById('fullscreen-img');
-            var next = document.getElementById('fullscreen-img-next');
-            current.src = imgSrc;
-            current.style.transform = 'translateX(0)';
-            current.style.opacity = '1';
-            next.src = '';
-            next.style.opacity = '0';
-            document.getElementById('fullscreen-caption').textContent = caption || galleryCaptions[currentIndex] || '';
-            document.getElementById('fullscreenOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            history.pushState({ fullscreen: true }, '');
-        }
-
-        function showImageAtIndex(index, direction) {
-            if (galleryImages.length === 0 || isAnimating) return;
-            var newIndex = ((index % galleryImages.length) + galleryImages.length) % galleryImages.length;
-            if (newIndex === currentIndex) return;
-            isAnimating = true;
-            var current = document.getElementById('fullscreen-img');
-            var next = document.getElementById('fullscreen-img-next');
-            var enterFrom = direction === 1 ? '100%' : '-100%';
-            var exitTo = direction === 1 ? '-100%' : '100%';
-            next.style.transition = 'none';
-            next.style.transform = 'translateX(' + enterFrom + ')';
-            next.style.opacity = '1';
-            next.src = galleryImages[newIndex];
-            void next.offsetWidth;
-            current.style.transition = 'transform 0.3s ease';
-            next.style.transition = 'transform 0.3s ease';
-            current.style.transform = 'translateX(' + exitTo + ')';
-            next.style.transform = 'translateX(0)';
-            setTimeout(function() {
-                current.src = galleryImages[newIndex];
-                current.style.transition = 'none';
-                current.style.transform = 'translateX(0)';
-                next.style.transition = 'none';
-                next.style.opacity = '0';
-                next.src = '';
-                currentIndex = newIndex;
-                document.getElementById('fullscreen-caption').textContent = galleryCaptions[newIndex] || '';
-                isAnimating = false;
-            }, 320);
-        }
-
-        function nextImage() { showImageAtIndex(currentIndex + 1, 1); }
-        function prevImage() { showImageAtIndex(currentIndex - 1, -1); }
-
-        function closeFullscreen(event) {
-            if (event && event.target && !event.target.classList.contains('fullscreen-overlay') && !event.target.classList.contains('fullscreen-close')) return;
-            document.getElementById('fullscreenOverlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        var touchStartX = 0, touchStartY = 0, touchEndX = 0, touchEndY = 0;
-        var touchActive = false;
-        var swipeThreshold = 50;
-        var overlay = document.getElementById('fullscreenOverlay');
-
-        overlay.addEventListener('touchstart', function(e) {
-            if (e.touches.length > 1) { touchActive = false; return; }
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-            touchEndX = touchStartX;
-            touchEndY = touchStartY;
-            touchActive = true;
-        }, { passive: true });
-
-        overlay.addEventListener('touchmove', function(e) {
-            if (!touchActive) return;
-            if (e.touches.length > 1) { touchActive = false; return; }
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            var deltaX = touchEndX - touchStartX;
-            var deltaY = touchEndY - touchStartY;
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        overlay.addEventListener('touchend', function(e) {
-            if (!touchActive) return;
-            touchActive = false;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            var deltaX = touchEndX - touchStartX;
-            var deltaY = touchEndY - touchStartY;
-            if (Math.abs(deltaX) < swipeThreshold) return;
-            if (Math.abs(deltaX) < Math.abs(deltaY)) return;
-            if (deltaX < 0) nextImage();
-            else prevImage();
-        }
-
-        window.addEventListener('popstate', function() {
-            var ov = document.getElementById('fullscreenOverlay');
-            if (ov.classList.contains('active')) { ov.classList.remove('active'); document.body.style.overflow = 'auto'; }
-        });
-
-        document.addEventListener('keydown', function(event) {
-            var overlayActive = document.getElementById('fullscreenOverlay').classList.contains('active');
-            if (event.key === 'Escape') {
-                document.getElementById('fullscreenOverlay').classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-            if (overlayActive && event.key === 'ArrowRight') { event.preventDefault(); nextImage(); }
-            if (overlayActive && event.key === 'ArrowLeft') { event.preventDefault(); prevImage(); }
-            if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); }
-        });
+        document.addEventListener('keydown', function(event) { if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); } });
     </script>
 </body>
 </html>
