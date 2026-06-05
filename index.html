@@ -20,9 +20,9 @@
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18,18,18,0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
         .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; } .logo span { color: var(--accent-orange); }
         .nav-links { display: flex; gap: 30px; align-items: center; } .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; } .nav-links a:hover { color: var(--accent-orange); }
-        .nav-dropdown { position: relative; }
+        .nav-dropdown { position: relative; padding-bottom: 15px; margin-bottom: -15px; }
         .nav-dropdown > a { display: inline-block; }
-        .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -15px; background: rgba(18,18,18,0.98); border: 1px solid #222; border-radius: 6px; padding: 10px 0; min-width: 140px; margin-top: 8px; backdrop-filter: blur(10px); }
+        .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -15px; background: rgba(18,18,18,0.98); border: 1px solid #222; border-radius: 6px; padding: 10px 0; min-width: 140px; backdrop-filter: blur(10px); }
         .nav-dropdown:hover .nav-dropdown-menu { display: block; }
         .nav-dropdown-menu a { display: block; padding: 8px 18px; font-size: 0.85rem; color: var(--text-dim); }
         .nav-dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230,126,34,0.05); }
@@ -32,8 +32,8 @@
         header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; padding: 0 5%; }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; filter: brightness(0.85) grayscale(20%); object-fit: cover; object-position: center 15%; }
         .hero-content { position: relative; z-index: 1; width: 100%; }
-        h1 { font-size: clamp(2rem,8vw,3.5rem); margin-bottom: 1rem; text-transform: uppercase; line-height: 1.1; } h1 span { color: var(--accent-orange); }
-        p.tagline { color: var(--text-main); font-size: clamp(1.2rem,3.5vw,1.6rem); max-width: 750px; margin: 0 auto; line-height: 1.5; } p.tagline span { color: var(--accent-orange); font-weight: 600; }
+        h1 { font-size: clamp(2rem,8vw,3.5rem); margin-bottom: 1rem; text-transform: uppercase; line-height: 1.1; color: var(--text-main); }
+        p.tagline { color: var(--accent-orange); font-size: clamp(1.2rem,3.5vw,1.6rem); max-width: 750px; margin: 0 auto; line-height: 1.5; font-weight: 600; }
         .featured-row { display: flex; gap: 25px; justify-content: center; align-items: stretch; flex-wrap: wrap; margin-top: 60px; max-width: 1100px; margin-left: auto; margin-right: auto; }
         .featured-card-link { text-decoration: none; color: inherit; display: block; flex: 1 1 480px; max-width: 530px; }
         .featured-card { background: rgba(24,24,24,0.95); border-radius: 12px; overflow: hidden; border: 1px solid #333; display: flex; align-items: stretch; transition: 0.3s; backdrop-filter: blur(10px); position: relative; height: 100%; }
@@ -90,8 +90,8 @@
     <header>
         <video class="hero-video" autoplay muted loop playsinline><source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1777674690/___Home_Page_mg7e9u.mp4" type="video/mp4"></video>
         <div class="hero-content">
-            <h1>Cinematic Quality At <br>Social Media <span>Speed</span></h1>
-            <p class="tagline">High-impact <span>AI videography</span> and cinematic motion design for modern brands.</p>
+            <h1>Cinematic AI Storytelling</h1>
+            <p class="tagline">Character-driven AI films and original IP development.</p>
             <div class="featured-row">
                 <a href="/project-the-watch" class="featured-card-link">
                     <div class="featured-card">
