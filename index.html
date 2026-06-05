@@ -32,8 +32,9 @@
         header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; padding: 0 5%; }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; filter: brightness(0.85) grayscale(20%); object-fit: cover; object-position: center 15%; }
         .hero-content { position: relative; z-index: 1; width: 100%; }
-        h1 { font-size: clamp(2rem,8vw,3.5rem); margin-bottom: 1.5rem; text-transform: uppercase; line-height: 1.1; color: var(--text-main); font-weight: 800; letter-spacing: -0.5px; }
-        p.tagline { color: var(--accent-orange); font-size: clamp(1.2rem,3.5vw,1.6rem); max-width: 750px; margin: 0 auto; line-height: 1.5; font-weight: 600; }
+        h1 { font-size: clamp(2.5rem,11vw,5.25rem); margin-bottom: 1.5rem; text-transform: uppercase; line-height: 1.1; color: var(--text-main); font-weight: 800; letter-spacing: -0.5px; }
+        p.tagline { color: #ff9a3d; font-size: clamp(1.2rem,3.5vw,1.6rem); max-width: 750px; margin: 0 auto; line-height: 1.5; font-weight: 600; transition: color 0.4s ease; }
+        header:hover p.tagline { color: #ffb866; }
         .featured-row { display: flex; gap: 25px; justify-content: center; align-items: stretch; flex-wrap: wrap; margin-top: 90px; max-width: 1100px; margin-left: auto; margin-right: auto; }
         .featured-card-link { text-decoration: none; color: inherit; display: block; flex: 1 1 480px; max-width: 530px; }
         .featured-card { background: rgba(24,24,24,0.95); border-radius: 12px; overflow: hidden; border: 1px solid #333; display: flex; align-items: stretch; transition: 0.3s; backdrop-filter: blur(10px); position: relative; height: 100%; }
