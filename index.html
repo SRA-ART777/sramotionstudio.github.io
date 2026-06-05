@@ -19,9 +19,16 @@
         body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18,18,18,0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
         .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; } .logo span { color: var(--accent-orange); }
-        .nav-links { display: flex; gap: 30px; } .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; } .nav-links a:hover { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 30px; align-items: center; } .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; } .nav-links a:hover { color: var(--accent-orange); }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > a { display: inline-block; }
+        .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -15px; background: rgba(18,18,18,0.98); border: 1px solid #222; border-radius: 6px; padding: 10px 0; min-width: 140px; margin-top: 8px; backdrop-filter: blur(10px); }
+        .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a { display: block; padding: 8px 18px; font-size: 0.85rem; color: var(--text-dim); }
+        .nav-dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230,126,34,0.05); }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; } .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
         .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18,18,18,0.98); padding: 20px 5%; flex-direction: column; gap: 20px; z-index: 99; } .mobile-menu.active { display: flex; } .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; transition: 0.3s; } .mobile-menu a:hover { color: var(--accent-orange); }
+        .mobile-menu .sub-link { padding-left: 20px; font-size: 0.9rem; color: #777; }
         header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; padding: 0 5%; }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; filter: brightness(0.85) grayscale(20%); object-fit: cover; object-position: center 15%; }
         .hero-content { position: relative; z-index: 1; width: 100%; }
@@ -58,8 +65,27 @@
     </style>
 </head>
 <body>
-    <nav><a href="/" style="text-decoration: none; color: inherit;"><div class="logo">SRA<span>MOTIONSTUDIO</span></div></a><div class="nav-links"><a href="/projects">PROJECTS</a><a href="/games">GAMES</a><a href="/about">ABOUT</a><a href="/contact">CONTACT</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div></nav>
-    <div class="mobile-menu" id="mobileMenu"><a href="/projects" onclick="toggleMenu()">PROJECTS</a><a href="/games" onclick="toggleMenu()">GAMES</a><a href="/about" onclick="toggleMenu()">ABOUT</a><a href="/contact" onclick="toggleMenu()">CONTACT</a></div>
+    <nav>
+        <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">SRA<span>MOTIONSTUDIO</span></div></a>
+        <div class="nav-links">
+            <a href="/projects">PROJECTS</a>
+            <div class="nav-dropdown">
+                <a href="/about">ABOUT</a>
+                <div class="nav-dropdown-menu">
+                    <a href="/about">About</a>
+                    <a href="/games">Games</a>
+                </div>
+            </div>
+            <a href="/contact">CONTACT</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+        <a href="/about" onclick="toggleMenu()">ABOUT</a>
+        <a href="/games" class="sub-link" onclick="toggleMenu()">Games</a>
+        <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+    </div>
 
     <header>
         <video class="hero-video" autoplay muted loop playsinline><source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1777674690/___Home_Page_mg7e9u.mp4" type="video/mp4"></video>
@@ -78,7 +104,7 @@
                     <div class="featured-card">
                         <span class="featured-badge dev">WIP</span>
                         <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1780632417/Thumbnail_be4gma.jpg" alt="SRA Labs — The Siphon">
-                        <div class="featured-card-info"><h3>SRA Labs — The Siphon</h3><p>Pre-development work toward Reel 02 — character, location, and tool testing for the cliff-house sequence.</p></div>
+                        <div class="featured-card-info"><h3>SRA Labs — The Siphon</h3><p>Mid-production episode — the cliff-house dining hall sequence. Character, location, and tool testing.</p></div>
                     </div>
                 </a>
             </div>
@@ -92,12 +118,12 @@
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1775101782/The_New_Money_Game_rq0tgr.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/New_Money_Game_Thumb_vcqzfe.jpg" alt="The New Money Game"><div class="card-info"><h3>The New Money Game</h3><p>Financial Narrative • AI Videography</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135079/siena-tower-drop-ai-snowboard_yhmnfu.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Siena_-_Tower_Drop_hp0n8h.jpg" alt="Siena Tower Drop"><div class="card-info"><h3>Siena — Tower Drop</h3><p>Action Sports • Character Dialogue</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135229/COLD_AI_Perfume_kk3blz.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767322094/Cold_cvwrke.jpg" alt="CØLD"><div class="card-info"><h3>CØLD</h3><p>Product • Environment Transform</p></div></div></a>
-            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude"><div class="card-info"><h3>So Rude</h3><p>Food & Bev • Character Dialogue</p></div></div></a>
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude"><div class="card-info"><h3>So Rude</h3><p>Food &amp; Bev • Character Dialogue</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135177/windsurfer-girl-ai-studio-to-sea_uoo6ho.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321613/Kitesurfer-Girl_gdu2fc.jpg" alt="Kite Surfer"><div class="card-info"><h3>Kite Surfer — Studio to Sea</h3><p>Action Sports • Environment Transform</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1771962548/Garden_Install_2k_v7eowm.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/Garden_Thumb_pcclhu.jpg" alt="Garden Install"><div class="card-info"><h3>Garden Install</h3><p>Landscape • Lighting Design</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1769634940/Haven_05_H.264_xyyexe.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770086475/Game_Day_Thumb_zupgbx.jpg" alt="Game Day Pool Party"><div class="card-info"><h3>Game Day Pool Party</h3><p>Smart Home • Lighting Transform</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767219787/Blue-Print-AI-Reel_vttnaa.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767370106/Blue_Print_pg2ybu.jpg" alt="Blueprint"><div class="card-info"><h3>Blueprint to Reality</h3><p>Product: Viz • Concept-to-Render</p></div></div></a>
-            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143146/Sushi-AI_Reel_eibngm.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg" alt="Sushi"><div class="card-info"><h3>Sushi — Concept Study</h3><p>Food & Bev • Macro Craft</p></div></div></a>
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143146/Sushi-AI_Reel_eibngm.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg" alt="Sushi"><div class="card-info"><h3>Sushi — Concept Study</h3><p>Food &amp; Bev • Macro Craft</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767587034/Logo_Moon_Ocean_js7aan.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588776/Logo_Moon_Ocean_zb44g6.jpg" alt="Logo Animation"><div class="card-info"><h3>Logo Animation</h3><p>Brand Motion • Title Design</p></div></div></a>
         </div>
     </section>
