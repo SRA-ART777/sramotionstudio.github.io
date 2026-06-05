@@ -63,10 +63,11 @@
         .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px; }
         .test-card { background: #181818; border-radius: 8px; overflow: hidden; border: 1px solid #222; transition: 0.3s; cursor: pointer; }
         .test-card:hover { border-color: var(--accent-orange); transform: translateY(-3px); }
-        .test-thumb { position: relative; width: 100%; aspect-ratio: 16/9; background: #0a0a0a; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .test-thumb::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); }
-        .test-thumb .play-overlay { width: 50px; height: 50px; z-index: 1; }
-        .test-thumb .play-overlay::after { border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 14px solid white; margin-left: 3px; }
+        .test-thumb { position: relative; width: 100%; aspect-ratio: 16/9; background: #0a0a0a; overflow: hidden; }
+        .test-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .test-thumb .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 50px; height: 50px; z-index: 2; background: rgba(230,126,34,0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .test-thumb .play-overlay::after { content: ''; width: 0; height: 0; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 14px solid white; margin-left: 3px; }
+        .test-card:hover .test-thumb .play-overlay { background: rgba(230,126,34,1); transform: translate(-50%,-50%) scale(1.1); }
         .test-card-info { padding: 16px 18px; }
         .test-card-info h4 { margin: 0 0 6px 0; font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
         .test-card-info p { margin: 0; font-size: 0.82rem; color: var(--text-dim); line-height: 1.5; }
@@ -147,15 +148,15 @@
             </p>
             <div class="test-grid">
                 <div class="test-card" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1780626107/3_Precise_Starlight_2_5_tzspe5.mp4'">
-                    <div class="test-thumb"><div class="play-overlay"></div></div>
+                    <div class="test-thumb"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_800,so_auto/v1780626107/3_Precise_Starlight_2_5_tzspe5.jpg" alt="Nick rotation test thumbnail"><div class="play-overlay"></div></div>
                     <div class="test-card-info"><h4>Nick — Rotation Test</h4><p>Grok 1.5 Preview rotation pass. Topaz Astra Starlight Precise 2.5 finish.</p></div>
                 </div>
                 <div class="test-card" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1780627066/Seedance_Siena_Test_Precise_Starlight_2_5_hwwin2.mp4'">
-                    <div class="test-thumb"><div class="play-overlay"></div></div>
+                    <div class="test-thumb"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_800,so_auto/v1780627066/Seedance_Siena_Test_Precise_Starlight_2_5_hwwin2.jpg" alt="Siena expressions test thumbnail"><div class="play-overlay"></div></div>
                     <div class="test-card-info"><h4>Siena — Expressions Test</h4><p>Seedance pass on Siena's revised design. Verifying the new look reads cleanly in AI.</p></div>
                 </div>
                 <div class="test-card" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1780627312/Elevel_Labs_voice_testing_kezzv1.mp4'">
-                    <div class="test-thumb"><div class="play-overlay"></div></div>
+                    <div class="test-thumb"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_800,so_auto/v1780627312/Elevel_Labs_voice_testing_kezzv1.jpg" alt="Siena voice test thumbnail"><div class="play-overlay"></div></div>
                     <div class="test-card-info"><h4>Siena — Voice Test</h4><p>ElevenLabs voice integration through Seedance. Lip-sync and delivery evaluation.</p></div>
                 </div>
             </div>
@@ -168,19 +169,19 @@
             </p>
             <div class="test-grid">
                 <div class="test-card" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1780627503/test4_o3s8wi.mp4'">
-                    <div class="test-thumb"><div class="play-overlay"></div></div>
+                    <div class="test-thumb"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_800,so_auto/v1780627503/test4_o3s8wi.jpg" alt="Beyond the door test thumbnail"><div class="play-overlay"></div></div>
                     <div class="test-card-info"><h4>Beyond the Door</h4><p>Can Seedance build the room beyond a doorway from prompt alone?</p></div>
                 </div>
                 <div class="test-card" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1780627606/test3_jmmipt.mp4'">
-                    <div class="test-thumb"><div class="play-overlay"></div></div>
+                    <div class="test-thumb"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_800,so_auto/v1780627606/test3_jmmipt.jpg" alt="Bridging the gap test thumbnail"><div class="play-overlay"></div></div>
                     <div class="test-card-info"><h4>Bridging the Gap</h4><p>Can Seedance build the missing middle of a room between two non-aligned reference images?</p></div>
                 </div>
                 <div class="test-card" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1780627899/Rotation_Test_pnaquh.mp4'">
-                    <div class="test-thumb"><div class="play-overlay"></div></div>
+                    <div class="test-thumb"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_800,so_auto/v1780627899/Rotation_Test_pnaquh.jpg" alt="Build out left wall test thumbnail"><div class="play-overlay"></div></div>
                     <div class="test-card-info"><h4>Build Out — Left Wall</h4><p>Can Seedance extend the scene to construct a missing wall off-frame?</p></div>
                 </div>
                 <div class="test-card" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1780627982/Detail_Test_q5nwji.mp4'">
-                    <div class="test-thumb"><div class="play-overlay"></div></div>
+                    <div class="test-thumb"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_800,so_auto/v1780627982/Detail_Test_q5nwji.jpg" alt="Material detail hold test thumbnail"><div class="play-overlay"></div></div>
                     <div class="test-card-info"><h4>Material Detail Hold</h4><p>How does Seedance handle wall texture and material fidelity under a zoom-in?</p></div>
                 </div>
             </div>
