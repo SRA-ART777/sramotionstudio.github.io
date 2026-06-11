@@ -61,6 +61,9 @@
         .card-link { text-decoration: none; color: inherit; display: block; }
         .card { background: #181818; border-radius: 12px; overflow: hidden; transition: 0.4s cubic-bezier(0.175,0.885,0.32,1.275); border: 1px solid #222; } .card:hover { transform: translateY(-10px); border-color: var(--accent-orange); }
         .card img { width: 100%; height: 240px; object-fit: cover; }
+        .card { position: relative; }
+        .card video.hover-preview { position: absolute; top: 0; left: 0; width: 100%; height: 240px; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+        .card.previewing video.hover-preview { opacity: 1; }
         .card-info { padding: 25px; } .card-info h3 { margin: 0; font-size: 1.2rem; font-weight: 700; } .card-info p { color: var(--accent-orange); font-size: 0.75rem; font-weight: 800; margin-top: 8px; letter-spacing: 1px; }
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .nav-links { display: none; } .hamburger { display: flex; } nav { padding: 15px 5%; } }
     </style>
@@ -120,7 +123,7 @@
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135079/siena-tower-drop-ai-snowboard_yhmnfu.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Siena_-_Tower_Drop_hp0n8h.jpg" alt="Siena Tower Drop"><div class="card-info"><h3>Siena — Tower Drop</h3><p>Action Sports • Character Dialogue</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135229/COLD_AI_Perfume_kk3blz.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767322094/Cold_cvwrke.jpg" alt="CØLD"><div class="card-info"><h3>CØLD</h3><p>Product • Environment Transform</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude"><div class="card-info"><h3>So Rude</h3><p>Food &amp; Bev • Character Dialogue</p></div></div></a>
-            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135177/windsurfer-girl-ai-studio-to-sea_uoo6ho.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321613/Kitesurfer-Girl_gdu2fc.jpg" alt="Kite Surfer"><div class="card-info"><h3>Kite Surfer — Studio to Sea</h3><p>Action Sports • Environment Transform</p></div></div></a>
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1781200215/Kite_Surfer_13s_fpqnaq.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321613/Kitesurfer-Girl_gdu2fc.jpg" alt="Kite Surfer"><div class="card-info"><h3>Kite Surfer — Studio to Sea</h3><p>Action Sports • Environment Transform</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1771962548/Garden_Install_2k_v7eowm.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/Garden_Thumb_pcclhu.jpg" alt="Garden Install"><div class="card-info"><h3>Garden Install</h3><p>Landscape • Lighting Design</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1769634940/Haven_05_H.264_xyyexe.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770086475/Game_Day_Thumb_zupgbx.jpg" alt="Game Day Pool Party"><div class="card-info"><h3>Game Day Pool Party</h3><p>Smart Home • Lighting Transform</p></div></div></a>
             <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1767219787/Blue-Print-AI-Reel_vttnaa.mp4" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767370106/Blue_Print_pg2ybu.jpg" alt="Blueprint"><div class="card-info"><h3>Blueprint to Reality</h3><p>Product: Viz • Concept-to-Render</p></div></div></a>
@@ -130,6 +133,32 @@
     </section>
     <script>
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        // Hover-to-play previews on reel grid cards (desktop only; lazy-loaded lightweight Cloudinary clips)
+        if (window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.grid .card-link').forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (!href || href.indexOf('.mp4') === -1) return;
+                var card = link.querySelector('.card');
+                if (!card) return;
+                var vid = null;
+                link.addEventListener('mouseenter', function() {
+                    if (!vid) {
+                        vid = document.createElement('video');
+                        vid.className = 'hover-preview';
+                        vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'auto';
+                        vid.src = href.replace('/video/upload/', '/video/upload/so_0,du_4,w_480,q_auto/');
+                        vid.addEventListener('error', function() { if (vid.src !== href) vid.src = href; }, { once: true });
+                        card.insertBefore(vid, card.firstChild);
+                    }
+                    card.classList.add('previewing');
+                    vid.play().catch(function(){});
+                });
+                link.addEventListener('mouseleave', function() {
+                    card.classList.remove('previewing');
+                    if (vid) { vid.pause(); vid.currentTime = 0; }
+                });
+            });
+        }
         document.addEventListener('keydown', function(event) { if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); } });
     </script>
 </body>
