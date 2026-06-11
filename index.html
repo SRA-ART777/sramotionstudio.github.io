@@ -133,30 +133,35 @@
     </section>
     <script>
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
-        // Hover-to-play previews on reel grid cards (desktop only; lazy-loaded lightweight Cloudinary clips)
+        // Hover-to-play previews on reel grid cards (desktop only; lightweight Cloudinary clips preloaded after page load)
         if (window.matchMedia('(hover: hover)').matches) {
+            var previewCards = [];
             document.querySelectorAll('.grid .card-link').forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (!href || href.indexOf('.mp4') === -1) return;
                 var card = link.querySelector('.card');
                 if (!card) return;
-                var vid = null;
+                var vid = document.createElement('video');
+                vid.className = 'hover-preview';
+                vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'none';
+                vid.src = href.replace('/video/upload/', '/video/upload/so_0,du_4,w_480,q_auto/');
+                vid.addEventListener('error', function() { if (vid.src !== href) { vid.src = href; vid.load(); } }, { once: true });
+                card.insertBefore(vid, card.firstChild);
+                previewCards.push(vid);
                 link.addEventListener('mouseenter', function() {
-                    if (!vid) {
-                        vid = document.createElement('video');
-                        vid.className = 'hover-preview';
-                        vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'auto';
-                        vid.src = href.replace('/video/upload/', '/video/upload/so_0,du_4,w_480,q_auto/');
-                        vid.addEventListener('error', function() { if (vid.src !== href) vid.src = href; }, { once: true });
-                        card.insertBefore(vid, card.firstChild);
-                    }
                     card.classList.add('previewing');
                     vid.play().catch(function(){});
                 });
                 link.addEventListener('mouseleave', function() {
                     card.classList.remove('previewing');
-                    if (vid) { vid.pause(); vid.currentTime = 0; }
+                    vid.pause(); vid.currentTime = 0;
                 });
+            });
+            // Buffer all clips once the page (incl. hero video) has finished loading
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    previewCards.forEach(function(v) { v.preload = 'auto'; v.load(); });
+                }, 1500);
             });
         }
         document.addEventListener('keydown', function(event) { if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); } });
