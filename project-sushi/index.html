@@ -70,21 +70,21 @@
             .play-overlay { width: 60px; height: 60px; }
             .play-overlay::after { border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 18px solid white; }
         }
-    </style>
+    .nav-dropdown { position: relative; padding-bottom: 15px; margin-bottom: -15px; } .nav-dropdown > a { display: inline-block; } .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -15px; background: rgba(18,18,18,0.98); border: 1px solid #222; border-radius: 6px; padding: 10px 0; min-width: 140px; backdrop-filter: blur(10px); } .nav-dropdown:hover .nav-dropdown-menu { display: block; } .nav-dropdown-menu a { display: block; padding: 8px 18px; font-size: 0.85rem; color: var(--text-dim); } .nav-dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230,126,34,0.05); } .mobile-menu .sub-link { padding-left: 20px; font-size: 0.9rem; color: #777; }</style>
 </head>
 <body>
     <nav>
         <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">SRA<span>MOTIONSTUDIO</span></div></a>
         <div class="nav-links">
             <a href="/projects">PROJECTS</a>
-            <a href="/about">ABOUT</a>
+            <div class="nav-dropdown"><a href="/about">ABOUT</a><div class="nav-dropdown-menu"><a href="/about">About</a><a href="/games">Games</a></div></div>
             <a href="/contact">CONTACT</a>
         </div>
         <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     </nav>
     <div class="mobile-menu" id="mobileMenu">
         <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
-        <a href="/about" onclick="toggleMenu()">ABOUT</a>
+        <a href="/about" onclick="toggleMenu()">ABOUT</a><a href="/games" class="sub-link" onclick="toggleMenu()">Games</a>
         <a href="/contact" onclick="toggleMenu()">CONTACT</a>
     </div>
 
