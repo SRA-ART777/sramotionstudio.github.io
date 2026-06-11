@@ -51,6 +51,8 @@
         .card { background: #181818; border-radius: 12px; overflow: hidden; transition: 0.4s cubic-bezier(0.175,0.885,0.32,1.275); border: 1px solid #222; position: relative; }
         .card:hover { transform: translateY(-10px); border-color: var(--accent-orange); }
         .card img { width: 100%; height: 240px; object-fit: cover; }
+        .card video.hover-preview { position: absolute; top: 0; left: 0; width: 100%; height: 240px; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+        .card.previewing video.hover-preview { opacity: 1; }
         .card-info { padding: 25px; } .card-info h3 { margin: 0; font-size: 1.2rem; font-weight: 700; } .card-info p { color: var(--accent-orange); font-size: 0.75rem; font-weight: 800; margin-top: 8px; letter-spacing: 1px; }
         .badge { position: absolute; top: 15px; right: 15px; background: var(--accent-orange); color: #000; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; padding: 5px 10px; border-radius: 3px; }
         .badge.dev { background: #444; color: var(--accent-orange); border: 1px solid var(--accent-orange); }
@@ -106,8 +108,8 @@
 
         <h2 class="section-header">SRA Labs</h2>
         <div class="grid">
-            <a href="/project-the-siphon" class="card-link"><div class="card"><span class="badge dev">WIP</span><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1780632417/Thumbnail_be4gma.jpg" alt="SRA Labs — The Siphon"><div class="card-info"><h3>SRA Labs — The Siphon</h3><p>Mid-Production Episode • Cliff-House Sequence</p></div></div></a>
-            <a href="/project-the-watch" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777665003/Video_cover_wcmvga.jpg" alt="SRA Labs — The Watch"><div class="card-info"><h3>SRA Labs — The Watch</h3><p>First Labs Reel • Character Dialogue</p></div></div></a>
+            <a href="/project-the-siphon" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1780625741/Cliff_House_8_Precise_Starlight_2_5_H.264_2_k9skk6.mp4"><div class="card"><span class="badge dev">WIP</span><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1780632417/Thumbnail_be4gma.jpg" alt="SRA Labs — The Siphon"><div class="card-info"><h3>SRA Labs — The Siphon</h3><p>Mid-Production Episode • Cliff-House Sequence</p></div></div></a>
+            <a href="/project-the-watch" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1777654996/____SRA_LABS_The_Watch_zxtkfb.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777665003/Video_cover_wcmvga.jpg" alt="SRA Labs — The Watch"><div class="card-info"><h3>SRA Labs — The Watch</h3><p>First Labs Reel • Character Dialogue</p></div></div></a>
         </div>
 
         <hr class="section-divider">
@@ -115,21 +117,54 @@
         <h2 class="section-header">Spec Work &amp; Tool Studies</h2>
         <p class="section-intro">Earlier spec commercials and tool studies — primarily Kling and Nano Banana–era work from 2025–2026.</p>
         <div class="grid">
-            <a href="/project-monopoly" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/New_Money_Game_Thumb_vcqzfe.jpg" alt="The New Money Game"><div class="card-info"><h3>The New Money Game</h3><p>Financial Narrative • AI Videography</p></div></div></a>
-            <a href="/project-siena" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Siena_-_Tower_Drop_hp0n8h.jpg" alt="Siena Tower Drop"><div class="card-info"><h3>Siena — Tower Drop</h3><p>Action Sports • Character Dialogue</p></div></div></a>
-            <a href="/project-cold" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767322094/Cold_cvwrke.jpg" alt="CØLD"><div class="card-info"><h3>CØLD</h3><p>Product • Environment Transform</p></div></div></a>
-            <a href="/project-sorude" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude"><div class="card-info"><h3>So Rude</h3><p>Food &amp; Bev • Character Dialogue</p></div></div></a>
-            <a href="/project-kitesurfer" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321613/Kitesurfer-Girl_gdu2fc.jpg" alt="Kite Surfer"><div class="card-info"><h3>Kite Surfer — Studio to Sea</h3><p>Action Sports • Environment Transform</p></div></div></a>
-            <a href="/project-gardeninstall" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/Garden_Thumb_pcclhu.jpg" alt="Garden Install"><div class="card-info"><h3>Garden Install</h3><p>Landscape • Lighting Design</p></div></div></a>
-            <a href="/project-gameday" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770086475/Game_Day_Thumb_zupgbx.jpg" alt="Game Day Pool Party"><div class="card-info"><h3>Game Day Pool Party</h3><p>Smart Home • Lighting Transform</p></div></div></a>
-            <a href="/project-blueprint" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767370106/Blue_Print_pg2ybu.jpg" alt="Blueprint"><div class="card-info"><h3>Blueprint to Reality</h3><p>Product: Viz • Concept-to-Render</p></div></div></a>
-            <a href="/project-sushi" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg" alt="Sushi"><div class="card-info"><h3>Sushi — Concept Study</h3><p>Food &amp; Bev • Macro Craft</p></div></div></a>
-            <a href="/project-logo" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588773/Logo_Laser_afjpxs.jpg" alt="Logo Animations"><div class="card-info"><h3>Logo Animations</h3><p>Brand Motion • Title Design</p></div></div></a>
+            <a href="/project-monopoly" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1775101782/The_New_Money_Game_rq0tgr.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/New_Money_Game_Thumb_vcqzfe.jpg" alt="The New Money Game"><div class="card-info"><h3>The New Money Game</h3><p>Financial Narrative • AI Videography</p></div></div></a>
+            <a href="/project-siena" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135079/siena-tower-drop-ai-snowboard_yhmnfu.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Siena_-_Tower_Drop_hp0n8h.jpg" alt="Siena Tower Drop"><div class="card-info"><h3>Siena — Tower Drop</h3><p>Action Sports • Character Dialogue</p></div></div></a>
+            <a href="/project-cold" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1767135229/COLD_AI_Perfume_kk3blz.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767322094/Cold_cvwrke.jpg" alt="CØLD"><div class="card-info"><h3>CØLD</h3><p>Product • Environment Transform</p></div></div></a>
+            <a href="/project-sorude" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1767244351/So-Rude-AI-Reel_k6fm56.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321616/Wingstop-1_g1rgit.jpg" alt="So Rude"><div class="card-info"><h3>So Rude</h3><p>Food &amp; Bev • Character Dialogue</p></div></div></a>
+            <a href="/project-kitesurfer" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1781200215/Kite_Surfer_13s_fpqnaq.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321613/Kitesurfer-Girl_gdu2fc.jpg" alt="Kite Surfer"><div class="card-info"><h3>Kite Surfer — Studio to Sea</h3><p>Action Sports • Environment Transform</p></div></div></a>
+            <a href="/project-gardeninstall" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1771962548/Garden_Install_2k_v7eowm.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1775159949/Garden_Thumb_pcclhu.jpg" alt="Garden Install"><div class="card-info"><h3>Garden Install</h3><p>Landscape • Lighting Design</p></div></div></a>
+            <a href="/project-gameday" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1769634940/Haven_05_H.264_xyyexe.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1770086475/Game_Day_Thumb_zupgbx.jpg" alt="Game Day Pool Party"><div class="card-info"><h3>Game Day Pool Party</h3><p>Smart Home • Lighting Transform</p></div></div></a>
+            <a href="/project-blueprint" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1767219787/Blue-Print-AI-Reel_vttnaa.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767370106/Blue_Print_pg2ybu.jpg" alt="Blueprint"><div class="card-info"><h3>Blueprint to Reality</h3><p>Product: Viz • Concept-to-Render</p></div></div></a>
+            <a href="/project-sushi" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1767143146/Sushi-AI_Reel_eibngm.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767321598/Sushi_hdbcah.jpg" alt="Sushi"><div class="card-info"><h3>Sushi — Concept Study</h3><p>Food &amp; Bev • Macro Craft</p></div></div></a>
+            <a href="/project-logo" class="card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1767587034/Logo_Moon_Ocean_js7aan.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1767588773/Logo_Laser_afjpxs.jpg" alt="Logo Animations"><div class="card-info"><h3>Logo Animations</h3><p>Brand Motion • Title Design</p></div></div></a>
             <a href="/project-extreme-dreams" class="card-link"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777957666/Don_Limo_3_4_front_rkaw3h.png" alt="Extreme Dreams"><div class="card-info"><h3>Extreme Dreams</h3><p>Case Study • IP Translation</p></div></div></a>
         </div>
     </section>
     <script>
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        // Hover-to-play previews on project cards (desktop only; lightweight Cloudinary clips preloaded after page load)
+        // Per-card options: data-preview="...mp4", data-preview-start="seconds"
+        if (window.matchMedia('(hover: hover)').matches) {
+            var previewVids = [];
+            document.querySelectorAll('.card-link').forEach(function(link) {
+                var src = link.getAttribute('data-preview');
+                if (!src) return;
+                var card = link.querySelector('.card');
+                if (!card) return;
+                var start = parseFloat(link.getAttribute('data-preview-start')) || 0;
+                var vid = document.createElement('video');
+                vid.className = 'hover-preview';
+                vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'none';
+                vid.src = src.replace('/video/upload/', '/video/upload/so_' + start + ',du_4,w_480,q_auto/');
+                vid.addEventListener('error', function() { if (vid.src !== src) { vid.src = src; vid.load(); } }, { once: true });
+                card.insertBefore(vid, card.firstChild);
+                previewVids.push(vid);
+                link.addEventListener('mouseenter', function() {
+                    card.classList.add('previewing');
+                    vid.play().catch(function(){});
+                });
+                link.addEventListener('mouseleave', function() {
+                    card.classList.remove('previewing');
+                    vid.pause(); vid.currentTime = 0;
+                });
+            });
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    previewVids.forEach(function(v) { v.preload = 'auto'; v.load(); });
+                }, 1500);
+            });
+        }
+
         document.addEventListener('keydown', function(event) { if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); } });
     </script>
 </body>

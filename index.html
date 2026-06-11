@@ -64,6 +64,8 @@
         .card { position: relative; }
         .card video.hover-preview { position: absolute; top: 0; left: 0; width: 100%; height: 240px; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
         .card.previewing video.hover-preview { opacity: 1; }
+        .featured-card video.hover-preview { position: absolute; top: 0; left: 0; width: 200px; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+        .featured-card.previewing video.hover-preview { opacity: 1; }
         .card-info { padding: 25px; } .card-info h3 { margin: 0; font-size: 1.2rem; font-weight: 700; } .card-info p { color: var(--accent-orange); font-size: 0.75rem; font-weight: 800; margin-top: 8px; letter-spacing: 1px; }
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .nav-links { display: none; } .hamburger { display: flex; } nav { padding: 15px 5%; } }
     </style>
@@ -97,14 +99,14 @@
             <h1>Cinematic AI Storytelling</h1>
             <p class="tagline">Character-driven AI films and original IP development.</p>
             <div class="featured-row">
-                <a href="/project-the-watch" class="featured-card-link">
+                <a href="/project-the-watch" class="featured-card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1777654996/____SRA_LABS_The_Watch_zxtkfb.mp4">
                     <div class="featured-card">
                         <span class="featured-badge">NEW</span>
                         <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777665003/Video_cover_wcmvga.jpg" alt="SRA Labs — The Watch">
                         <div class="featured-card-info"><h3>SRA Labs — The Watch</h3><p>The first SRA Labs reel focused on human interaction — dialogue, emotion, and chemistry between the leads.</p></div>
                     </div>
                 </a>
-                <a href="/project-the-siphon" class="featured-card-link">
+                <a href="/project-the-siphon" class="featured-card-link" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1780625741/Cliff_House_8_Precise_Starlight_2_5_H.264_2_k9skk6.mp4">
                     <div class="featured-card">
                         <span class="featured-badge dev">WIP</span>
                         <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1780632417/Thumbnail_be4gma.jpg" alt="SRA Labs — The Siphon">
@@ -133,21 +135,24 @@
     </section>
     <script>
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
-        // Hover-to-play previews on reel grid cards (desktop only; lightweight Cloudinary clips preloaded after page load)
+        // Hover-to-play previews on reel cards (desktop only; lightweight Cloudinary clips preloaded after page load)
+        // Per-card options: data-preview="...mp4" (video source when link isn't an mp4), data-preview-start="seconds"
         if (window.matchMedia('(hover: hover)').matches) {
-            var previewCards = [];
-            document.querySelectorAll('.grid .card-link').forEach(function(link) {
-                var href = link.getAttribute('href');
-                if (!href || href.indexOf('.mp4') === -1) return;
-                var card = link.querySelector('.card');
+            var previewVids = [];
+            document.querySelectorAll('.card-link, .featured-card-link').forEach(function(link) {
+                var href = link.getAttribute('href') || '';
+                var src = link.getAttribute('data-preview') || (href.indexOf('.mp4') !== -1 ? href : null);
+                if (!src) return;
+                var card = link.querySelector('.card, .featured-card');
                 if (!card) return;
+                var start = parseFloat(link.getAttribute('data-preview-start')) || 0;
                 var vid = document.createElement('video');
                 vid.className = 'hover-preview';
                 vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'none';
-                vid.src = href.replace('/video/upload/', '/video/upload/so_0,du_4,w_480,q_auto/');
-                vid.addEventListener('error', function() { if (vid.src !== href) { vid.src = href; vid.load(); } }, { once: true });
+                vid.src = src.replace('/video/upload/', '/video/upload/so_' + start + ',du_4,w_480,q_auto/');
+                vid.addEventListener('error', function() { if (vid.src !== src) { vid.src = src; vid.load(); } }, { once: true });
                 card.insertBefore(vid, card.firstChild);
-                previewCards.push(vid);
+                previewVids.push(vid);
                 link.addEventListener('mouseenter', function() {
                     card.classList.add('previewing');
                     vid.play().catch(function(){});
@@ -160,7 +165,7 @@
             // Buffer all clips once the page (incl. hero video) has finished loading
             window.addEventListener('load', function() {
                 setTimeout(function() {
-                    previewCards.forEach(function(v) { v.preload = 'auto'; v.load(); });
+                    previewVids.forEach(function(v) { v.preload = 'auto'; v.load(); });
                 }, 1500);
             });
         }
