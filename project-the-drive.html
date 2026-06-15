@@ -58,11 +58,14 @@
 
         .tests-label { color: var(--text-main); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-top: 30px; border-top: 1px solid #1c1c1c; margin-bottom: 6px; }
         .tests-sub { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin: 0 0 24px 0; max-width: 800px; }
-        .tests-row { display: flex; gap: 25px; flex-wrap: wrap; margin-bottom: 30px; }
-        .test-item { flex: 1 1 360px; max-width: 480px; }
-        .test-item .video-container { margin-bottom: 10px; }
-        .test-item video { width: 100%; display: block; border-radius: 12px; }
-        .test-caption { color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.5px; }
+        .tests-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; max-width: 760px; }
+        .card-link { text-decoration: none; color: inherit; display: block; }
+        .card { background: #181818; border-radius: 12px; overflow: hidden; border: 1px solid #2a2a2a; transition: 0.3s; position: relative; }
+        .card:hover { border-color: var(--accent-orange); transform: translateY(-5px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .card video.hover-preview { position: absolute; top: 0; left: 0; width: 100%; height: 200px; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+        .card.previewing video.hover-preview { opacity: 1; }
+        .card-info { padding: 18px 20px; } .card-info h3 { margin: 0 0 6px 0; font-size: 1.05rem; font-weight: 700; } .card-info p { margin: 0; color: var(--accent-orange); font-size: 0.72rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
 
         .back-link { display: inline-block; margin-bottom: 30px; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .back-link:hover { color: var(--accent-orange); }
@@ -78,8 +81,7 @@
             .tools-line { font-size: 0.85rem; }
             .play-overlay { width: 60px; height: 60px; }
             .play-overlay::after { border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 18px solid white; }
-            .tests-row { flex-direction: column; gap: 20px; }
-            .test-item { max-width: 100%; }
+            .tests-row { grid-template-columns: 1fr; gap: 20px; }
         }
     </style>
 </head>
@@ -129,20 +131,48 @@
         <p class="tests-label">Early Tests — Vehicle Consistency in Grok</p>
         <p class="tests-sub">Establishing the car before committing to the scene: Grok building a consistent vehicle from reference, in both color directions under evaluation.</p>
         <div class="tests-row">
-            <div class="test-item">
-                <video controls preload="metadata" poster="" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1781555898/grok_720_orbit_mtvmem.mp4"></video>
-                <p class="test-caption">Yellow car test — Grok</p>
-            </div>
-            <div class="test-item">
-                <video controls preload="metadata" poster="" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1781555898/grok_720_red_car_rotation_1_rr7h2k.mp4"></video>
-                <p class="test-caption">Red car test — Grok</p>
-            </div>
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1781555898/grok_720_orbit_mtvmem.mp4" class="card-link" data-preview-start="0">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/video/upload/so_0,w_600,q_auto/v1781555898/grok_720_orbit_mtvmem.jpg" alt="Yellow car test — Grok">
+                    <div class="card-info"><h3>Yellow Car Test</h3><p>Grok • Vehicle Rotation</p></div>
+                </div>
+            </a>
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1781555898/grok_720_red_car_rotation_1_rr7h2k.mp4" class="card-link" data-preview-start="0">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/video/upload/so_0,w_600,q_auto/v1781555898/grok_720_red_car_rotation_1_rr7h2k.jpg" alt="Red car test — Grok">
+                    <div class="card-info"><h3>Red Car Test</h3><p>Grok • Vehicle Rotation</p></div>
+                </div>
+            </a>
         </div>
     </section>
 
     <script>
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
         document.addEventListener('keydown', function(event) { if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); } });
+        // Hover-to-play previews on test cards (desktop only)
+        if (window.matchMedia('(hover: hover)').matches) {
+            var previewVids = [];
+            document.querySelectorAll('.card-link').forEach(function(link) {
+                var href = link.getAttribute('href') || '';
+                var src = link.getAttribute('data-preview') || (href.indexOf('.mp4') !== -1 ? href : null);
+                if (!src) return;
+                var card = link.querySelector('.card');
+                if (!card) return;
+                var start = parseFloat(link.getAttribute('data-preview-start')) || 0;
+                var vid = document.createElement('video');
+                vid.className = 'hover-preview';
+                vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'none';
+                vid.src = src.replace('/video/upload/', '/video/upload/so_' + start + ',du_4,w_480,q_auto/');
+                vid.addEventListener('error', function() { if (vid.src !== src) { vid.src = src; vid.load(); } }, { once: true });
+                card.insertBefore(vid, card.firstChild);
+                previewVids.push(vid);
+                link.addEventListener('mouseenter', function() { card.classList.add('previewing'); vid.play().catch(function(){}); });
+                link.addEventListener('mouseleave', function() { card.classList.remove('previewing'); vid.pause(); vid.currentTime = 0; });
+            });
+            window.addEventListener('load', function() {
+                setTimeout(function() { previewVids.forEach(function(v) { v.preload = 'auto'; v.load(); }); }, 1500);
+            });
+        }
     </script>
 </body>
 </html>
