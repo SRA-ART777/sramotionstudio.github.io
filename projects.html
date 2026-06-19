@@ -47,6 +47,8 @@
         .section-intro { max-width: 800px; color: var(--text-dim); font-size: 0.98rem; line-height: 1.7; margin: 0 0 50px 0; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .grid.grid-labs { grid-template-columns: repeat(4, 1fr); }
+        @media (max-width: 1000px) { .grid.grid-labs { grid-template-columns: repeat(2, 1fr); } }
         .card-link { text-decoration: none; color: inherit; display: block; }
         .card { background: #181818; border-radius: 12px; overflow: hidden; transition: 0.4s cubic-bezier(0.175,0.885,0.32,1.275); border: 1px solid #222; position: relative; }
         .card:hover { transform: translateY(-10px); border-color: var(--accent-orange); }
@@ -54,11 +56,17 @@
         .card video.hover-preview { position: absolute; top: 0; left: 0; width: 100%; height: 240px; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
         .card.previewing video.hover-preview { opacity: 1; }
         .card-info { padding: 25px; } .card-info h3 { margin: 0; font-size: 1.2rem; font-weight: 700; } .card-info p { color: var(--accent-orange); font-size: 0.75rem; font-weight: 800; margin-top: 8px; letter-spacing: 1px; }
+        /* Tighter card chrome inside the four-up SRA Labs row */
+        .grid-labs .card-info { padding: 20px 18px; }
+        .grid-labs .card-info h3 { font-size: 1.05rem; }
+        .grid-labs .card img, .grid-labs .card video.hover-preview { height: 200px; }
         .badge { position: absolute; top: 15px; right: 15px; background: var(--accent-orange); color: #000; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; padding: 5px 10px; border-radius: 3px; }
         .badge.dev { background: #444; color: var(--accent-orange); border: 1px solid var(--accent-orange); }
 
         @media (max-width: 768px) {
             .grid { grid-template-columns: 1fr; }
+            .grid.grid-labs { grid-template-columns: 1fr; }
+            .grid-labs .card img, .grid-labs .card video.hover-preview { height: 240px; }
             .nav-links { display: none; }
             .hamburger { display: flex; }
             nav { padding: 15px 5%; }
@@ -107,7 +115,8 @@
         </div>
 
         <h2 class="section-header">SRA Labs</h2>
-        <div class="grid">
+        <div class="grid grid-labs">
+            <a href="/project-cavendish-estate" class="card-link"><div class="card"><span class="badge dev">DESIGN</span><img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1781895021/1_y9dzph.jpg" alt="Cavendish Estate — Location Design"><div class="card-info"><h3>Cavendish Estate</h3><p>Location Design • Coastal Estate</p></div></div></a>
             <a href="/project-the-drive" class="card-link" data-preview-start="0" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1781555899/Seedance_480_tunnel_exit_6s_1_Precise_Starlight_2_5_njbssg.mp4"><div class="card"><span class="badge dev">WIP</span><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1781556623/WIP_Thumb_Drive_qckmvu.png" alt="SRA Labs — The Drive"><div class="card-info"><h3>SRA Labs — The Drive</h3><p>In-Development • Coastal Cliff Road Transit</p></div></div></a>
             <a href="/project-the-siphon" class="card-link" data-preview-start="9" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1780625741/Cliff_House_8_Precise_Starlight_2_5_H.264_2_k9skk6.mp4"><div class="card"><span class="badge dev">WIP</span><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1780632417/Thumbnail_be4gma.jpg" alt="SRA Labs — The Siphon"><div class="card-info"><h3>SRA Labs — The Siphon</h3><p>Mid-Production Episode • Cliff-House Sequence</p></div></div></a>
             <a href="/project-the-watch" class="card-link" data-preview-start="61" data-preview="https://res.cloudinary.com/dqih0axv3/video/upload/v1777654996/____SRA_LABS_The_Watch_zxtkfb.mp4"><div class="card"><img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1777665003/Video_cover_wcmvga.jpg" alt="SRA Labs — The Watch"><div class="card-info"><h3>SRA Labs — The Watch</h3><p>First Labs Reel • Character Dialogue</p></div></div></a>
