@@ -67,6 +67,12 @@
         .still-thumb img { width: 100%; height: 200px; object-fit: cover; display: block; }
         .still-caption { padding: 12px 15px; background: #181818; color: var(--text-main); font-size: 0.85rem; font-weight: 700; }
 
+        .video-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.97); z-index: 210; justify-content: center; align-items: center; padding: 16px; box-sizing: border-box; }
+        .video-overlay.active { display: flex; }
+        .video-overlay video { max-width: 100%; max-height: 92vh; width: auto; height: auto; border-radius: 8px; background: #000; }
+        .video-overlay-close { position: absolute; top: 18px; right: 26px; font-size: 2.5rem; color: #fff; cursor: pointer; line-height: 1; z-index: 10; transition: 0.3s; }
+        .video-overlay-close:hover { color: var(--accent-orange); }
+
         .fullscreen-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.97); z-index: 200; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; overflow: hidden; touch-action: pan-y pinch-zoom; }
         .fullscreen-overlay.active { display: flex; }
         .fullscreen-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -139,7 +145,7 @@
                 <p class="tools-line"><strong>Generation &amp; Craft</strong> Seedance · Midjourney · GPT Image 2</p>
                 <p class="tools-line"><strong>Finishing</strong> Topaz Astra</p>
             </div>
-            <div class="character-video-container" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1782105168/Ash_Card_4k_Final_H.264_2_er6zvn.mp4'">
+            <div class="character-video-container" onclick="openVideo('https://res.cloudinary.com/dqih0axv3/video/upload/v1782105168/Ash_Card_4k_Final_H.264_2_er6zvn.mp4')">
                 <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/3_vupzba.png" alt="Ash Cavendish — character reel">
                 <div class="play-overlay"></div>
             </div>
@@ -166,6 +172,11 @@
         </div>
     </section>
 
+    <div class="video-overlay" id="videoOverlay" onclick="closeVideo(event)">
+        <span class="video-overlay-close" onclick="closeVideo(event)">&times;</span>
+        <video id="overlay-video" playsinline controls></video>
+    </div>
+
     <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen(event)">
         <span class="fullscreen-close" onclick="closeFullscreen(event)">&times;</span>
         <div class="fullscreen-stage">
@@ -190,6 +201,29 @@
         }
 
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+
+        function openVideo(src) {
+            var ov = document.getElementById('videoOverlay');
+            var v = document.getElementById('overlay-video');
+            v.src = src;
+            v.muted = false;
+            try { v.currentTime = 0; } catch (e) {}
+            ov.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            history.pushState({ videoOpen: true }, '');
+            v.play().catch(function(){});
+        }
+
+        function closeVideo(event) {
+            if (event && event.target && !event.target.classList.contains('video-overlay') && !event.target.classList.contains('video-overlay-close')) return;
+            var ov = document.getElementById('videoOverlay');
+            var v = document.getElementById('overlay-video');
+            ov.classList.remove('active');
+            v.pause();
+            v.removeAttribute('src');
+            v.load();
+            document.body.style.overflow = 'auto';
+        }
 
         function openFullscreen(imgSrc) {
             if (galleryImages.length === 0) buildGallery();
@@ -295,6 +329,13 @@
         window.addEventListener('popstate', function() {
             var ov = document.getElementById('fullscreenOverlay');
             if (ov.classList.contains('active')) { ov.classList.remove('active'); document.body.style.overflow = 'auto'; }
+            var vo = document.getElementById('videoOverlay');
+            if (vo && vo.classList.contains('active')) {
+                vo.classList.remove('active');
+                var v = document.getElementById('overlay-video');
+                v.pause(); v.removeAttribute('src'); v.load();
+                document.body.style.overflow = 'auto';
+            }
         });
 
         document.addEventListener('keydown', function(event) {
@@ -302,6 +343,12 @@
             if (event.key === 'Escape') {
                 document.getElementById('fullscreenOverlay').classList.remove('active');
                 document.body.style.overflow = 'auto';
+                var vo = document.getElementById('videoOverlay');
+                if (vo && vo.classList.contains('active')) {
+                    vo.classList.remove('active');
+                    var v = document.getElementById('overlay-video');
+                    v.pause(); v.removeAttribute('src'); v.load();
+                }
             }
             if (overlayActive && event.key === 'ArrowRight') { event.preventDefault(); nextImage(); }
             if (overlayActive && event.key === 'ArrowLeft') { event.preventDefault(); prevImage(); }
