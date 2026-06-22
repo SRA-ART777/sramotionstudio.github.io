@@ -44,14 +44,17 @@
 
         .roster-intro { color: var(--text-dim); font-size: 1.1rem; line-height: 1.7; margin: 0 0 60px 0; max-width: 820px; }
 
-        /* Character spotlight — vertical card reel + meta */
-        .character-feature { display: flex; gap: 45px; align-items: flex-start; margin-bottom: 30px; }
-        .character-video { flex-shrink: 0; width: 340px; max-width: 100%; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid #222; }
-        .character-video video { width: 100%; height: auto; display: block; }
-        .character-meta { flex: 1; padding-top: 4px; }
-        .character-meta h2 { font-size: 2rem; margin: 0 0 14px 0; font-weight: 800; }
-        .character-line { color: var(--accent-orange); font-size: 1.15rem; font-style: italic; line-height: 1.5; margin: 0 0 22px 0; font-weight: 600; }
-        .character-role { color: var(--text-dim); font-size: 1.05rem; line-height: 1.7; margin: 0 0 26px 0; }
+        /* Character block — text leads, centered card reel below (separation when stacked) */
+        .character-block { margin-bottom: 70px; }
+        .character-block + .character-block { border-top: 1px solid #1c1c1c; padding-top: 60px; }
+        .character-block h2 { font-size: 2rem; margin: 0 0 14px 0; font-weight: 800; }
+        .character-line { color: var(--accent-orange); font-size: 1.15rem; font-style: italic; line-height: 1.5; margin: 0 0 18px 0; font-weight: 600; }
+        .character-role { color: var(--text-dim); font-size: 1.05rem; line-height: 1.7; margin: 0 0 24px 0; max-width: 820px; }
+        .character-video-container { position: relative; width: 360px; max-width: 100%; margin: 0 auto 10px; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid #222; cursor: pointer; }
+        .character-video-container img { width: 100%; display: block; }
+        .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 70px; height: 70px; background: rgba(230,126,34,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .play-overlay::after { content: ''; width: 0; height: 0; border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 22px solid white; margin-left: 5px; }
+        .character-video-container:hover .play-overlay { background: rgba(230,126,34,1); transform: translate(-50%,-50%) scale(1.1); }
 
         .tools-block { margin-bottom: 10px; }
         .tools-line { color: var(--text-dim); font-size: 0.9rem; letter-spacing: 1px; margin: 0 0 8px 0; }
@@ -84,11 +87,10 @@
             .project { padding: 100px 5% 60px; }
             .project-header h1 { font-size: 1.6rem; }
             .roster-intro { font-size: 1rem; margin-bottom: 40px; }
-            .character-feature { flex-direction: column; gap: 25px; }
-            .character-video { width: 100%; max-width: 340px; margin: 0 auto; }
-            .character-meta h2 { font-size: 1.5rem; }
+            .character-block h2 { font-size: 1.5rem; }
             .character-line { font-size: 1.05rem; }
             .character-role { font-size: 0.95rem; }
+            .character-video-container { width: 100%; max-width: 340px; }
             .tools-line { font-size: 0.85rem; }
             .stills-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .still-thumb img { height: 140px; }
@@ -129,40 +131,37 @@
             An introduction to the cast of the SRA Labs world. Each character steps forward in a short reel — a look, a line, a piece of who they are. The roster opens with Ash Cavendish; more of the cast will be added as they come online.
         </p>
 
-        <div class="character-feature">
-            <div class="character-video">
-                <video controls preload="metadata" playsinline poster="https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/3_vupzba.png">
-                    <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1782105168/Ash_Card_4k_Final_H.264_2_er6zvn.mp4" type="video/mp4">
-                </video>
+        <div class="character-block">
+            <h2>Ash Cavendish</h2>
+            <p class="character-line">Ash Cavendish, younger sister to Siena Cavendish.</p>
+            <p class="character-role">Combat, tactics, and tech are Ash's domain. She is a hyper-fast processor — she maps the space, calculates the threats, and moves into action.</p>
+            <div class="tools-block">
+                <p class="tools-line"><strong>Generation &amp; Craft</strong> Seedance · Midjourney · GPT Image 2</p>
+                <p class="tools-line"><strong>Finishing</strong> Topaz Astra</p>
             </div>
-            <div class="character-meta">
-                <h2>Ash Cavendish</h2>
-                <p class="character-line">"Hi, I'm Ash Cavendish. Combat, tactics, tech — and honestly, they've yet to build anything that challenges me."</p>
-                <p class="character-role">Combat, tactics, and tech are Ash's domain. Here she moves through a live training drill like it barely deserves her attention — blocking, countering, and swatting away everything the training androids throw at her, unbothered and a half-step ahead.</p>
-                <div class="tools-block">
-                    <p class="tools-line"><strong>Generation &amp; Craft</strong> Seedance · ElevenLabs</p>
-                    <p class="tools-line"><strong>Finishing</strong> Topaz Astra</p>
-                </div>
+            <div class="character-video-container" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1782105168/Ash_Card_4k_Final_H.264_2_er6zvn.mp4'">
+                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/3_vupzba.png" alt="Ash Cavendish — character reel">
+                <div class="play-overlay"></div>
             </div>
-        </div>
 
-        <h3 class="stills-header">Production Stills</h3>
-        <div class="stills-grid">
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105137/m1_yuss7i.png')">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105137/m1_yuss7i.png" alt="Ash in training outfit">
-                <div class="still-caption">Ash — Training Outfit</div>
-            </div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/A1_kuj2pb.png')">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105138/A1_kuj2pb.png" alt="Training android">
-                <div class="still-caption">Training Android</div>
-            </div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/3_vupzba.png')">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105138/3_vupzba.png" alt="Vertical format start frame">
-                <div class="still-caption">Start Frame — Vertical</div>
-            </div>
-            <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105139/4_cmo62w.png')">
-                <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105139/4_cmo62w.png" alt="Training room">
-                <div class="still-caption">Training Room</div>
+            <h3 class="stills-header">Production Stills</h3>
+            <div class="stills-grid">
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105137/m1_yuss7i.png')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105137/m1_yuss7i.png" alt="Ash in training outfit">
+                    <div class="still-caption">Ash — Training Outfit</div>
+                </div>
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/A1_kuj2pb.png')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105138/A1_kuj2pb.png" alt="Training android">
+                    <div class="still-caption">Training Android</div>
+                </div>
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105139/4_cmo62w.png')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105139/4_cmo62w.png" alt="Training room">
+                    <div class="still-caption">Training Room</div>
+                </div>
+                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/3_vupzba.png')">
+                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105138/3_vupzba.png" alt="Start frame">
+                    <div class="still-caption">Start Frame</div>
+                </div>
             </div>
         </div>
     </section>
