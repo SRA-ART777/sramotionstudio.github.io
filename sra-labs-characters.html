@@ -44,28 +44,28 @@
 
         .roster-intro { color: var(--text-dim); font-size: 1.1rem; line-height: 1.7; margin: 0 0 60px 0; max-width: 820px; }
 
-        /* Character block — text leads, centered card reel below (separation when stacked) */
-        .character-block { margin-bottom: 70px; }
-        .character-block + .character-block { border-top: 1px solid #1c1c1c; padding-top: 60px; }
-        .character-block h2 { font-size: 2rem; margin: 0 0 14px 0; font-weight: 800; }
-        .character-line { color: var(--accent-orange); font-size: 1.15rem; font-style: italic; line-height: 1.5; margin: 0 0 18px 0; font-weight: 600; }
-        .character-role { color: var(--text-dim); font-size: 1.05rem; line-height: 1.7; margin: 0 0 24px 0; max-width: 820px; }
-        .character-video-container { position: relative; width: 360px; max-width: 100%; margin: 0 auto 10px; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid #222; cursor: pointer; }
+        /* Character box — bordered two-column unit: video left, meta + stills right */
+        .character-block { border: 1px solid #2a2a2a; border-radius: 14px; background: #161616; padding: 30px; margin-bottom: 35px; display: flex; gap: 35px; align-items: flex-start; }
+        .character-video-container { position: relative; flex-shrink: 0; width: 300px; max-width: 100%; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid #222; cursor: pointer; }
         .character-video-container img { width: 100%; display: block; }
         .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 70px; height: 70px; background: rgba(230,126,34,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .play-overlay::after { content: ''; width: 0; height: 0; border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 22px solid white; margin-left: 5px; }
         .character-video-container:hover .play-overlay { background: rgba(230,126,34,1); transform: translate(-50%,-50%) scale(1.1); }
+        .character-meta { flex: 1; min-width: 0; }
+        .character-meta h2 { font-size: 2rem; margin: 0 0 12px 0; font-weight: 800; }
+        .character-line { color: var(--accent-orange); font-size: 1.1rem; font-style: italic; line-height: 1.5; margin: 0 0 16px 0; font-weight: 600; }
+        .character-role { color: var(--text-dim); font-size: 1rem; line-height: 1.65; margin: 0 0 20px 0; }
 
         .tools-block { margin-bottom: 10px; }
         .tools-line { color: var(--text-dim); font-size: 0.9rem; letter-spacing: 1px; margin: 0 0 8px 0; }
         .tools-line strong { color: var(--text-main); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-right: 12px; }
 
-        .stills-header { font-size: 0.9rem; letter-spacing: 3px; color: var(--accent-orange); margin: 70px 0 30px 0; text-transform: uppercase; }
-        .stills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .still-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #222; }
-        .still-thumb:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
-        .still-thumb img { width: 100%; height: 200px; object-fit: cover; display: block; }
-        .still-caption { padding: 12px 15px; background: #181818; color: var(--text-main); font-size: 0.85rem; font-weight: 700; }
+        .stills-header { font-size: 0.8rem; letter-spacing: 3px; color: var(--accent-orange); margin: 0 0 16px 0; text-transform: uppercase; }
+        .stills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .still-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid #222; background: #0d0d0d; }
+        .still-thumb:hover { transform: translateY(-4px); border-color: var(--accent-orange); }
+        .still-thumb img { width: 100%; height: 150px; object-fit: contain; background: #0d0d0d; display: block; }
+        .still-caption { padding: 9px 12px; background: #181818; color: var(--text-main); font-size: 0.78rem; font-weight: 700; }
 
         .video-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.97); z-index: 210; justify-content: center; align-items: center; padding: 0; box-sizing: border-box; }
         .video-overlay.active { display: flex; }
@@ -93,10 +93,11 @@
             .project { padding: 100px 5% 60px; }
             .project-header h1 { font-size: 1.6rem; }
             .roster-intro { font-size: 1rem; margin-bottom: 40px; }
-            .character-block h2 { font-size: 1.5rem; }
+            .character-block { flex-direction: column; gap: 22px; padding: 20px; align-items: stretch; }
+            .character-meta h2 { font-size: 1.5rem; }
             .character-line { font-size: 1.05rem; }
             .character-role { font-size: 0.95rem; }
-            .character-video-container { width: 100%; max-width: 340px; }
+            .character-video-container { width: 100%; max-width: 340px; margin: 0 auto; }
             .tools-line { font-size: 0.85rem; }
             .stills-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .still-thumb img { height: 140px; }
@@ -138,35 +139,32 @@
         </p>
 
         <div class="character-block">
-            <h2>Ash Cavendish</h2>
-            <p class="character-line">Ash Cavendish, younger sister to Siena Cavendish.</p>
-            <p class="character-role">Combat, tactics, and tech are Ash's domain. She is a hyper-fast processor — she maps the space, calculates the threats, and moves into action.</p>
-            <div class="tools-block">
-                <p class="tools-line"><strong>Generation &amp; Craft</strong> Seedance · Midjourney · GPT Image 2</p>
-                <p class="tools-line"><strong>Finishing</strong> Topaz Astra</p>
-            </div>
             <div class="character-video-container" onclick="openVideo('https://res.cloudinary.com/dqih0axv3/video/upload/v1782141593/Ash_Training_Sat_720_gs4jra.mp4')">
                 <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/3_vupzba.png" alt="Ash Cavendish — character reel">
                 <div class="play-overlay"></div>
             </div>
-
-            <h3 class="stills-header">Production Stills</h3>
-            <div class="stills-grid">
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105137/m1_yuss7i.png')">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105137/m1_yuss7i.png" alt="Ash in training outfit">
-                    <div class="still-caption">Ash — Training Outfit</div>
+            <div class="character-meta">
+                <h2>Ash Cavendish</h2>
+                <p class="character-line">Ash Cavendish, younger sister to Siena Cavendish.</p>
+                <p class="character-role">Combat, tactics, and tech are Ash's domain. She is a hyper-fast processor — she maps the space, calculates the threats, and moves into action.</p>
+                <div class="tools-block">
+                    <p class="tools-line"><strong>Generation &amp; Craft</strong> Seedance · Midjourney · GPT Image 2</p>
+                    <p class="tools-line"><strong>Finishing</strong> Topaz Astra</p>
                 </div>
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/A1_kuj2pb.png')">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105138/A1_kuj2pb.png" alt="Training android">
-                    <div class="still-caption">Training Android</div>
-                </div>
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105139/4_cmo62w.png')">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105139/4_cmo62w.png" alt="Training room">
-                    <div class="still-caption">Training Room</div>
-                </div>
-                <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/3_vupzba.png')">
-                    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105138/3_vupzba.png" alt="Start frame">
-                    <div class="still-caption">Start Frame</div>
+                <h3 class="stills-header">Production Stills</h3>
+                <div class="stills-grid">
+                    <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105137/m1_yuss7i.png')">
+                        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105137/m1_yuss7i.png" alt="Ash in training outfit">
+                        <div class="still-caption">Ash — Training Outfit</div>
+                    </div>
+                    <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105138/A1_kuj2pb.png')">
+                        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105138/A1_kuj2pb.png" alt="Training android">
+                        <div class="still-caption">Training Android</div>
+                    </div>
+                    <div class="still-thumb" onclick="openFullscreen('https://res.cloudinary.com/dqih0axv3/image/upload/v1782105139/4_cmo62w.png')">
+                        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1782105139/4_cmo62w.png" alt="Training room">
+                        <div class="still-caption">Training Room</div>
+                    </div>
                 </div>
             </div>
         </div>
