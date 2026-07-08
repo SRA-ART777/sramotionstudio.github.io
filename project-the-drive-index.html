@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Drive | SRA Motion Studio">
+    <meta property="og:description" content="Work in progress — the driving sequence transiting Siena and Ash from the Cavendish estate to the Cliff House along a private coastal cliff road.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1781556623/WIP_Thumb_Drive_qckmvu.png">
+    <meta property="og:url" content="https://sramotionstudio.com/project-the-drive">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Drive | SRA Motion Studio">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1781556623/WIP_Thumb_Drive_qckmvu.png">
+    <meta name="description" content="Work in progress — the driving sequence transiting Siena and Ash from the Cavendish estate to the Cliff House along a private coastal cliff road.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Drive | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root { --bg-dark: #121212; --accent-orange: #e67e22; --text-main: #ffffff; --text-dim: #a0a0a0; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18,18,18,0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .nav-dropdown { position: relative; padding-bottom: 15px; margin-bottom: -15px; }
+        .nav-dropdown > a { display: inline-block; }
+        .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -15px; background: rgba(18,18,18,0.98); border: 1px solid #222; border-radius: 6px; padding: 10px 0; min-width: 140px; backdrop-filter: blur(10px); }
+        .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a { display: block; padding: 8px 18px; font-size: 0.85rem; color: var(--text-dim); }
+        .nav-dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230,126,34,0.05); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18,18,18,0.98); padding: 20px 5%; flex-direction: column; gap: 20px; z-index: 99; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; transition: 0.3s; }
+        .mobile-menu a:hover { color: var(--accent-orange); }
+        .mobile-menu .sub-link { padding-left: 20px; font-size: 0.9rem; color: #777; }
+
+        .project { padding: 120px 8% 80px; max-width: 1200px; margin: 0 auto; }
+        .project-header { margin-bottom: 40px; }
+        .project-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .project-header .subtitle { color: var(--accent-orange); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+
+        .video-container { margin-bottom: 30px; border-radius: 12px; overflow: hidden; background: #181818; cursor: pointer; position: relative; }
+        .video-container img { width: 100%; display: block; }
+        .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 80px; height: 80px; background: rgba(230,126,34,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .play-overlay::after { content: ''; width: 0; height: 0; border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 25px solid white; margin-left: 5px; }
+        .video-container:hover .play-overlay { background: rgba(230,126,34,1); transform: translate(-50%,-50%) scale(1.1); }
+
+        .project-description { color: var(--text-dim); font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px; max-width: 800px; }
+        .project-description a { color: var(--accent-orange); text-decoration: none; transition: 0.3s; }
+        .project-description a:hover { text-decoration: underline; }
+
+        .tools-block { margin-bottom: 50px; }
+        .tools-line { color: var(--text-dim); font-size: 0.9rem; letter-spacing: 1px; margin: 0 0 8px 0; }
+        .tools-line strong { color: var(--text-main); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-right: 12px; }
+
+        .tests-label { color: var(--text-main); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-top: 30px; border-top: 1px solid #1c1c1c; margin-bottom: 6px; }
+        .tests-sub { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin: 0 0 24px 0; max-width: 800px; }
+        .tests-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; max-width: 760px; }
+        .card-link { text-decoration: none; color: inherit; display: block; }
+        .card { background: #181818; border-radius: 12px; overflow: hidden; border: 1px solid #2a2a2a; transition: 0.3s; position: relative; }
+        .card:hover { border-color: var(--accent-orange); transform: translateY(-5px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .card video.hover-preview { position: absolute; top: 0; left: 0; width: 100%; height: 200px; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+        .card.previewing video.hover-preview { opacity: 1; }
+        .card-info { padding: 18px 20px; } .card-info h3 { margin: 0 0 6px 0; font-size: 1.05rem; font-weight: 700; } .card-info p { margin: 0; color: var(--accent-orange); font-size: 0.72rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+
+        .back-link { display: inline-block; margin-bottom: 30px; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .back-link:hover { color: var(--accent-orange); }
+        .back-link::before { content: '← '; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+            .project { padding: 100px 5% 60px; }
+            .project-header h1 { font-size: 1.6rem; }
+            .project-description { font-size: 1rem; }
+            .tools-line { font-size: 0.85rem; }
+            .play-overlay { width: 60px; height: 60px; }
+            .play-overlay::after { border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 18px solid white; }
+            .tests-row { grid-template-columns: 1fr; gap: 20px; }
+        }
+    </style>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXNREXN32D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KXNREXN32D');
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xj0p8pr34u");
+    </script>
+
+</head>
+<body>
+    <nav>
+        <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">SRA<span>MOTIONSTUDIO</span></div></a>
+        <div class="nav-links">
+            <a href="/projects">PROJECTS</a>
+            <div class="nav-dropdown">
+                <a href="/about">ABOUT</a>
+                <div class="nav-dropdown-menu">
+                    <a href="/about">About</a>
+                    <a href="/games">Games</a>
+                </div>
+            </div>
+            <a href="/contact">CONTACT</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+        <a href="/about" onclick="toggleMenu()">ABOUT</a>
+        <a href="/games" class="sub-link" onclick="toggleMenu()">Games</a>
+        <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+    </div>
+
+    <section class="project">
+        <a href="/projects" class="back-link">Back to Projects</a>
+        <div class="project-header">
+            <h1>The Drive</h1>
+            <p class="subtitle">SRA Labs — Work in Progress</p>
+        </div>
+
+        <div class="video-container" onclick="window.location.href='https://res.cloudinary.com/dqih0axv3/video/upload/v1781555899/Seedance_480_tunnel_exit_6s_1_Precise_Starlight_2_5_njbssg.mp4'">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1781556623/WIP_Thumb_Drive_qckmvu.png" alt="The Drive">
+            <div class="play-overlay"></div>
+        </div>
+
+        <p class="project-description">
+            This is the first clip in a longer driving sequence. The full drive will follow Siena and Ash as they leave the Cavendish mansion, travel the English coastline, and arrive at the Cliff House estate.
+        </p>
+
+        <div class="tools-block">
+            <p class="tools-line"><strong>Tools</strong> Seedance · Grok · Nano Banana · GPT Image 2 · Topaz</p>
+        </div>
+
+        <p class="tests-label">Early Tests — Vehicle Consistency in Grok</p>
+        <p class="tests-sub">Establishing the car before committing to the scene: Grok building a consistent vehicle from reference, in both color directions under evaluation.</p>
+        <div class="tests-row">
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1781555898/grok_720_orbit_mtvmem.mp4" class="card-link" data-preview-start="0">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/video/upload/so_0,w_600,q_auto/v1781555898/grok_720_orbit_mtvmem.jpg" alt="Yellow car test — Grok">
+                    <div class="card-info"><h3>Yellow Car Test</h3><p>Grok • Vehicle Rotation</p></div>
+                </div>
+            </a>
+            <a href="https://res.cloudinary.com/dqih0axv3/video/upload/v1781555898/grok_720_red_car_rotation_1_rr7h2k.mp4" class="card-link" data-preview-start="0">
+                <div class="card">
+                    <img src="https://res.cloudinary.com/dqih0axv3/video/upload/so_0,w_600,q_auto/v1781555898/grok_720_red_car_rotation_1_rr7h2k.jpg" alt="Red car test — Grok">
+                    <div class="card-info"><h3>Red Car Test</h3><p>Grok • Vehicle Rotation</p></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        document.addEventListener('keydown', function(event) { if (event.key === 'Backspace' && !event.target.matches('input, textarea')) { event.preventDefault(); history.back(); } });
+        // Hover-to-play previews on test cards (desktop only)
+        if (window.matchMedia('(hover: hover)').matches) {
+            var previewVids = [];
+            document.querySelectorAll('.card-link').forEach(function(link) {
+                var href = link.getAttribute('href') || '';
+                var src = link.getAttribute('data-preview') || (href.indexOf('.mp4') !== -1 ? href : null);
+                if (!src) return;
+                var card = link.querySelector('.card');
+                if (!card) return;
+                var start = parseFloat(link.getAttribute('data-preview-start')) || 0;
+                var vid = document.createElement('video');
+                vid.className = 'hover-preview';
+                vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'none';
+                vid.src = src.replace('/video/upload/', '/video/upload/so_' + start + ',du_4,w_480,q_auto/');
+                vid.addEventListener('error', function() { if (vid.src !== src) { vid.src = src; vid.load(); } }, { once: true });
+                card.insertBefore(vid, card.firstChild);
+                previewVids.push(vid);
+                link.addEventListener('mouseenter', function() { card.classList.add('previewing'); vid.play().catch(function(){}); });
+                link.addEventListener('mouseleave', function() { card.classList.remove('previewing'); vid.pause(); vid.currentTime = 0; });
+            });
+            window.addEventListener('load', function() {
+                setTimeout(function() { previewVids.forEach(function(v) { v.preload = 'auto'; v.load(); }); }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
