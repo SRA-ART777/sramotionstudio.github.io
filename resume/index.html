@@ -44,7 +44,7 @@
 <a class="download-btn" href="/files/Scott_Anderson_Resume_ATS.pdf" target="_blank" rel="noopener">DOWNLOAD PDF</a>
 </div>
 
-<div class="contact-line">Keller, TX &nbsp;·&nbsp; <a href="mailto:scott@sramotionstudio.com">scott@sramotionstudio.com</a> &nbsp;·&nbsp; <a href="https://sramotionstudio.com">sramotionstudio.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/scott-anderson-88939112/" target="_blank" rel="noopener">LinkedIn</a></div>
+<div class="contact-line">Keller, TX &nbsp;·&nbsp; <a href="#" id="emailCopy" title="Click to copy">scott@sramotionstudio.com</a><span id="copyNote" style="color: var(--accent-orange); font-size: 0.8rem; margin-left: 6px; opacity: 0; transition: opacity 0.3s;">Copied!</span> &nbsp;·&nbsp; <a href="https://sramotionstudio.com">sramotionstudio.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/scott-anderson-88939112/" target="_blank" rel="noopener">LinkedIn</a></div>
 
 <h2>Profile</h2>
 <p>AI filmmaker and visual artist with 15 years in AAA game development and a BFA in Illustration from Art Center College of Design. Background spans cinematic lighting, art direction, concept design, environment and character design, and cross-team creative leadership across multiple studios and franchises. Now building cinematic AI video end-to-end: concept, prompt engineering and generation (Kling, Veo, Seedance, Midjourney, Nano Banana, GPT Image 2.0), voice and sound (ElevenLabs, Suno), and final edit in DaVinci Resolve.</p>
@@ -110,4 +110,16 @@ FAA Part 107 Remote Pilot Certificate</p>
 
 </div></section>
 
-<script>function toggleMenu() {document.getElementById('mobileMenu').classList.toggle('active');}</script></body></html>
+<script>function toggleMenu() {document.getElementById('mobileMenu').classList.toggle('active');}
+document.getElementById('emailCopy').addEventListener('click', function(e) {
+  e.preventDefault();
+  var email = 'scott@sramotionstudio.com';
+  var note = document.getElementById('copyNote');
+  function show() { note.style.opacity = '1'; setTimeout(function(){ note.style.opacity = '0'; }, 2000); }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(email).then(show);
+  } else {
+    var t = document.createElement('textarea'); t.value = email; document.body.appendChild(t);
+    t.select(); document.execCommand('copy'); document.body.removeChild(t); show();
+  }
+});</script></body></html>
