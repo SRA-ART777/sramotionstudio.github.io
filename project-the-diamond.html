@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SRA Labs — The Diamond | SRA Motion Studio">
+    <meta property="og:description" content="A short narrative AI filmmaking piece focused on character continuity, cinematic coverage, action staging, and visual consistency across a multi-shot sequence.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1787163852/Thumb_1_akfxjz.jpg">
+    <meta property="og:url" content="https://sramotionstudio.com/project-the-diamond">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SRA Labs — The Diamond | SRA Motion Studio">
+    <meta name="twitter:description" content="A short narrative AI filmmaking piece focused on character continuity, cinematic coverage, action staging, and visual consistency across a multi-shot sequence.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1787163852/Thumb_1_akfxjz.jpg">
+    <meta name="description" content="A short narrative AI filmmaking piece focused on character continuity, cinematic coverage, action staging, and visual consistency across a multi-shot sequence.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRA Labs — The Diamond | SRA Motion Studio</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root { --bg-dark: #121212; --accent-orange: #e67e22; --text-main: #ffffff; --text-dim: #a0a0a0; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18,18,18,0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .nav-dropdown { position: relative; padding-bottom: 15px; margin-bottom: -15px; }
+        .nav-dropdown > a { display: inline-block; }
+        .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: -15px; background: rgba(18,18,18,0.98); border: 1px solid #222; border-radius: 6px; padding: 10px 0; min-width: 140px; backdrop-filter: blur(10px); }
+        .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a { display: block; padding: 8px 18px; font-size: 0.85rem; color: var(--text-dim); }
+        .nav-dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230,126,34,0.05); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18,18,18,0.98); padding: 20px 5%; flex-direction: column; gap: 20px; z-index: 99; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; transition: 0.3s; }
+        .mobile-menu a:hover { color: var(--accent-orange); }
+        .mobile-menu .sub-link { padding-left: 20px; font-size: 0.9rem; color: #777; }
+        .project { padding: 120px 8% 80px; max-width: 1200px; margin: 0 auto; }
+        .project-header { margin-bottom: 40px; }
+        .project-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .project-header .subtitle { color: var(--accent-orange); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .video-container { margin-bottom: 30px; border-radius: 12px; overflow: hidden; background: #181818; cursor: pointer; position: relative; aspect-ratio: 16/9; }
+        .video-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 80px; height: 80px; background: rgba(230,126,34,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .play-overlay::after { content: ''; width: 0; height: 0; border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 25px solid white; margin-left: 5px; }
+        .video-container:hover .play-overlay { background: rgba(230,126,34,1); transform: translate(-50%,-50%) scale(1.1); }
+        .project-description { color: var(--text-dim); font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px; max-width: 800px; }
+        .tools-block { margin-bottom: 30px; }
+        .tools-line { color: var(--text-dim); font-size: 0.9rem; letter-spacing: 1px; margin: 0 0 8px 0; }
+        .tools-line strong { color: var(--text-main); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-right: 12px; }
+        .back-link { display: inline-block; margin-bottom: 30px; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .back-link:hover { color: var(--accent-orange); }
+        .back-link::before { content: '← '; }
+        .video-fullscreen { display: none; position: fixed; inset: 0; z-index: 250; background: #000; align-items: center; justify-content: center; }
+        .video-fullscreen.active { display: flex; }
+        .video-fullscreen video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+        .video-close { position: absolute; top: 18px; right: 28px; z-index: 260; color: #fff; font-size: 2.5rem; line-height: 1; cursor: pointer; text-shadow: 0 2px 8px rgba(0,0,0,0.8); transition: 0.3s; }
+        .video-close:hover { color: var(--accent-orange); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+            .project { padding: 100px 5% 60px; }
+            .project-header h1 { font-size: 1.6rem; }
+            .project-description { font-size: 1rem; }
+            .tools-line { font-size: 0.85rem; }
+            .play-overlay { width: 60px; height: 60px; }
+            .play-overlay::after { border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 18px solid white; }
+        }
+    </style>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXNREXN32D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KXNREXN32D');
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xj0p8pr34u");
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">SRA<span>MOTIONSTUDIO</span></div></a>
+        <div class="nav-links">
+            <a href="/projects">PROJECTS</a>
+            <div class="nav-dropdown">
+                <a href="/about">ABOUT</a>
+                <div class="nav-dropdown-menu">
+                    <a href="/about">About</a>
+                    <a href="/games">Games</a><a href="/resume">Resume</a>
+                </div>
+            </div>
+            <a href="/contact">CONTACT</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/projects" onclick="toggleMenu()">PROJECTS</a>
+        <a href="/about" onclick="toggleMenu()">ABOUT</a>
+        <a href="/games" class="sub-link" onclick="toggleMenu()">Games</a><a href="/resume" class="sub-link" onclick="toggleMenu()">Resume</a>
+        <a href="/contact" onclick="toggleMenu()">CONTACT</a>
+    </div>
+
+    <section class="project">
+        <a href="/projects" class="back-link">Back to Projects</a>
+        <div class="project-header">
+            <h1>SRA Labs — The Diamond</h1>
+            <p class="subtitle">Short Continuity Test</p>
+        </div>
+
+        <div class="video-container" onclick="openVideo()">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1787163852/Thumb_1_akfxjz.jpg" width="1920" height="1080" alt="SRA Labs — The Diamond">
+            <div class="play-overlay"></div>
+        </div>
+
+        <p class="project-description">
+            A short narrative AI filmmaking piece focused on character continuity, cinematic coverage, action staging, and visual consistency across a multi-shot sequence.
+        </p>
+
+        <div class="tools-block">
+            <p class="tools-line"><strong>Generation &amp; Craft</strong> Seedance 2.0 · Grok Imagine 1.5 · GPT Image 2 · Nano Banana · Seedance Pro 5 · ElevenLabs · Suno</p>
+            <p class="tools-line"><strong>Finishing</strong> Magnific · Topaz Astra · DaVinci Resolve</p>
+        </div>
+    </section>
+
+    <div class="video-fullscreen" id="videoFullscreen" onclick="closeVideoFromBackdrop(event)">
+        <div class="video-close" onclick="closeVideo(event)">×</div>
+        <video id="diamondVideo" controls playsinline preload="metadata" poster="https://res.cloudinary.com/dqih0axv3/image/upload/v1787163852/Thumb_1_akfxjz.jpg">
+            <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1787163748/The_Diamond_H.264_3_pidqxj.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function openVideo() {
+            const overlay = document.getElementById('videoFullscreen');
+            const video = document.getElementById('diamondVideo');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            video.currentTime = 0;
+            video.play().catch(function(){});
+            if (video.requestFullscreen) {
+                video.requestFullscreen().catch(function(){});
+            } else if (video.webkitEnterFullscreen) {
+                try { video.webkitEnterFullscreen(); } catch (e) {}
+            }
+        }
+        function closeVideo(event) {
+            if (event) event.stopPropagation();
+            const overlay = document.getElementById('videoFullscreen');
+            const video = document.getElementById('diamondVideo');
+            video.pause();
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            if (document.fullscreenElement && document.exitFullscreen) {
+                document.exitFullscreen().catch(function(){});
+            }
+        }
+        function closeVideoFromBackdrop(event) {
+            if (event.target.id === 'videoFullscreen') closeVideo(event);
+        }
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                const overlay = document.getElementById('videoFullscreen');
+                const video = document.getElementById('diamondVideo');
+                if (overlay.classList.contains('active')) {
+                    video.pause();
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const overlay = document.getElementById('videoFullscreen');
+                if (overlay.classList.contains('active')) { closeVideo(); return; }
+            }
+            if (event.key === 'Backspace' && !event.target.matches('input, textarea')) {
+                event.preventDefault(); history.back();
+            }
+        });
+    </script>
+</body>
+</html>
